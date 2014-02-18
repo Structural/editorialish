@@ -15,4 +15,6 @@ editorialish.get('/', function(req, res) {
 });
 
 var port = Number(process.env.PORT || 3000);
-editorialish.listen(port);
+editorialish.listen(port, function() {
+  console.log('Listening on', port);
+});
