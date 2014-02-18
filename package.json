@@ -15,5 +15,12 @@
   },
   "engines": {
     "node": "0.10.25"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Structural/editorialish.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Structural/editorialish/issues"
   }
 }
