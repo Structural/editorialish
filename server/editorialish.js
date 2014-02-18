@@ -1,4 +1,5 @@
-var express = require('express');
+var express = require('express'),
+    logfmt = require('logfmt');
 
 var editorialish = express();
 
@@ -16,5 +17,5 @@ editorialish.get('/', function(req, res) {
 
 var port = Number(process.env.PORT || 3000);
 editorialish.listen(port, function() {
-  console.log('Listening on', port);
+  logfmt.log({'port': port});
 });
