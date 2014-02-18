@@ -4,6 +4,7 @@ var express = require('express'),
 var editorialish = express();
 
 editorialish.configure(function() {
+  editorialish.use(logfmt.requestLogger());
   editorialish.use(express.bodyParser());
   editorialish.use(express.methodOverride());
   editorialish.use(editorialish.router);
