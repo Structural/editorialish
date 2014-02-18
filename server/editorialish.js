@@ -7,6 +7,7 @@ editorialish.configure(function() {
   editorialish.use(logfmt.requestLogger());
   editorialish.use(express.bodyParser());
   editorialish.use(express.methodOverride());
+  editorialish.use(express.static(__dirname + '/../client/public'));
   editorialish.use(editorialish.router);
   editorialish.use(express.errorHandler(
     { dumpExceptions: true, showStack: true }));
