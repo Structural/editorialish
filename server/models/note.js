@@ -1,10 +1,10 @@
 var mongoose = require('mongoose');
 
-exports.noteSchema = new mongoose.Schema({
+exports._noteSchema = new mongoose.Schema({
   highlightedText: String,
   text: String,
   startPos: Number,
   endPos: Number
 });
 
-exports.Note = mongoose.model('Note', exports.noteSchema);
+exports.Note = mongoose.model('Note', exports._noteSchema);
