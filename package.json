@@ -11,7 +11,8 @@
   "dependencies": {
     "logfmt": "~0.21.0",
     "express": "~3.4.8",
-    "mongoose": "~3.8.7"
+    "mongoose": "~3.8.7",
+    "underscore": "~1.6.0"
   },
   "engines": {
     "node": "0.10.25"
