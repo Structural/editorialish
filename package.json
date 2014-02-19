@@ -11,9 +11,27 @@
   "dependencies": {
     "logfmt": "~0.21.0",
     "express": "~3.4.8",
-    "mongoose": "~3.8.7"
+    "mongoose": "~3.8.7",
+    "gulp": "~3.5.2",
+    "gulp-less": "~1.2.1",
+    "gulp-buster": "~0.2.1",
+    "gulp-rename": "~1.1.0",
+    "gulp-livereload": "~1.1.1",
+    "gulp-minify-css": "~0.3.0",
+    "gulp-clean": "~0.2.4",
+    "gulp-uglify": "~0.2.1",
+    "gulp-concat": "~2.1.7",
+    "tiny-lr": "0.0.5",
+    "gulp-notify": "~0.6.2",
+    "gulp-autoprefixer": "0.0.6",
+    "gulp-jshint": "~1.4.2",
+    "gulp-imagemin": "~0.1.5",
+    "gulp-cache": "~0.1.1"
   },
   "engines": {
     "node": "0.10.25"
+  },
+  "devDependencies": {
+    "gulp-util": "~2.2.14"
   }
 }
