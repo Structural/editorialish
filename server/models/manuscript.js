@@ -1,8 +1,10 @@
-var mongoose = require('mongoose');
+var mongoose = require('mongoose'),
+    note = require('./note');
 
-var manuscriptSchema = new mongoose.Schema({
+exports.manuscriptSchema = new mongoose.Schema({
   title: String,
-  text: String
+  text: String,
+  notes: [note.noteSchema]
 });
 
-exports.Manuscript = mongoose.model('Manuscript', manuscriptSchema);
+exports.Manuscript = mongoose.model('Manuscript', exports.manuscriptSchema);
