@@ -30,7 +30,7 @@ gulp.task('styles', function() {
 });
 
 gulp.task('scripts', function() {
-  return gulp.src('client/src/scripts/test.js')
+  return gulp.src('client/src/scripts/editorialish.js')
     .pipe(browserify({
       insertGlobals: true
     }))
