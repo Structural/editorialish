@@ -2,7 +2,7 @@ var Backbone = require('backbone');
 
 var Mod = Backbone.Model.extend({
   defaults: {
-    title: "A Model"
+    title: "A Watched Model"
   }
 });
 

@@ -13,6 +13,7 @@ var gulp = require('gulp'),
     notify = require('gulp-notify'),
     cache = require('gulp-cache'),
     livereload = require('gulp-livereload'),
+    browserify = require('gulp-browserify'),
     lr = require('tiny-lr'),
     server = lr();
 
@@ -31,11 +32,10 @@ gulp.task('styles', function() {
 
 // Scripts
 gulp.task('scripts', function() {
-  return gulp.src('client/src/scripts/**/*.js')
-    .pipe(concat('main.js'))
-    .pipe(gulp.dest('client/public/scripts'))
-    .pipe(rename({ suffix: '.min' }))
-    .pipe(uglify())
+  return gulp.src('client/src/scripts/test.js')
+    .pipe(browserify({
+      insertGlobals: true
+    }))
     .pipe(livereload(server))
     .pipe(gulp.dest('client/public/scripts'))
     .pipe(notify({ message: 'Scripts task complete' }));
