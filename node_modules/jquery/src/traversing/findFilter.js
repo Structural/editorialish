@@ -54,9 +54,9 @@ jQuery.filter = function( expr, elems, not ) {
 jQuery.fn.extend({
 	find: function( selector ) {
 		var i,
+			len = this.length,
 			ret = [],
-			self = this,
-			len = self.length;
+			self = this;
 
 		if ( typeof selector !== "string" ) {
 			return this.pushStack( jQuery( selector ).filter(function() {
