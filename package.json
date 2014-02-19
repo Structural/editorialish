@@ -33,7 +33,9 @@
     "backbone": "~1.1.1",
     "jquery": "~2.1.0",
     "gulp-browserify": "~0.4.6",
-    "backbone.marionette": "~1.6.2"
+    "backbone.marionette": "~1.6.2",
+    "backbone.wreqr": "~1.0.0",
+    "backbone.babysitter": "~0.1.0"
   },
   "engines": {
     "node": "0.10.25"
