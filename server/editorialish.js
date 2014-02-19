@@ -14,8 +14,8 @@ editorialish.configure(function() {
     { dumpExceptions: true, showStack: true }));
 });
 
-editorialish.get('/api/documents', api.index);
-editorialish.post('/api/documents', api.create);
+editorialish.get('/api/manuscripts', api.index);
+editorialish.post('/api/manuscripts', api.create);
 
 var port = Number(process.env.PORT || 3000);
 editorialish.listen(port, function() {
