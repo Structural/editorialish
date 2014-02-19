@@ -1,1 +1,3 @@
 *.sublime-*
+client/public/scripts/
+client/public/styles/
