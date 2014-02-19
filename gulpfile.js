@@ -13,10 +13,8 @@ var gulp = require('gulp'),
     notify = require('gulp-notify'),
     cache = require('gulp-cache'),
     livereload = require('gulp-livereload'),
-    bower = require('gulp-bower'),
     lr = require('tiny-lr'),
-    server = lr(),
-    streamqueue = require('streamqueue');
+    server = lr();
 
 // Styles
 gulp.task('styles', function() {
@@ -33,10 +31,7 @@ gulp.task('styles', function() {
 
 // Scripts
 gulp.task('scripts', function() {
-  var stream = streamqueue({ objectMode: true });
-  stream.queue(bower('./client/bower_components'));
-  stream.queue(gulp.src('client/src/scripts/**/*.js'));
-  return stream.done()
+  return gulp.src('client/src/scripts/**/*.js')
     .pipe(concat('main.js'))
     .pipe(gulp.dest('client/public/scripts'))
     .pipe(rename({ suffix: '.min' }))
