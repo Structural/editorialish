@@ -1,4 +1,3 @@
-// Load plugins
 var gulp = require('gulp'),
     less = require('gulp-less'),
     path = require('path');
@@ -17,7 +16,6 @@ var gulp = require('gulp'),
     lr = require('tiny-lr'),
     server = lr();
 
-// Styles
 gulp.task('styles', function() {
   return gulp.src('client/src/styles/*.less')
     .pipe(less({paths: [ path.join(__dirname, 'client','src', 'styles') ]}))
@@ -30,7 +28,6 @@ gulp.task('styles', function() {
     .pipe(notify({ message: 'Styles task complete' }));
 });
 
-// Scripts
 gulp.task('scripts', function() {
   return gulp.src('client/src/scripts/test.js')
     .pipe(browserify({
@@ -41,7 +38,6 @@ gulp.task('scripts', function() {
     .pipe(notify({ message: 'Scripts task complete' }));
 });
 
-// Images
 gulp.task('images', function() {
   return gulp.src('client/src/images/**/*')
     .pipe(cache(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true })))
@@ -50,35 +46,23 @@ gulp.task('images', function() {
     .pipe(notify({ message: 'Images task complete' }));
 });
 
-// Clean
 gulp.task('clean', function() {
   return gulp.src(['client/public/styles', 'client/public/scripts', 'client/public/images'], {read: false})
     .pipe(clean());
 });
 
-// Default task
 gulp.task('default', ['clean'], function() {
     gulp.start('styles', 'scripts', 'images');
 });
 
-// Watch
 gulp.task('watch', function() {
-
-  // Listen on port 35729
   server.listen(35729, function (err) {
     if (err) {
       return console.log(err)
     };
 
-    // Watch .scss files
     gulp.watch('client/src/styles/**/*.less', ['styles']);
-
-    // Watch .js files
     gulp.watch('client/src/scripts/**/*.js', ['scripts']);
-
-    // Watch image files
     gulp.watch('client/src/images/**/*', ['images']);
-
   });
-
 });
