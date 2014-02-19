@@ -31,7 +31,8 @@
     "gulp-bower": "0.0.2",
     "streamqueue": "0.0.4",
     "backbone": "~1.1.1",
-    "jquery": "~2.1.0"
+    "jquery": "~2.1.0",
+    "gulp-browserify": "~0.4.6"
   },
   "engines": {
     "node": "0.10.25"
