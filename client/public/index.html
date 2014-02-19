@@ -5,5 +5,14 @@
 </head>
 
 <body>
-  <div>Butts, butts, butts!</div>
+  <div id="editorialish">
+  </div>
+
+  <script type="text/html" id="manuscript-template">
+    <li>
+      <span class="man-title"><%= item.escape('title') %></span>
+      <div class="man-text"><%= item.escape('text') %></span>
+    </li>
+  </script>
 </body>
+</html>
