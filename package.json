@@ -28,7 +28,8 @@
     "gulp-jshint": "~1.4.2",
     "gulp-imagemin": "~0.1.5",
     "gulp-cache": "~0.1.1",
-    "gulp-bower": "0.0.2"
+    "gulp-bower": "0.0.2",
+    "streamqueue": "0.0.4"
   },
   "engines": {
     "node": "0.10.25"
