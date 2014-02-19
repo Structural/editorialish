@@ -14,7 +14,8 @@ var gulp = require('gulp'),
     livereload = require('gulp-livereload'),
     browserify = require('gulp-browserify'),
     lr = require('tiny-lr'),
-    server = lr();
+    server = lr(),
+    spawn = require('child_process').spawn;
 
 gulp.task('styles', function() {
   return gulp.src('client/src/styles/*.less')
@@ -65,4 +66,13 @@ gulp.task('watch', function() {
     gulp.watch('client/src/scripts/**/*.js', ['scripts']);
     gulp.watch('client/src/images/**/*', ['images']);
   });
+});
+
+gulp.task('server', function() {
+  // http://stackoverflow.com/questions/9775921/equivalent-of-rakes-sh-for-jake
+  var supervisor = 'supervisor -w server server/editorialish.js';
+  var shell = '/bin/sh', args = ['-c', supervisor], child;
+  child = spawn(shell, args);
+  child.stdout.pipe(process.stdout);
+  child.stderr.pipe(process.stderr);
 });
