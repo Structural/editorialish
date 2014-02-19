@@ -1,5 +1,6 @@
 var express = require('express'),
-    logfmt = require('logfmt');
+    logfmt = require('logfmt'),
+    api = require('./controllers/api');
 
 var editorialish = express();
 
@@ -13,9 +14,8 @@ editorialish.configure(function() {
     { dumpExceptions: true, showStack: true }));
 });
 
-editorialish.get('/', function(req, res) {
-  res.send('Hello, world');
-});
+editorialish.get('/api/documents', api.index);
+editorialish.post('/api/documents', api.create);
 
 var port = Number(process.env.PORT || 3000);
 editorialish.listen(port, function() {
