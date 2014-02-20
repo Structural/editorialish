@@ -18,8 +18,8 @@ var gulp = require('gulp'),
     spawn = require('child_process').spawn;
 
 gulp.task('styles', function() {
-  return gulp.src('client/src/styles/*.less')
-    .pipe(less({paths: [ path.join(__dirname, 'client','src', 'styles') ]}))
+  return gulp.src('client/*.less')
+    .pipe(less({paths: [ path.join(__dirname, 'client') ]}))
     .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
     .pipe(gulp.dest('dist'))
     .pipe(rename({ suffix: '.min' }))
@@ -33,7 +33,7 @@ gulp.task('scripts', function() {
   // Shim options copied from
   // https://github.com/marionettejs/backbone.marionette/wiki/Using-Marionette-With-Browserify-and-Grunt
 
-  return gulp.src('client/src/scripts/editorialish.js')
+  return gulp.src('client/editorialish.js')
     .pipe(browserify({
       insertGlobals: true,
       shim: {
@@ -83,7 +83,7 @@ gulp.task('scripts', function() {
 });
 
 gulp.task('images', function() {
-  return gulp.src('client/src/images/**/*')
+  return gulp.src('client/**/*')
     .pipe(cache(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true })))
     .pipe(livereload(server))
     .pipe(gulp.dest('dist'))
@@ -105,11 +105,11 @@ gulp.task('watch', function() {
       return console.log(err)
     };
 
-    gulp.watch('client/src/styles/*.less', ['styles']);
-    gulp.watch('client/src/styles/**/*.less', ['styles']);
-    gulp.watch('client/src/scripts/*.js', ['scripts']);
-    gulp.watch('client/src/scripts/**/*.js', ['scripts']);
-    gulp.watch('client/src/images/**/*', ['images']);
+    gulp.watch('client/*.less', ['styles']);
+    gulp.watch('client/**/*.less', ['styles']);
+    gulp.watch('client/*.js', ['scripts']);
+    gulp.watch('client/**/*.js', ['scripts']);
+    gulp.watch('client/**/*', ['images']);
   });
 });
 
