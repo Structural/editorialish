@@ -1,5 +1,5 @@
 var Backbone = require('backbone'),
-    Manuscript = require('../models/manuscript');
+    Manuscript = require('../manuscript/manuscript_model');
 
 var Manuscripts = Backbone.Collection.extend({
   model: Manuscript,

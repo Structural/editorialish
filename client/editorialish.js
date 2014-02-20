@@ -1,7 +1,7 @@
 var $ = require('jquery'),
     Marionette = require('backbone.marionette'),
-    Manuscripts = require('./collections/manuscripts'),
-    ManuscriptsView = require('./views/manuscripts');
+    Manuscripts = require('./manuscripts/manuscripts_model'),
+    ManuscriptsView = require('./manuscripts/manuscripts_view');
 
 var Editorialish = new Marionette.Application();
 
