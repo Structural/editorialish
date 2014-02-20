@@ -36,7 +36,7 @@ exports.create = function(req, res) {
 };
 
 exports.update = function(req, res) {
-  return models.Manuscript.findById(req.params.id, function(err, manuscript) {
+  models.Manuscript.findById(req.params.id, function(err, manuscript) {
     if (manuscript) {
       manuscript = _.extend(manuscript, req.body);
       manuscript.save(sendOrError('manuscripts#update', manuscript, res));
@@ -49,5 +49,5 @@ exports.update = function(req, res) {
       };
       handleError('manuscripts#update', err, res);
     }
-  })
+  });
 };
