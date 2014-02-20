@@ -101,7 +101,7 @@ gulp.task('default', ['clean'], function() {
     gulp.start('styles', 'scripts', 'images');
 });
 
-gulp.task('watch', function() {
+gulp.task('watch', ['styles', 'scripts', 'htmls', 'images'], function() {
   server.listen(35729, function (err) {
     if (err) {
       return console.log(err)
