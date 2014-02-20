@@ -82,6 +82,11 @@ gulp.task('scripts', function() {
     .pipe(notify({ message: 'Scripts task complete' }));
 });
 
+gulp.task('htmls', function() {
+  return gulp.src('client/*.html')
+    .pipe(gulp.dest('dist'));
+});
+
 gulp.task('images', function() {
   return gulp.src('client/**/*')
     .pipe(cache(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true })))
@@ -109,6 +114,7 @@ gulp.task('watch', function() {
     gulp.watch('client/**/*.less', ['styles']);
     gulp.watch('client/*.js', ['scripts']);
     gulp.watch('client/**/*.js', ['scripts']);
+    gulp.watch('client/*.html', ['htmls']);
     gulp.watch('client/**/*', ['images']);
   });
 });
