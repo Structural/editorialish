@@ -5,45 +5,49 @@ var _ = require('underscore'),
 
 mongoose.connect('mongodb://localhost/editorialish');
 
-exports.index = function(req, res) {
-  models.Manuscript.find({}, function(err, manuscripts) {
-    if (!err) {
-      return res.send(manuscripts);
+var handleError = function(action, err, res) {
+  logfmt.log({
+    error: err.message,
+    action: action,
+    stack: err.stack
+  });
+  res.send(500, {});
+};
+
+var sendOrError = function(action, obj, res) {
+  return function() {
+    var err = arguments[0];
+    if (err) {
+      handleError(action, err, res);
     } else {
-      return logfmt.log(err);
+      var data = _.isNumber(obj) ? arguments[obj] : obj;
+      res.send(data);
     }
-  })
+  };
+};
+
+exports.index = function(req, res) {
+  models.Manuscript.find({}, sendOrError('manuscripts#index', 1, res));
 };
 
 exports.create = function(req, res) {
   var manuscript = new models.Manuscript(req.body);
-  manuscript.save(function(err) {
-    if (!err) {
-      return res.send(manuscript);
-    } else {
-      return logfmt.log(err);
-    }
-  })
+  manuscript.save(sendOrError('manuscripts#create', manuscript, res));
 };
 
 exports.update = function(req, res) {
   return models.Manuscript.findById(req.params.id, function(err, manuscript) {
     if (manuscript) {
       manuscript = _.extend(manuscript, req.body);
-      return manuscript.save(function(err) {
-        if (!err) {
-          return res.send(manuscript);
-        } else {
-          return logfmt.log(err);
-        }
-      })
+      manuscript.save(sendOrError('manuscripts#update', manuscript, res));
     } else if (err) {
-      return logfmt.log(err);
+      handleError('manuscripts#update', err, res);
     } else {
-      return logfmt.log({
-        msg: 'No Manuscript with id',
-        id: req.params.id
-      })
+      err = {
+        message: 'No manuscript with id ' + req.params.id;
+        stack: ''
+      };
+      handleError('manuscripts#update', err, res);
     }
   })
 };
