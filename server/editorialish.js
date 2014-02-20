@@ -18,6 +18,7 @@ editorialish.get('/api/manuscripts', api.index);
 editorialish.post('/api/manuscripts', api.create);
 editorialish.get('/api/manuscripts/:id', api.show);
 editorialish.put('/api/manuscripts/:id', api.update);
+editorialish.delete('/api/manuscripts/:id', api.destroy);
 
 var port = Number(process.env.PORT || 3000);
 editorialish.listen(port, function() {

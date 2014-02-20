@@ -66,3 +66,10 @@ exports.update = function(req, res) {
       manuscript.save(sendOrError('manuscripts#update', manuscript, res));
     });
 };
+
+exports.destroy = function(req, res) {
+  findByIdAndDo('manuscripts#destroy', models.Manuscript, req.params.id, res,
+    function(manuscript) {
+      manuscript.remove(sendOrError('manuscripts#destroy', manuscript, res));
+    });
+};
