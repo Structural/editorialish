@@ -19,5 +19,5 @@ editorialish.post('/api/manuscripts', api.create);
 
 var port = Number(process.env.PORT || 3000);
 editorialish.listen(port, function() {
-  logfmt.log({'port': port});
+  logfmt.log({port: port});
 });
