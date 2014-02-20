@@ -9,7 +9,7 @@ editorialish.configure(function() {
   editorialish.use(express.bodyParser());
   editorialish.use(express.methodOverride());
   editorialish.use(editorialish.router);
-  editorialish.use(express.static(__dirname + '/../client/public'));
+  editorialish.use(express.static(__dirname + '/../dist'));
   editorialish.use(express.errorHandler(
     { dumpExceptions: true, showStack: true }));
 });
