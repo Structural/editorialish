@@ -44,7 +44,7 @@ exports.update = function(req, res) {
       handleError('manuscripts#update', err, res);
     } else {
       err = {
-        message: 'No manuscript with id ' + req.params.id;
+        message: 'No manuscript with id ' + req.params.id,
         stack: ''
       };
       handleError('manuscripts#update', err, res);
