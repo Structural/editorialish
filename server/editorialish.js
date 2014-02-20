@@ -16,6 +16,7 @@ editorialish.configure(function() {
 
 editorialish.get('/api/manuscripts', api.index);
 editorialish.post('/api/manuscripts', api.create);
+editorialish.put('/api/manuscripts/:id', api.update);
 
 var port = Number(process.env.PORT || 3000);
 editorialish.listen(port, function() {
