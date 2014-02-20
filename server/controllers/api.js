@@ -26,6 +26,22 @@ var sendOrError = function(action, obj, res) {
   };
 };
 
+var findByIdAndDo = function(action, model, id, res, fn) {
+  model.findById(id, function(err, result) {
+    if (result) {
+      fn(result);
+    } else if (err) {
+      handleError(action, err, res);
+    } else {
+      err = {
+        message: 'No document with id ' + id,
+        stack: ''
+      };
+      handleError(action, err, res);
+    }
+  });
+};
+
 exports.index = function(req, res) {
   models.Manuscript.find({}, sendOrError('manuscripts#index', 1, res));
 };
@@ -36,34 +52,16 @@ exports.create = function(req, res) {
 };
 
 exports.show = function(req, res) {
-  models.Manuscript.findById(req.params.id, function(err, manuscript) {
-    if (manuscript) {
+  findByIdAndDo('manuscripts#show', models.Manuscript, req.params.id, res,
+    function(manuscript) {
       res.send(manuscript);
-    } else if (err) {
-      handleError('manuscripts#show', err, res);
-    } else {
-      err = {
-        message: 'No manuscript with id' + req.params.id,
-        stack: ''
-      };
-      handleError('manuscripts#show', err, res);
-    }
-  });
+    });
 };
 
 exports.update = function(req, res) {
-  models.Manuscript.findById(req.params.id, function(err, manuscript) {
-    if (manuscript) {
+  findByIdAndDo('manuscripts#update', models.Manuscript, req.params.id, res,
+    function(manuscript) {
       manuscript = _.extend(manuscript, req.body);
       manuscript.save(sendOrError('manuscripts#update', manuscript, res));
-    } else if (err) {
-      handleError('manuscripts#update', err, res);
-    } else {
-      err = {
-        message: 'No manuscript with id ' + req.params.id,
-        stack: ''
-      };
-      handleError('manuscripts#update', err, res);
-    }
-  });
+    });
 };
