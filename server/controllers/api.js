@@ -5,13 +5,14 @@ var _ = require('underscore'),
 
 mongoose.connect('mongodb://localhost/editorialish');
 
-var handleError = function(action, err, res) {
+var handleError = function(action, err, res, status) {
+  status = status || 500;
   logfmt.log({
     error: err.message,
     action: action,
     stack: err.stack
   });
-  res.send(500, {});
+  res.send(status, {});
 };
 
 var sendOrError = function(action, obj, res) {
@@ -37,7 +38,7 @@ var findByIdAndDo = function(action, model, id, res, fn) {
         message: 'No document with id ' + id,
         stack: ''
       };
-      handleError(action, err, res);
+      handleError(action, err, res, 404);
     }
   });
 };
