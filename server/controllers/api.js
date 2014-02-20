@@ -35,6 +35,22 @@ exports.create = function(req, res) {
   manuscript.save(sendOrError('manuscripts#create', manuscript, res));
 };
 
+exports.show = function(req, res) {
+  models.Manuscript.findById(req.params.id, function(err, manuscript) {
+    if (manuscript) {
+      res.send(manuscript);
+    } else if (err) {
+      handleError('manuscripts#show', err, res);
+    } else {
+      err = {
+        message: 'No manuscript with id' + req.params.id,
+        stack: ''
+      };
+      handleError('manuscripts#show', err, res);
+    }
+  });
+};
+
 exports.update = function(req, res) {
   models.Manuscript.findById(req.params.id, function(err, manuscript) {
     if (manuscript) {
