@@ -105,7 +105,9 @@ gulp.task('watch', function() {
       return console.log(err)
     };
 
+    gulp.watch('client/src/styles/*.less', ['styles']);
     gulp.watch('client/src/styles/**/*.less', ['styles']);
+    gulp.watch('client/src/scripts/*.js', ['scripts']);
     gulp.watch('client/src/scripts/**/*.js', ['scripts']);
     gulp.watch('client/src/images/**/*', ['images']);
   });
