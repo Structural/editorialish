@@ -1,6 +1,4 @@
-var _babysitter = require('backbone.babysitter'),
-    _wreqr = require('backbone.wreqr'),
-    Marionette = require('backbone.marionette'),
+var Marionette = require('backbone.marionette'),
     Manuscripts = require('./collections/manuscripts'),
     ManuscriptsView = require('./views/manuscripts');
 
@@ -12,8 +10,9 @@ Editorialish.addRegions({
 
 Editorialish.addInitializer(function() {
   Editorialish.manuscripts = new Manuscripts();
+  Editorialish.manuscripts.fetch();
 
-  Editoralish.root.show(new ManuscriptsView({
+  Editorialish.root.show(new ManuscriptsView({
     collection: Editorialish.manuscripts
   }));
 });
