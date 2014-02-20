@@ -1,4 +1,5 @@
-var Marionette = require('backbone.marionette'),
+var $ = require('jquery'),
+    Marionette = require('backbone.marionette'),
     Manuscripts = require('./collections/manuscripts'),
     ManuscriptsView = require('./views/manuscripts');
 
@@ -17,4 +18,6 @@ Editorialish.addInitializer(function() {
   }));
 });
 
-Editorialish.start();
+$(function() {
+  Editorialish.start();
+});
