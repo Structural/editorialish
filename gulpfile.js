@@ -85,8 +85,9 @@ gulp.task('htmls', function() {
     .pipe(gulp.dest('dist'));
 });
 
+var imgExts = ['png', 'jpg', 'jpeg', 'gif'];
 gulp.task('images', function() {
-  return gulp.src('client/**/*')
+  return gulp.src(imgExts.map(function(ext) { return 'client/**/*' + ext }))
     .pipe(cache(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true })))
     .pipe(livereload(server))
     .pipe(gulp.dest('dist'));
