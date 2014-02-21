@@ -35,7 +35,8 @@
     "gulp-browserify": "~0.4.6",
     "backbone.marionette": "~1.6.2",
     "backbone.wreqr": "~1.0.0",
-    "backbone.babysitter": "~0.1.0"
+    "backbone.babysitter": "~0.1.0",
+    "event-stream": "^3.1.0"
   },
   "engines": {
     "node": "0.10.25"
