@@ -1,7 +1,7 @@
 var $ = require('jquery'),
     Marionette = require('backbone.marionette'),
-    Manuscripts = require('./manuscripts/manuscripts_model'),
-    ManuscriptsView = require('./manuscripts/manuscripts_view');
+    LayoutView = require('./layout/layout_view'),
+    HeaderModule = require('./header/header_module');
 
 var Editorialish = new Marionette.Application();
 
@@ -10,12 +10,10 @@ Editorialish.addRegions({
 });
 
 Editorialish.addInitializer(function() {
-  Editorialish.manuscripts = new Manuscripts();
-  Editorialish.manuscripts.fetch();
+  Editorialish.layout = new LayoutView();
+  Editorialish.root.show(Editorialish.layout);
 
-  Editorialish.root.show(new ManuscriptsView({
-    collection: Editorialish.manuscripts
-  }));
+  Editorialish.module('Header', HeaderModule(Editorialish.layout.header));
 });
 
 $(function() {
