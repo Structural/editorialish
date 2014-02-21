@@ -121,6 +121,7 @@ gulp.task('watch', ['styles', 'scripts', 'htmls', 'images'], function() {
     gulp.watch('client/*.js', ['scripts']);
     gulp.watch('client/**/*.js', ['scripts']);
     gulp.watch('client/*.html', ['htmls']);
+    gulp.watch('client/**/*.html', ['htmls']);
     gulp.watch('client/**/*', ['images']);
   });
 });
