@@ -1,6 +1,6 @@
 var gulp = require('gulp'),
     less = require('gulp-less'),
-    path = require('path');
+    path = require('path'),
     autoprefixer = require('gulp-autoprefixer'),
     minifycss = require('gulp-minify-css'),
     jshint = require('gulp-jshint'),
@@ -18,7 +18,7 @@ var gulp = require('gulp'),
     spawn = require('child_process').spawn;
 
 gulp.task('styles', function() {
-  return gulp.src('client/*.less')
+  return gulp.src('client/editorialish.less')
     .pipe(less({paths: [ path.join(__dirname, 'client') ]}))
     .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
     .pipe(gulp.dest('dist'))
