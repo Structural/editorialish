@@ -13,7 +13,9 @@ var gulp = require('gulp'),
     cache = require('gulp-cache'),
     livereload = require('gulp-livereload'),
     browserify = require('gulp-browserify'),
+    templateInject = require('./gulp/template-inject'),
     lr = require('tiny-lr'),
+    fs = require('fs'),
     server = lr(),
     spawn = require('child_process').spawn;
 
@@ -81,8 +83,14 @@ gulp.task('scripts', function() {
 });
 
 gulp.task('htmls', function() {
-  return gulp.src('client/*.html')
-    .pipe(gulp.dest('dist'));
+  fs.readFile('client/index.html', function(err, data) {
+    return gulp.src(['client/**/*.html', '!client/index.html'])
+      .pipe(concat('index.html'))
+      .pipe(templateInject(data, 'templates'))
+      .pipe(gulp.dest('dist'));
+  });
+  // return gulp.src('client/*.html')
+  //   .pipe(gulp.dest('dist'));
 });
 
 var imgExts = ['png', 'jpg', 'jpeg', 'gif'];
