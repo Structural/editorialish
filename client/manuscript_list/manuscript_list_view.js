@@ -25,7 +25,7 @@ module.exports = Marionette.ItemView.extend({
     this.views.manuscripts.close();
   },
 
-  editMan: function(manuscript) {
+  editMan: function(view, manuscript) {
     this.trigger('editman', manuscript);
   }
 });
