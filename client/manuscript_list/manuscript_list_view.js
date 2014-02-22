@@ -10,6 +10,8 @@ module.exports = Marionette.ItemView.extend({
     this.views.manuscripts = new ManuscriptsView({
       collection: this.collection
     });
+
+    this.listenTo(this.views.manuscripts, 'itemview:editman', this.editMan);
   },
   render: function() {
     this.$el.empty();
@@ -21,5 +23,9 @@ module.exports = Marionette.ItemView.extend({
   onBeforeClose: function() {
     this.views.toolbar.close();
     this.views.manuscripts.close();
+  },
+
+  editMan: function(manuscript) {
+    this.trigger('editman', manuscript);
   }
 });

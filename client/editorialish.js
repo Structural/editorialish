@@ -26,6 +26,12 @@ Editorialish.addInitializer(function() {
   ));
 });
 
+Editorialish.addInitializer(function() {
+  Editorialish.listenTo(Editorialish.ManuscriptList, 'editman', function(manuscript) {
+    Editorialish.ManuscriptList.stop();
+  });
+});
+
 $(function() {
   Editorialish.start();
 });

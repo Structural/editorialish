@@ -9,5 +9,13 @@ module.exports = function(region, collection) {
     ManuscriptListModule.addInitializer(function() {
       region.show(view);
     });
+
+    ManuscriptListModule.listenTo(view, 'editman', function(manuscript) {
+      this.trigger('editman', manuscript);
+    });
+
+    ManuscriptListModule.addFinalizer(function() {
+      view.close();
+    });
   };
 };
