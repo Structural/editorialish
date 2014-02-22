@@ -1,8 +1,8 @@
-var ManuscriptsView = require('../manuscripts/manuscripts_view');
+var ManuscriptListView = require('./manuscript_list_view');
 
 module.exports = function(region, collection) {
   return function(ManuscriptListModule, Editorialish, Backbone, Marionette, $, _) {
-    var view = new ManuscriptsView({
+    var view = new ManuscriptListView({
       collection: collection
     });
 
