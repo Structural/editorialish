@@ -7,5 +7,9 @@ module.exports = function(region) {
     HeaderModule.addInitializer(function() {
       region.show(view);
     });
+
+    HeaderModule.listenTo(view, 'showlist', function() {
+      this.trigger('showlist');
+    });
   };
 };

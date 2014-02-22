@@ -27,6 +27,10 @@ Editorialish.addInitializer(function() {
 });
 
 Editorialish.addInitializer(function() {
+  Editorialish.listenTo(Editorialish.Header, 'showlist', function() {
+    Editorialish.ManuscriptList.start();
+  });
+
   Editorialish.listenTo(Editorialish.ManuscriptList, 'editman', function(manuscript) {
     Editorialish.ManuscriptList.stop();
   });
