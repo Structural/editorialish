@@ -32,11 +32,19 @@ Editorialish.addInitializer(function() {
 Editorialish.showList = function() {
   Editorialish.Editor.stop();
   Editorialish.ManuscriptList.start();
+  Editorialish.Router.navigate(Editorialish.Router.rootRoute());
 };
 
 Editorialish.showManuscript = function(manuscript) {
   if (!(manuscript instanceof Backbone.Model)) {
-    // TODO: Handle list fetch not having come back yet.
+    if (!Editorialish.manuscripts.state.fetched) {
+      Editorialish.listenToOnce(
+        Editorialish.manuscripts, 'sync', function() {
+          Editorialish.showManuscript(manuscript);
+        });
+      return;
+    }
+
     manuscript = Editorialish.manuscripts.get(manuscript);
   }
 
@@ -44,6 +52,7 @@ Editorialish.showManuscript = function(manuscript) {
   Editorialish.Editor.start({
     manuscript: manuscript
   });
+  Editorialish.Router.navigate(Editorialish.Router.manuscriptRoute(manuscript.id));
 };
 
 Editorialish.addInitializer(function() {
@@ -51,6 +60,13 @@ Editorialish.addInitializer(function() {
 
   Editorialish.listenTo(
     Editorialish.ManuscriptList, 'editman', Editorialish.showManuscript);
+});
+
+Editorialish.addInitializer(function() {
+  Editorialish.Router = new Router({
+    controller: Editorialish
+  });
+  console.log(Backbone.history.start({pushState: true}));
 });
 
 $(function() {

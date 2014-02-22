@@ -3,7 +3,18 @@ var Backbone = require('backbone'),
 
 var Manuscripts = Backbone.Collection.extend({
   model: Manuscript,
-  url: '/api/manuscripts'
+  url: '/api/manuscripts',
+  initialize: function(models, options) {
+    this.state = {
+      fetched: false
+    };
+
+    this.listenToOnce(this, 'sync', this.setFetchedTrue);
+  },
+
+  setFetchedTrue: function() {
+    this.state.fetched = true;
+  }
 });
 
 module.exports = Manuscripts;

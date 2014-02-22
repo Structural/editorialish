@@ -1,6 +1,8 @@
 var express = require('express'),
     logfmt = require('logfmt'),
-    api = require('./controllers/api');
+    api = require('./controllers/api'),
+    path = require('path'),
+    staticDir = path.join(__dirname, '..', 'dist');
 
 var editorialish = express();
 
@@ -9,9 +11,13 @@ editorialish.configure(function() {
   editorialish.use(express.bodyParser());
   editorialish.use(express.methodOverride());
   editorialish.use(editorialish.router);
-  editorialish.use(express.static(__dirname + '/../dist'));
+  editorialish.use(express.static(staticDir));
   editorialish.use(express.errorHandler(
     { dumpExceptions: true, showStack: true }));
+});
+
+editorialish.get('/document/:id', function(req, res) {
+  res.sendfile(path.join(staticDir, 'index.html'));
 });
 
 editorialish.get('/api/manuscripts', api.index);
