@@ -13,6 +13,15 @@ module.exports = Marionette.ItemView.extend({
   events: {
     'keydown': 'saveOnCtrlS',
   },
+  initialize: function(options) {
+    this.listenToOnce(this, 'dom:refresh', this.focusEmptyTitle);
+  },
+
+  focusEmptyTitle: function() {
+    if (this.title() === '') {
+      this.ui.title.focus();
+    }
+  },
 
   saveOnCtrlS: function(e) {
     if (e.which === Keys.S && e.ctrlKey) {
