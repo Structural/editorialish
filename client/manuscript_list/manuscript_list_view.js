@@ -4,7 +4,7 @@ var Marionette = require('backbone.marionette'),
     ManuscriptsView = require('../manuscripts/manuscripts_view');
 
 module.exports = Marionette.ItemView.extend({
-  className: 'list',
+  className: 'list ui-scrollable',
   initialize: function(options) {
     this.views = {};
     this.views.toolbar = new ToolbarView();
