@@ -4,7 +4,8 @@
   "description": "Editorially is dead, long live Editorially!",
   "main": "server/editorialish.js",
   "scripts": {
-    "test": "mocha --ui qunit --reporter progress --no-colors"
+    "test": "mocha --ui qunit --reporter progress --no-colors",
+    "test-watch": "mocha --ui qunit --reporter progress --no-colors --watch"
   },
   "author": "Sean Kermes and William Lubelski",
   "license": "ISC",
