@@ -13,7 +13,6 @@ module.exports = function(region, collection, toaster) {
       });
       ManuscriptListModule.listenTo(ManuscriptListModule.view, 'newman', function() {
         var manuscript = new Manuscript({});
-        collection.add(manuscript);
         manuscript.save({}, {
           success: ManuscriptListModule.onNewManuscriptSave,
           error: ManuscriptListModule.onNewManuscriptError
@@ -24,6 +23,7 @@ module.exports = function(region, collection, toaster) {
     });
 
     ManuscriptListModule.onNewManuscriptSave = function(manuscript) {
+      collection.add(manuscript);
       ManuscriptListModule.trigger('editman', manuscript);
     };
 
