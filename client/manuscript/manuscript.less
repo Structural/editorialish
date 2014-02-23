@@ -1,8 +1,7 @@
 .manuscript{
   background-color: white;
-  width:15rem;
-  display:inline-block;
   border:1px solid #EAEAEA;
+  display:block;
   margin:1.0rem;
   padding:1.0rem;
   cursor: pointer;
@@ -10,6 +9,11 @@
   &:hover{
     border-color:#ACE;
   }
+  @media(min-width:@bp-1){
+    width:15rem;
+    display:inline-block;
+  }
+
   .man-title{
     display:block;
     font-weight: bold;
