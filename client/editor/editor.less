@@ -33,3 +33,28 @@
     line-height: 2;
   }
 }
+
+.editor-toast() {
+  .toast();
+  .typ-menu();
+  font-weight: bold;
+  text-align: center;
+  color: white;
+
+  position: absolute;
+  top: 0.5rem;
+  left: 50%;
+  width: 10rem;
+  margin-left: -5em;
+  height: 1.4rem;
+}
+
+.editor-saved-toast {
+  .editor-toast();
+  background-color: @success;
+}
+
+.editor-error-toast {
+  .editor-toast();
+  background-color: @error;
+}

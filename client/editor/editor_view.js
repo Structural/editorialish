@@ -6,7 +6,9 @@ module.exports = Marionette.ItemView.extend({
   className: 'editor',
   ui: {
     title: '.editor-title',
-    text: '.editor-text'
+    text: '.editor-text',
+    savedToast: '.editor-saved-toast',
+    errorToast: '.editor-error-toast'
   },
   events: {
     'keydown': 'saveOnCtrlS',
@@ -17,6 +19,20 @@ module.exports = Marionette.ItemView.extend({
       e.preventDefault();
       this.trigger('save');
     }
+  },
+
+  toastDuration: 4000,
+  showSavedToast: function() {
+    this._showToast(this.ui.savedToast);
+  },
+  showErrorToast: function() {
+    this._showToast(this.ui.errorToast);
+  },
+  _showToast: function(toast) {
+    toast.addClass('pop');
+    setTimeout(function() {
+      toast.removeClass('pop');
+    }, this.toastDuration);
   },
 
   title: function() {

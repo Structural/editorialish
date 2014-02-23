@@ -20,8 +20,19 @@ module.exports = function(region) {
     EditorModule.save = function() {
       EditorModule.manuscript.set('title', EditorModule.view.title());
       EditorModule.manuscript.set('text', EditorModule.view.text());
-      EditorModule.manuscript.save();
+      EditorModule.manuscript.save({}, {
+        success: EditorModule.onSaveSuccess,
+        error: EditorModule.onSaveError
+      });
     };
+
+    EditorModule.onSaveSuccess = function() {
+      EditorModule.view.showSavedToast();
+    };
+
+    EditorModule.onSaveError = function() {
+      EditorModule.view.showErrorToast();
+    } ;
 
     EditorModule.addFinalizer(function() {
       EditorModule.save();
