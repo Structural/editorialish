@@ -1,5 +1,5 @@
 .button() {
-  .typ-menu();
+  .font-menu();
   text-decoration: none;
   padding: .25rem 1rem .25rem 1rem;
   border: 1px solid #888;
@@ -39,5 +39,16 @@
   &.pop {
     opacity: 1.0;
     transition: opacity 1s;
+  }
+}
+
+.clearfix(){
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
   }
 }
