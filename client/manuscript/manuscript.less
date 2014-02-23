@@ -6,9 +6,12 @@
   padding:1.0rem;
   cursor: pointer;
   border-radius: 3px;
+  position: relative;
+
   &:hover{
     border-color:#ACE;
   }
+
   @media(min-width:@bp-2){
     width:15rem;
     display:inline-block;
@@ -19,5 +22,16 @@
     font-weight: bold;
     height:2.0rem;
     .ellipsis();
+  }
+
+  .man-delete {
+    position: absolute;
+    top: 0.3rem;
+    right: 0.2rem;
+    color: @gray-4;
+
+    &:hover {
+      color: @dark-4;
+    }
   }
 }
