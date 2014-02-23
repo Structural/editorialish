@@ -11,7 +11,7 @@ module.exports = function(region, collection, toaster) {
       ManuscriptListModule.listenTo(ManuscriptListModule.view, 'manuscript:edit', function(manuscript) {
         ManuscriptListModule.trigger('manuscript:edit', manuscript);
       });
-      ManuscriptListModule.listenTo(ManuscriptListModule.view, 'newman', function() {
+      ManuscriptListModule.listenTo(ManuscriptListModule.view, 'manuscript:new', function() {
         var manuscript = new Manuscript({});
         manuscript.save({}, {
           success: ManuscriptListModule.onNewManuscriptSave,

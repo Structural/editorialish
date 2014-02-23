@@ -12,7 +12,7 @@ module.exports = Marionette.ItemView.extend({
     });
 
     this.listenTo(this.views.manuscripts, 'itemview:manuscript:edit', this.editMan);
-    this.listenTo(this.views.toolbar, 'newman', this.newMan);
+    this.listenTo(this.views.toolbar, 'manuscript:new', this.newMan);
   },
   render: function() {
     this.$el.empty();
@@ -30,6 +30,6 @@ module.exports = Marionette.ItemView.extend({
     this.trigger('manuscript:edit', manuscript);
   },
   newMan: function() {
-    this.trigger('newman');
+    this.trigger('manuscript:new');
   }
 });
