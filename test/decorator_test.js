@@ -3,11 +3,11 @@ var should = require('should'),
 
 suite('Decorator');
 
-test('decorating a string', function() {
+test('string', function() {
   (decorator.decorate('words')).should.eql('words');
 });
 
-test('decorating markdown', function() {
+test('markdown', function() {
   (decorator.fragments.decorateMarkdown(['text'])).should
     .eql(['html', 'text']);
 });
