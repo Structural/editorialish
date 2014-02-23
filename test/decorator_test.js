@@ -11,3 +11,16 @@ test('markdown', function() {
   (decorator.fragments.decorateMarkdown(['text'])).should
     .eql(['html', 'text']);
 });
+
+test('paragraph', function() {
+  (decorator.fragments.decorateParagraph(['text'])).should
+    .eql(['span', {class: 'fragment p'}, 'text']);
+});
+
+test('emphasis', function() {
+  (decorator.fragments.decorateEm(['text'])).should
+    .eql(['span', {class: 'fragment em'},
+           ['span', {class: 'fragment markdown'}, '*'],
+           'text',
+           ['span', {class: 'fragment markdown'}, '*']]);
+});
