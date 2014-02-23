@@ -1,16 +1,21 @@
 .button() {
   .font-menu();
+  font-size:1.0rem;
+  height:2.0rem;
+  display:inline-block;
+  vertical-align: middle;
   text-decoration: none;
-  padding: .25rem 1rem .25rem 1rem;
-  border: 1px solid #888;
+  padding: 0.4rem 1.0rem;
+  border: 1px solid @gray-4;
   border-radius: 4px;
   color: #333;
-  text-transform: uppercase;
+  line-height: 1;
+  background-color: white;
+  white-space: nowrap;
 
   &:hover {
     color: white;
-    background-color: #333;
-
+    background-color: @dark-3;
     transition: color 0.5s, background-color 0.5s
   }
 }
@@ -42,3 +47,10 @@
     clear: both;
   }
 }
+
+.ui-scrollable(){
+  -webkit-overflow-scrolling:touch;
+  -moz-overflow-scrolling:touch;
+  overflow-scrolling:touch;
+}
+

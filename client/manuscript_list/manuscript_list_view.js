@@ -1,3 +1,4 @@
+
 var Marionette = require('backbone.marionette'),
     ToolbarView = require('../list_toolbar/list_toolbar_view'),
     ManuscriptsView = require('../manuscripts/manuscripts_view');

@@ -1,0 +1,64 @@
+.app-header {
+  .clearfix();
+  height: 3rem;
+  background-color: @dark-2;
+  padding:0;
+  .app-header-group{
+    //display:inline-block;
+    &.left{
+      float:left;
+    }
+    &.right{
+      position: absolute;
+      right:0;
+      top:0;
+    }
+  }
+
+  .app-header-logo {
+    .font-menu();
+    display: inline-block;
+    font-weight: bold;
+    font-size: 2.0rem;
+    padding:0.5rem;
+    line-height: 1.0;
+    text-transform: uppercase;
+    color: white;
+    cursor: pointer;
+  }
+  .app-header-username{
+    .font-menu();
+    .ui-mobile-hidden();
+    color:white;
+    display:inline-block;
+    vertical-align: top;
+    padding:0.5rem;
+    line-height: 1;
+  }
+  .app-header-icon{
+    display:inline-block;
+    font-size:3.0rem;
+    height:3.0rem;
+    text-align: center;
+    color:white;
+    cursor:pointer;
+    line-height: 1;
+    padding:0;
+    margin:0;
+    &:hover,
+    &:active{
+      background-color: @dark-4;
+    }
+    i{
+      width:3.0rem;
+    }
+    .app-header-icon-text{
+      display:inline;
+      display:none;
+      font-size:1.0rem;
+      vertical-align: middle;
+      //padding-top:1.0rem;
+
+    }
+  }
+}

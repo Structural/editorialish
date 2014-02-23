@@ -8,9 +8,9 @@ module.exports = Marionette.ItemView.extend({
       return '#app-header-template-editor';
     }
   },
-  className: 'hed',
+  className: 'app-header',
   events: {
-    'click .hed-logo': 'showList'
+    'click .app-header-list-link': 'showList'
   },
   initialize: function(options) {
     this._state = 'list';
