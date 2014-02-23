@@ -26,7 +26,8 @@ Editorialish.addInitializer(function() {
   Editorialish.module('Header', HeaderModule(Editorialish.layout.header));
   Editorialish.module('ManuscriptList', ManuscriptListModule(
     Editorialish.layout.main,
-    Editorialish.manuscripts
+    Editorialish.manuscripts,
+    Editorialish.Toaster
   ));
   Editorialish.module('Editor', EditorModule(
     Editorialish.layout.main,

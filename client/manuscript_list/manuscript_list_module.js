@@ -1,7 +1,7 @@
 var ManuscriptListView = require('./manuscript_list_view'),
     Manuscript = require('../manuscript/manuscript_model');
 
-module.exports = function(region, collection) {
+module.exports = function(region, collection, toaster) {
   return function(ManuscriptListModule, Editorialish, Backbone, Marionette, $, _) {
     ManuscriptListModule.addInitializer(function() {
       ManuscriptListModule.view = new ManuscriptListView({
@@ -15,7 +15,8 @@ module.exports = function(region, collection) {
         var manuscript = new Manuscript({});
         collection.add(manuscript);
         manuscript.save({}, {
-          success: ManuscriptListModule.onNewManuscriptSave
+          success: ManuscriptListModule.onNewManuscriptSave,
+          error: ManuscriptListModule.onNewManuscriptError
         });
       })
 
@@ -24,6 +25,11 @@ module.exports = function(region, collection) {
 
     ManuscriptListModule.onNewManuscriptSave = function(manuscript) {
       ManuscriptListModule.trigger('editman', manuscript);
+    };
+
+    ManuscriptListModule.onNewManuscriptError = function(manuscript) {
+      manuscript.destroy();
+      toaster.error();
     };
 
     ManuscriptListModule.addFinalizer(function() {
