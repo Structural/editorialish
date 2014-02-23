@@ -38,6 +38,7 @@ Editorialish.addInitializer(function() {
 Editorialish.showList = function() {
   Editorialish.Editor.stop();
   Editorialish.ManuscriptList.start();
+  Editorialish.Header.showListHeader();
   Editorialish.Router.navigate(Editorialish.Router.rootRoute());
 };
 
@@ -58,6 +59,7 @@ Editorialish.showManuscript = function(manuscript) {
   Editorialish.Editor.start({
     manuscript: manuscript
   });
+  Editorialish.Header.showEditorHeader();
   Editorialish.Router.navigate(Editorialish.Router.manuscriptRoute(manuscript.id));
 };
 
