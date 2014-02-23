@@ -1,5 +1,5 @@
 .button() {
-  .typ-menu();
+  .font-menu();
   text-decoration: none;
   padding: .25rem 1rem .25rem 1rem;
   border: 1px solid #888;
@@ -31,3 +31,16 @@
   text-overflow: ellipsis;
   word-wrap:break;
 }
+
+
+.clearfix(){
+  &:before,
+  *:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
