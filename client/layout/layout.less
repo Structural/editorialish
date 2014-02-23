@@ -16,7 +16,13 @@ body{
 
 #editorialish{
   height:100%;
-  overflow:auto;
+  @media (min-width:@bp-2){
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+  }
 }
 
 
