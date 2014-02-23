@@ -66,7 +66,7 @@ Editorialish.addInitializer(function() {
   Editorialish.Router = new Router({
     controller: Editorialish
   });
-  console.log(Backbone.history.start({pushState: true}));
+  Backbone.history.start({pushState: true});
 });
 
 $(function() {
