@@ -24,6 +24,8 @@ module.exports = function(region) {
     };
 
     EditorModule.addFinalizer(function() {
+      EditorModule.save();
+
       EditorModule.stopListening(EditorModule.view);
       EditorModule.view.close();
       EditorModule.manuscript = undefined;
