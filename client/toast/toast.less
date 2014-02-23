@@ -1,0 +1,30 @@
+.toast {
+  opacity: 0;
+  transition: opacity 1s;
+  &.pop {
+    opacity: 1.0;
+    transition: opacity 1s;
+  }
+
+  .font-menu();
+  font-weight: bold;
+  color: white;
+
+  position: fixed;
+  top: 0;
+  left: 50%;
+  margin-left: -5rem;
+  width: 10rem;
+  margin-top: 2.4rem;
+  text-align: center;
+
+  z-index: 10;
+
+  &.toast-success {
+    background-color: @success;
+  }
+
+  &.toast-error {
+    background-color: @error;
+  }
+}

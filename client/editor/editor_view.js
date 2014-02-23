@@ -30,20 +30,6 @@ module.exports = Marionette.ItemView.extend({
     }
   },
 
-  toastDuration: 4000,
-  showSavedToast: function() {
-    this._showToast(this.ui.savedToast);
-  },
-  showErrorToast: function() {
-    this._showToast(this.ui.errorToast);
-  },
-  _showToast: function(toast) {
-    toast.addClass('pop');
-    setTimeout(function() {
-      toast.removeClass('pop');
-    }, this.toastDuration);
-  },
-
   title: function() {
     return this.ui.title.html().trim();
   },

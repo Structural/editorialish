@@ -4,6 +4,7 @@ var Marionette = require('backbone.marionette'),
     HeaderModule = require('./header/header_module'),
     ManuscriptListModule = require('./manuscript_list/manuscript_list_module'),
     EditorModule = require('./editor/editor_module'),
+    ToastModule = require('./toast/toast_module'),
     Router = require('./router');
 
 var Editorialish = new Marionette.Application();
@@ -20,13 +21,17 @@ Editorialish.addInitializer(function() {
 Editorialish.addInitializer(function() {
   Editorialish.layout = new LayoutView();
   Editorialish.root.show(Editorialish.layout);
+  Editorialish.module('Toaster', ToastModule(Editorialish.layout.toaster));
 
   Editorialish.module('Header', HeaderModule(Editorialish.layout.header));
   Editorialish.module('ManuscriptList', ManuscriptListModule(
     Editorialish.layout.main,
     Editorialish.manuscripts
   ));
-  Editorialish.module('Editor', EditorModule(Editorialish.layout.main));
+  Editorialish.module('Editor', EditorModule(
+    Editorialish.layout.main,
+    Editorialish.Toaster
+  ));
 });
 
 Editorialish.showList = function() {

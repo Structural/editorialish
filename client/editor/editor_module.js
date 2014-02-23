@@ -1,6 +1,6 @@
 var EditorView = require('./editor_view');
 
-module.exports = function(region) {
+module.exports = function(region, toaster) {
   return function(EditorModule, Editorialish, Backbone, Marionette, $, _) {
     EditorModule.startWithParent = false;
 
@@ -27,11 +27,11 @@ module.exports = function(region) {
     };
 
     EditorModule.onSaveSuccess = function() {
-      EditorModule.view.showSavedToast();
+      toaster.success('saved');
     };
 
     EditorModule.onSaveError = function() {
-      EditorModule.view.showErrorToast();
+      toaster.error();
     } ;
 
     EditorModule.addFinalizer(function() {
