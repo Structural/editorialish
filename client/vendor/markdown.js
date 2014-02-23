@@ -1735,6 +1735,5 @@
   expose.renderJsonML = Markdown.renderJsonML;
 
 })(function() {
-  window.markdown = {};
-  return window.markdown;
+  return module.exports;
 }());
