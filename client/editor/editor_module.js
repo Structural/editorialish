@@ -12,10 +12,19 @@ module.exports = function(region) {
       EditorModule.view = new EditorView({
         model: EditorModule.manuscript
       });
+      EditorModule.listenTo(EditorModule.view, 'save', EditorModule.save);
+
       region.show(EditorModule.view);
     });
 
+    EditorModule.save = function() {
+      EditorModule.manuscript.set('title', EditorModule.view.title());
+      EditorModule.manuscript.set('text', EditorModule.view.text());
+      EditorModule.manuscript.save();
+    };
+
     EditorModule.addFinalizer(function() {
+      EditorModule.stopListening(EditorModule.view);
       EditorModule.view.close();
       EditorModule.manuscript = undefined;
     });
