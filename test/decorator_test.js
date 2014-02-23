@@ -24,3 +24,35 @@ test('emphasis', function() {
            'text',
            ['span', {class: 'fragment markdown'}, '*']]);
 });
+
+test('a small parsed paragraph', function() {
+  var tree = [
+    'markdown',
+    [ 'para',
+      'text',
+      ['em', 'italic'],
+      'text'
+    ]
+  ]
+  decorator.decorate(tree).should
+    .eql([
+      'html',
+      [ 'span',
+        {class: 'fragment p'},
+        'text',
+        [ 'span',
+          {class: 'fragment em'},
+          [ 'span',
+            {class: 'fragment markdown'},
+            '*'
+          ],
+          'italic',
+          [ 'span',
+            {class: 'fragment markdown'},
+            '*'
+          ]
+        ],
+        'text'
+      ]
+    ]);
+});
