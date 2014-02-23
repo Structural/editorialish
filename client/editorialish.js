@@ -65,7 +65,7 @@ Editorialish.addInitializer(function() {
   Editorialish.listenTo(Editorialish.Header, 'showlist', Editorialish.showList);
 
   Editorialish.listenTo(
-    Editorialish.ManuscriptList, 'editman', Editorialish.showManuscript);
+    Editorialish.ManuscriptList, 'manuscript:edit', Editorialish.showManuscript);
 });
 
 Editorialish.addInitializer(function() {

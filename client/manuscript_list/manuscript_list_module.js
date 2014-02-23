@@ -8,8 +8,8 @@ module.exports = function(region, collection, toaster) {
         collection: collection
       });
 
-      ManuscriptListModule.listenTo(ManuscriptListModule.view, 'editman', function(manuscript) {
-        ManuscriptListModule.trigger('editman', manuscript);
+      ManuscriptListModule.listenTo(ManuscriptListModule.view, 'manuscript:edit', function(manuscript) {
+        ManuscriptListModule.trigger('manuscript:edit', manuscript);
       });
       ManuscriptListModule.listenTo(ManuscriptListModule.view, 'newman', function() {
         var manuscript = new Manuscript({});
@@ -24,7 +24,7 @@ module.exports = function(region, collection, toaster) {
 
     ManuscriptListModule.onNewManuscriptSave = function(manuscript) {
       collection.add(manuscript);
-      ManuscriptListModule.trigger('editman', manuscript);
+      ManuscriptListModule.trigger('manuscript:edit', manuscript);
     };
 
     ManuscriptListModule.onNewManuscriptError = function(manuscript) {

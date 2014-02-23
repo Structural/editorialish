@@ -9,15 +9,15 @@ var ManuscriptView = Marionette.ItemView.extend({
   },
   events: {
     'click @ui.deleteButton': 'deleteManuscript',
-    'click': 'editMan'
+    'click': 'editManuscript'
   },
 
   deleteManuscript: function(e) {
     this.model.destroy();
   },
 
-  editMan: function() {
-    this.trigger('editman', this.model);
+  editManuscript: function() {
+    this.trigger('manuscript:edit', this.model);
   }
 });
 
