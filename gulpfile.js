@@ -1,3 +1,6 @@
+/* Require a whole bunch of stuff */
+
+
 var gulp = require('gulp'),
     less = require('gulp-less'),
     path = require('path'),
@@ -18,6 +21,8 @@ var gulp = require('gulp'),
     fs = require('fs'),
     server = lr(),
     spawn = require('child_process').spawn;
+
+/* Various Gulp Tasks */
 
 gulp.task('styles', function() {
   return gulp.src('client/editorialish.less')
@@ -93,6 +98,11 @@ gulp.task('htmls', function() {
   //   .pipe(gulp.dest('dist'));
 });
 
+gulp.task('fonts', function(){
+  return gulp.src('client/web_fonts/*')
+  .pipe(gulp.dest('dist/fonts'));
+});
+
 var imgExts = ['png', 'jpg', 'jpeg', 'gif'];
 gulp.task('images', function() {
   return gulp.src(imgExts.map(function(ext) { return 'client/**/*' + ext }))
@@ -110,7 +120,7 @@ gulp.task('default', ['clean'], function() {
     gulp.start('styles', 'scripts', 'images');
 });
 
-gulp.task('watch', ['styles', 'scripts', 'htmls', 'images'], function() {
+gulp.task('watch', ['clean', 'styles', 'scripts', 'htmls', 'fonts', 'images'], function() {
   server.listen(35729, function (err) {
     if (err) {
       return console.log(err)
