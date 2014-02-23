@@ -4,7 +4,7 @@
   "description": "Editorially is dead, long live Editorially!",
   "main": "server/editorialish.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --ui qunit --reporter progress --no-colors"
   },
   "author": "Sean Kermes and William Lubelski",
   "license": "ISC",
