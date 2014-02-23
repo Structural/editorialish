@@ -8,6 +8,14 @@ module.exports = function(region) {
       region.show(view);
     });
 
+    HeaderModule.showListHeader = function() {
+      view.showListHeader();
+    };
+
+    HeaderModule.showEditorHeader = function() {
+      view.showEditorHeader();
+    };
+
     HeaderModule.listenTo(view, 'showlist', function() {
       this.trigger('showlist');
     });
