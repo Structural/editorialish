@@ -8,17 +8,14 @@ module.exports = Marionette.ItemView.extend({
   },
 
   toastDuration: 4000,
-  toastFadeDuration: 1000,
   popToast: function(type, message) {
+    this.ui.toast.removeClass().addClass('toast');
+
     this.ui.toast.text(message);
     this.ui.toast.addClass('toast-' + type);
     this.ui.toast.addClass('pop');
     _.delay(function(toast) {
       toast.removeClass('pop');
-      _.delay(function(toast) {
-        toast.removeCass('toast-' + type);
-        toast.text('');
-      }, this.toastFadeDuration, toast);
     }, this.toastDuration, this.ui.toast);
   }
 });
