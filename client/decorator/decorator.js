@@ -1,25 +1,28 @@
 var _ = require('underscore');
 
-var decorateMarkdown = function(children) {
-  children = _.map(children, decorate);
+var fragmentDecorator = function(fn) {
+  return function(children) {
+    return fn(_.map(children, decorate));
+  };
+};
+
+var decorateMarkdown = fragmentDecorator(function(children) {
   children.splice(0, 0, 'html');
   return children;
-};
+});
 
-var decorateParagraph = function(children) {
-  children = _.map(children, decorate);
+var decorateParagraph = fragmentDecorator(function(children) {
   children.splice(0, 0, 'span', {class: 'fragment p'});
   return children;
-};
+});
 
-var decorateEm = function(children) {
-  children = _.map(children, decorate);
+var decorateEm = fragmentDecorator(function(children) {
   var asterisk = ['span', {class: 'fragment markdown'}, '*'];
   children.push(_.clone(asterisk));
-  children.splice(0, 0, asterisk);
+  children.splice(0, 0, _.clone(asterisk));
   children.splice(0, 0, 'span', {class: 'fragment em'});
   return children;
-}
+});
 
 var decorators = {
   markdown: decorateMarkdown,
