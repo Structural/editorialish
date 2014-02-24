@@ -61,10 +61,16 @@ var decorateEm = fragmentDecorator(
   fragmentSpanify('em')
 );
 
+var decorateStrong = fragmentDecorator(
+  surround(fragmentSpan('markdown', '**')),
+  fragmentSpanify('strong')
+);
+
 var decorators = {
   markdown: decorateMarkdown,
   para: decorateParagraph,
-  em: decorateEm
+  em: decorateEm,
+  strong: decorateStrong
 };
 
 var decorate = function(node) {
@@ -86,6 +92,7 @@ module.exports = {
   fragments: {
     decorateMarkdown: decorateMarkdown,
     decorateParagraph: decorateParagraph,
-    decorateEm: decorateEm
+    decorateEm: decorateEm,
+    decorateStrong: decorateStrong
   }
 };

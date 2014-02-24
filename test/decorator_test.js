@@ -25,6 +25,14 @@ test('emphasis', function() {
            ['span', {class: 'fragment markdown'}, '*']]);
 });
 
+test('strong', function() {
+  decorator.fragments.decorateStrong(['text']).should
+    .eql(['span', {class: 'fragment strong'},
+           ['span', {class: 'fragment markdown'}, '**'],
+           'text',
+           ['span', {class: 'fragment markdown'}, '**']]);
+});
+
 test('a small parsed paragraph', function() {
   var tree = [
     'markdown',
