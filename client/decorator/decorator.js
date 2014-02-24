@@ -1,5 +1,17 @@
 var _ = require('underscore');
 
+/* Utilities */
+
+var fragmentSpan = function(fragmentType, content) {
+  var span = ['span', {class: 'fragment ' + fragmentType}];
+  if (content) {
+    span.push(content);
+  }
+  return span;
+};
+
+/* Decorator Steps */
+
 var fragmentDecorator = function() {
   var fns = Array.prototype.slice.call(arguments);
   return function(children) {
@@ -9,14 +21,6 @@ var fragmentDecorator = function() {
     }, children);
     return children;
   };
-};
-
-var fragmentSpan = function(fragmentType, content) {
-  var span = ['span', {class: 'fragment ' + fragmentType}];
-  if (content) {
-    span.push(content);
-  }
-  return span;
 };
 
 var prefix = function(fragment) {
@@ -41,6 +45,8 @@ var surround = function(fragment) {
     return children;
   };
 };
+
+/* Decorators */
 
 var decorateMarkdown = fragmentDecorator(
   prefix('html')
