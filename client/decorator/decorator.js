@@ -6,13 +6,19 @@ var fragmentDecorator = function(fn) {
   };
 };
 
+var fragmentSpanify = function(fragmentType) {
+  return function(children) {
+    children.splice(0, 0, 'span', {class: 'fragment ' + fragmentType});
+  };
+};
+
 var decorateMarkdown = fragmentDecorator(function(children) {
   children.splice(0, 0, 'html');
   return children;
 });
 
 var decorateParagraph = fragmentDecorator(function(children) {
-  children.splice(0, 0, 'span', {class: 'fragment p'});
+  fragmentSpanify('p')(children);
   return children;
 });
 
@@ -20,7 +26,7 @@ var decorateEm = fragmentDecorator(function(children) {
   var asterisk = ['span', {class: 'fragment markdown'}, '*'];
   children.push(_.clone(asterisk));
   children.splice(0, 0, _.clone(asterisk));
-  children.splice(0, 0, 'span', {class: 'fragment em'});
+  fragmentSpanify('em')(children);
   return children;
 });
 
