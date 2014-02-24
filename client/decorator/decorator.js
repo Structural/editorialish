@@ -6,9 +6,18 @@ var fragmentDecorator = function(fn) {
   };
 };
 
+var fragmentSpan = function(fragmentType, content) {
+  var span = ['span', {class: 'fragment ' + fragmentType}];
+  if (content) {
+    span.push(content);
+  }
+  return span;
+}
+
 var fragmentSpanify = function(fragmentType) {
   return function(children) {
-    children.splice(0, 0, 'span', {class: 'fragment ' + fragmentType});
+    Array.prototype.splice.apply(
+      children, _.flatten([0, 0, fragmentSpan(fragmentType)]));
   };
 };
 
@@ -23,7 +32,7 @@ var decorateParagraph = fragmentDecorator(function(children) {
 });
 
 var decorateEm = fragmentDecorator(function(children) {
-  var asterisk = ['span', {class: 'fragment markdown'}, '*'];
+  var asterisk = fragmentSpan('markdown', '*');
   children.push(_.clone(asterisk));
   children.splice(0, 0, _.clone(asterisk));
   fragmentSpanify('em')(children);
