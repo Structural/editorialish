@@ -10,6 +10,10 @@ var fragmentSpan = function(fragmentType, content) {
   return span;
 };
 
+var nStrs = function(n, s) {
+  return _.range(n).map(function() { return s; }).join('');
+};
+
 /* Decorator Steps */
 
 var fragmentDecorator = function() {
@@ -66,11 +70,22 @@ var decorateStrong = fragmentDecorator(
   fragmentSpanify('strong')
 );
 
+var decorateHeader = function(optionsAndChildren) {
+  var options = optionsAndChildren[0];
+  var children = optionsAndChildren.slice(1);
+  return fragmentDecorator(
+    prefix(fragmentSpan('markdown markdown-header',
+                        nStrs(options.level, '#') + ' ')),
+    fragmentSpanify('h' + options.level)
+  )(children);
+};
+
 var decorators = {
   markdown: decorateMarkdown,
   para: decorateParagraph,
   em: decorateEm,
-  strong: decorateStrong
+  strong: decorateStrong,
+  header: decorateHeader
 };
 
 var decorate = function(node) {
@@ -93,6 +108,7 @@ module.exports = {
     decorateMarkdown: decorateMarkdown,
     decorateParagraph: decorateParagraph,
     decorateEm: decorateEm,
-    decorateStrong: decorateStrong
+    decorateStrong: decorateStrong,
+    decorateHeader: decorateHeader
   }
 };

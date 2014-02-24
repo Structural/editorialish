@@ -33,6 +33,27 @@ test('strong', function() {
            ['span', {class: 'fragment markdown'}, '**']]);
 });
 
+test('header one', function() {
+  decorator.fragments.decorateHeader([{level: 1}, 'text']).should
+    .eql(['span', {class: 'fragment h1'},
+           ['span', {class: 'fragment markdown markdown-header'}, '# '],
+           'text']);
+});
+
+test('header two', function() {
+  decorator.fragments.decorateHeader([{level: 2}, 'text']).should
+    .eql(['span', {class: 'fragment h2'},
+           ['span', {class: 'fragment markdown markdown-header'}, '## '],
+           'text']);
+});
+
+test('header three', function() {
+  decorator.fragments.decorateHeader([{level: 3}, 'text']).should
+    .eql(['span', {class: 'fragment h3'},
+           ['span', {class: 'fragment markdown markdown-header'}, '### '],
+           'text']);
+});
+
 test('a small parsed paragraph', function() {
   var tree = [
     'markdown',
