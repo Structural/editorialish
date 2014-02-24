@@ -20,17 +20,17 @@ test('paragraph', function() {
 test('emphasis', function() {
   decorator.fragments.decorateEm(['text']).should
     .eql(['span', {class: 'fragment em'},
-           ['span', {class: 'fragment markdown'}, '*'],
+           ['span', {class: 'fragment markdown markdown-em'}, '*'],
            'text',
-           ['span', {class: 'fragment markdown'}, '*']]);
+           ['span', {class: 'fragment markdown markdown-em'}, '*']]);
 });
 
 test('strong', function() {
   decorator.fragments.decorateStrong(['text']).should
     .eql(['span', {class: 'fragment strong'},
-           ['span', {class: 'fragment markdown'}, '**'],
+           ['span', {class: 'fragment markdown markdown-strong'}, '**'],
            'text',
-           ['span', {class: 'fragment markdown'}, '**']]);
+           ['span', {class: 'fragment markdown markdown-strong'}, '**']]);
 });
 
 test('header one', function() {
@@ -72,12 +72,12 @@ test('a small parsed paragraph', function() {
         [ 'span',
           {class: 'fragment em'},
           [ 'span',
-            {class: 'fragment markdown'},
+            {class: 'fragment markdown markdown-em'},
             '*'
           ],
           'italic',
           [ 'span',
-            {class: 'fragment markdown'},
+            {class: 'fragment markdown markdown-em'},
             '*'
           ]
         ],

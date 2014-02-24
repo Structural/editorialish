@@ -61,12 +61,12 @@ var decorateParagraph = fragmentDecorator(
 );
 
 var decorateEm = fragmentDecorator(
-  surround(fragmentSpan('markdown', '*')),
+  surround(fragmentSpan('markdown markdown-em', '*')),
   fragmentSpanify('em')
 );
 
 var decorateStrong = fragmentDecorator(
-  surround(fragmentSpan('markdown', '**')),
+  surround(fragmentSpan('markdown markdown-strong', '**')),
   fragmentSpanify('strong')
 );
 
