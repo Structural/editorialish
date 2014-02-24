@@ -12,12 +12,19 @@ var fragmentSpan = function(fragmentType, content) {
     span.push(content);
   }
   return span;
-}
+};
 
 var fragmentSpanify = function(fragmentType) {
   return function(children) {
     Array.prototype.splice.apply(
       children, _.flatten([0, 0, fragmentSpan(fragmentType)]));
+  };
+};
+
+var surround = function(fragment) {
+  return function(children) {
+    children.push(_.clone(fragment));
+    children.splice(0, 0, fragment);
   };
 };
 
@@ -32,9 +39,7 @@ var decorateParagraph = fragmentDecorator(function(children) {
 });
 
 var decorateEm = fragmentDecorator(function(children) {
-  var asterisk = fragmentSpan('markdown', '*');
-  children.push(_.clone(asterisk));
-  children.splice(0, 0, _.clone(asterisk));
+  surround(fragmentSpan('markdown', '*'))(children);
   fragmentSpanify('em')(children);
   return children;
 });
