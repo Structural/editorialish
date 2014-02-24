@@ -1,8 +1,13 @@
 var _ = require('underscore');
 
-var fragmentDecorator = function(fn) {
+var fragmentDecorator = function() {
+  var fns = Array.prototype.slice.call(arguments);
   return function(children) {
-    return fn(_.map(children, decorate));
+    children = _.map(children, decorate);
+    children = _.reduce(fns, function(kids, fn) {
+      return fn(kids);
+    }, children);
+    return children;
   };
 };
 
@@ -17,6 +22,7 @@ var fragmentSpan = function(fragmentType, content) {
 var prefix = function(fragment) {
   return function(children) {
     children.splice(0, 0, fragment);
+    return children;
   };
 };
 
@@ -24,6 +30,7 @@ var fragmentSpanify = function(fragmentType) {
   return function(children) {
     Array.prototype.splice.apply(
       children, _.flatten([0, 0, fragmentSpan(fragmentType)]));
+    return children;
   };
 };
 
@@ -31,24 +38,22 @@ var surround = function(fragment) {
   return function(children) {
     children.push(_.clone(fragment));
     children.splice(0, 0, fragment);
+    return children;
   };
 };
 
-var decorateMarkdown = fragmentDecorator(function(children) {
-  prefix('html')(children);
-  return children;
-});
+var decorateMarkdown = fragmentDecorator(
+  prefix('html')
+);
 
-var decorateParagraph = fragmentDecorator(function(children) {
-  fragmentSpanify('p')(children);
-  return children;
-});
+var decorateParagraph = fragmentDecorator(
+  fragmentSpanify('p')
+);
 
-var decorateEm = fragmentDecorator(function(children) {
-  surround(fragmentSpan('markdown', '*'))(children);
-  fragmentSpanify('em')(children);
-  return children;
-});
+var decorateEm = fragmentDecorator(
+  surround(fragmentSpan('markdown', '*')),
+  fragmentSpanify('em')
+);
 
 var decorators = {
   markdown: decorateMarkdown,
