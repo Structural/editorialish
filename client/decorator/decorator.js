@@ -14,6 +14,12 @@ var fragmentSpan = function(fragmentType, content) {
   return span;
 };
 
+var prefix = function(fragment) {
+  return function(children) {
+    children.splice(0, 0, fragment);
+  };
+};
+
 var fragmentSpanify = function(fragmentType) {
   return function(children) {
     Array.prototype.splice.apply(
@@ -29,7 +35,7 @@ var surround = function(fragment) {
 };
 
 var decorateMarkdown = fragmentDecorator(function(children) {
-  children.splice(0, 0, 'html');
+  prefix('html')(children);
   return children;
 });
 
