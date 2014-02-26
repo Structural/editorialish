@@ -54,6 +54,17 @@ test('header three', function() {
            'text']);
 });
 
+test('link', function() {
+  decorator.fragments.decorateLink([{href: 'url'}, 'text']).should
+    .eql(['span', {class: 'fragment a'},
+           ['span', {class: 'fragment markdown markdown-bracket'}, '['],
+           ['span', {class: 'fragment'}, 'text'],
+           ['span', {class: 'fragment markdown markdown-bracket'}, ']'],
+           ['span', {class: 'fragment markdown markdown-paren'}, '('],
+           ['span', {class: 'fragment markdown markdown-href'}, 'url'],
+           ['span', {class: 'fragment markdown markdown-paren'}, ')']]);
+});
+
 test('a small parsed paragraph', function() {
   var tree = [
     'markdown',

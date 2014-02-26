@@ -3,7 +3,11 @@ var _ = require('underscore');
 /* Utilities */
 
 var fragmentSpan = function(fragmentType, content) {
-  var span = ['span', {class: 'fragment ' + fragmentType}];
+  var klass = 'fragment';
+  if (fragmentType) {
+    klass += ' ' + fragmentType;
+  }
+  var span = ['span', {class: klass}];
   if (content) {
     span.push(content);
   }
@@ -73,6 +77,7 @@ var decorateStrong = fragmentDecorator(
 var decorateHeader = function(optionsAndChildren) {
   var options = optionsAndChildren[0];
   var children = optionsAndChildren.slice(1);
+
   return fragmentDecorator(
     prefix(fragmentSpan('markdown markdown-header',
                         nStrs(options.level, '#') + ' ')),
@@ -80,12 +85,28 @@ var decorateHeader = function(optionsAndChildren) {
   )(children);
 };
 
+var decorateLink = function(optionsAndChildren) {
+  var options = optionsAndChildren[0];
+  var children = optionsAndChildren.slice(1);
+
+  var linkText = fragmentSpanify()(children);
+  return fragmentSpanify('a')([
+    fragmentSpan('markdown markdown-bracket', '['),
+    linkText,
+    fragmentSpan('markdown markdown-bracket', ']'),
+    fragmentSpan('markdown markdown-paren', '('),
+    fragmentSpan('markdown markdown-href', options.href),
+    fragmentSpan('markdown markdown-paren', ')')
+  ]);
+};
+
 var decorators = {
   markdown: decorateMarkdown,
   para: decorateParagraph,
   em: decorateEm,
   strong: decorateStrong,
-  header: decorateHeader
+  header: decorateHeader,
+  link: decorateLink
 };
 
 var decorate = function(node) {
@@ -109,6 +130,7 @@ module.exports = {
     decorateParagraph: decorateParagraph,
     decorateEm: decorateEm,
     decorateStrong: decorateStrong,
-    decorateHeader: decorateHeader
+    decorateHeader: decorateHeader,
+    decorateLink: decorateLink
   }
 };
