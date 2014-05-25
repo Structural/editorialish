@@ -25,8 +25,8 @@ var gulp = require('gulp'),
 /* Various Gulp Tasks */
 
 gulp.task('styles', function() {
-  return gulp.src('client/editorialish.less')
-    .pipe(less({paths: [ path.join(__dirname, 'client') ]}))
+  return gulp.src('src/editorialish.less')
+    .pipe(less({paths: [ path.join(__dirname, 'src') ]}))
     .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
     .pipe(gulp.dest('dist'))
     .pipe(rename({ suffix: '.min' }))
@@ -39,7 +39,7 @@ gulp.task('scripts', function() {
   // Shim options copied from
   // https://github.com/marionettejs/backbone.marionette/wiki/Using-Marionette-With-Browserify-and-Grunt
 
-  return gulp.src('client/editorialish.js')
+  return gulp.src('src/editorialish.js')
     .pipe(browserify({
       insertGlobals: true,
       shim: {
@@ -88,24 +88,24 @@ gulp.task('scripts', function() {
 });
 
 gulp.task('htmls', function() {
-  fs.readFile('client/index.html', function(err, data) {
-    return gulp.src(['client/**/*.html', '!client/index.html'])
+  fs.readFile('src/index.html', function(err, data) {
+    return gulp.src(['src/**/*.html', '!src/index.html'])
       .pipe(concat('index.html'))
       .pipe(templateInject(data, 'templates'))
       .pipe(gulp.dest('dist'));
   });
-  // return gulp.src('client/*.html')
+  // return gulp.src('src/*.html')
   //   .pipe(gulp.dest('dist'));
 });
 
 gulp.task('fonts', function(){
-  return gulp.src('client/web_fonts/*')
+  return gulp.src('src/web_fonts/*')
   .pipe(gulp.dest('dist/fonts'));
 });
 
 var imgExts = ['png', 'jpg', 'jpeg', 'gif'];
 gulp.task('images', function() {
-  return gulp.src(imgExts.map(function(ext) { return 'client/**/*' + ext }))
+  return gulp.src(imgExts.map(function(ext) { return 'src/**/*' + ext }))
     .pipe(cache(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true })))
     .pipe(livereload(server))
     .pipe(gulp.dest('dist'));
@@ -126,21 +126,12 @@ gulp.task('watch', ['clean', 'styles', 'scripts', 'htmls', 'fonts', 'images'], f
       return console.log(err)
     };
 
-    gulp.watch('client/*.less', ['styles']);
-    gulp.watch('client/**/*.less', ['styles']);
-    gulp.watch('client/*.js', ['scripts']);
-    gulp.watch('client/**/*.js', ['scripts']);
-    gulp.watch('client/*.html', ['htmls']);
-    gulp.watch('client/**/*.html', ['htmls']);
-    gulp.watch('client/**/*', ['images']);
+    gulp.watch('src/*.less', ['styles']);
+    gulp.watch('src/**/*.less', ['styles']);
+    gulp.watch('src/*.js', ['scripts']);
+    gulp.watch('src/**/*.js', ['scripts']);
+    gulp.watch('src/*.html', ['htmls']);
+    gulp.watch('src/**/*.html', ['htmls']);
+    gulp.watch('src/**/*', ['images']);
   });
-});
-
-gulp.task('server', function() {
-  // http://stackoverflow.com/questions/9775921/equivalent-of-rakes-sh-for-jake
-  var supervisor = 'supervisor -w server server/editorialish.js';
-  var shell = '/bin/sh', args = ['-c', supervisor], child;
-  child = spawn(shell, args);
-  child.stdout.pipe(process.stdout);
-  child.stderr.pipe(process.stderr);
 });
