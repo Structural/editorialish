@@ -36,52 +36,10 @@ gulp.task('styles', function() {
 });
 
 gulp.task('scripts', function() {
-  // Shim options copied from
-  // https://github.com/marionettejs/backbone.marionette/wiki/Using-Marionette-With-Browserify-and-Grunt
-
   return gulp.src('src/editorialish.js')
     .pipe(browserify({
-      insertGlobals: true,
-      shim: {
-        jquery: {
-          path: 'node_modules/jquery/dist/jquery.js',
-          exports: '$'
-        },
-        underscore: {
-          path: 'node_modules/underscore/underscore.js',
-          exports: '_'
-        },
-        backbone: {
-          path: 'node_modules/backbone/backbone.js',
-          exports: 'Backbone',
-          depends: {
-            underscore: 'underscore'
-          }
-        },
-        'backbone.babysitter': {
-          path: 'node_modules/backbone.babysitter/lib/backbone.babysitter.js',
-          exports: 'Backbone.Babysitter',
-          depends: {
-            backbone: 'Backbone'
-          }
-        },
-        'backbone.wreqr': {
-          path: 'node_modules/backbone.wreqr/lib/backbone.wreqr.js',
-          exports: 'Backbone.Wreqr',
-          depends: {
-            backbone: 'Backbone'
-          }
-        },
-        'backbone.marionette': {
-          path: 'node_modules/backbone.marionette/lib/backbone.marionette.js',
-          exports: 'Marionette',
-          depends: {
-            jquery: '$',
-            backbone: 'Backbone',
-            underscore: '_'
-          }
-        }
-      }
+      transform: ['reactify'],
+      extensions: ['.js', '.jsx']
     }))
     .pipe(livereload(server))
     .pipe(gulp.dest('dist'));
