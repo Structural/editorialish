@@ -1,13 +1,17 @@
 /** @jsx React.DOM */
 
 var React = require('react'),
-    _ = require('underscore');
+    _ = require('underscore'),
+    Button = require('./button'),
+    Icon = require('./icon');
 
 var Manuscript = React.createClass({
   render: function() {
+    var openIcon = <Icon name="popup" />
     return (
       <div className="manuscript">
         <span>{this.props.manuscript.title}</span>
+        <Button content={openIcon} />
       </div>
     );
   }
