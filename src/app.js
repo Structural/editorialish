@@ -18,7 +18,7 @@ var App = React.createClass({
   render: function() {
     return (
       <div>
-        <Button text="new manuscript" action="manuscript:create" />
+        <Button content="new manuscript" action="manuscript:create" />
         <ManuscriptList manuscripts={this.state.manuscripts} />
       </div>
     );

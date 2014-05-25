@@ -10,7 +10,7 @@ var Button = React.createClass({
     };
 
     return (
-      <button onClick={activate.bind(this)}>{this.props.text}</button>
+      <button onClick={activate.bind(this)}>{this.props.content}</button>
     );
   }
 });
