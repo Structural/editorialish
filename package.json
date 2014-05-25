@@ -2,16 +2,12 @@
   "name": "editorialish",
   "version": "0.0.0",
   "description": "Editorially is dead, long live Editorially!",
-  "main": "server/editorialish.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Sean Kermes and William Lubelski",
   "license": "ISC",
   "dependencies": {
-    "logfmt": "~0.21.0",
-    "express": "~3.4.8",
-    "mongoose": "~3.8.7",
     "underscore": "~1.6.0",
     "gulp": "~3.5.2",
     "gulp-less": "~1.2.1",
