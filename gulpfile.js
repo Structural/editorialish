@@ -117,7 +117,7 @@ gulp.task('clean', function() {
 });
 
 gulp.task('default', ['clean'], function() {
-    gulp.start('styles', 'scripts', 'images', 'htmls');
+    gulp.start('styles', 'scripts', 'images', 'htmls', 'fonts');
 });
 
 gulp.task('watch', ['clean', 'styles', 'scripts', 'htmls', 'fonts', 'images'], function() {
