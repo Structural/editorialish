@@ -38,7 +38,6 @@ button {
 }
 
 .manuscript {
-
   display: inline-block;
   width: 10rem;
   height: 10rem;
@@ -46,10 +45,17 @@ button {
   border-radius: 0.3rem;
   margin: .3rem;
   text-align: center;
+  position: relative;
 
   span {
     display: inline-block;
     font-size: 1.2rem;
     margin-top: 0.3rem;
+  }
+
+  button {
+    position: absolute;
+    bottom: 0.3rem;
+    right: 0.3rem;
   }
 }
