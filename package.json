@@ -26,13 +26,9 @@
     "gulp-cache": "~0.1.1",
     "gulp-bower": "0.0.2",
     "streamqueue": "0.0.4",
-    "backbone": "~1.1.1",
-    "jquery": "~2.1.0",
     "gulp-browserify": "~0.4.6",
-    "backbone.marionette": "~1.6.2",
-    "backbone.wreqr": "~1.0.0",
-    "backbone.babysitter": "~0.1.0",
-    "event-stream": "^3.1.0"
+    "event-stream": "^3.1.0",
+    "reactify": "^0.13.1"
   },
   "engines": {
     "node": "0.10.25"
