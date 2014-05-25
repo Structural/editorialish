@@ -16,7 +16,6 @@ var gulp = require('gulp'),
     cache = require('gulp-cache'),
     livereload = require('gulp-livereload'),
     browserify = require('gulp-browserify'),
-    templateInject = require('./gulp/template-inject'),
     lr = require('tiny-lr'),
     fs = require('fs'),
     server = lr(),
@@ -46,14 +45,8 @@ gulp.task('scripts', function() {
 });
 
 gulp.task('htmls', function() {
-  fs.readFile('src/index.html', function(err, data) {
-    return gulp.src(['src/**/*.html', '!src/index.html'])
-      .pipe(concat('index.html'))
-      .pipe(templateInject(data, 'templates'))
-      .pipe(gulp.dest('dist'));
-  });
-  // return gulp.src('src/*.html')
-  //   .pipe(gulp.dest('dist'));
+  return gulp.src('src/*.html')
+    .pipe(gulp.dest('dist'));
 });
 
 gulp.task('fonts', function(){
