@@ -40,7 +40,6 @@ gulp.task('scripts', function() {
       transform: ['reactify'],
       extensions: ['.js', '.jsx']
     }))
-    .pipe(livereload(server))
     .pipe(gulp.dest('dist'));
 });
 
