@@ -38,7 +38,13 @@ gulp.task('scripts', function() {
   return gulp.src('src/editorialish.js')
     .pipe(browserify({
       transform: ['reactify'],
-      extensions: ['.js', '.jsx']
+      extensions: ['.js', '.jsx'],
+      shim: {
+        underscore: {
+          path: 'node_modules/underscore/underscore.js',
+          exports: '_'
+        }
+      }
     }))
     .pipe(gulp.dest('dist'));
 });

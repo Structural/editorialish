@@ -1,5 +1,73 @@
-@text-color: #842;
+@font-face {
+  font-family: 'Inconsolata';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Inconsolata'),
+       url(http://themes.googleusercontent.com/static/fonts/inconsolata/v7/BjAYBlHtW3CJxDcjzrnZCIbN6UDyHWBl620a-IRfuBk.woff) format('woff');
+}
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Source Sans Pro'),
+       local('SourceSansPro-Regular'),
+       url(http://themes.googleusercontent.com/static/fonts/sourcesanspro/v7/ODelI1aHBYDBqgeIAH2zlBM0YzuT7MdOe03otPbuUS0.woff) format('woff');
+}
+@font-face {
+  font-family: 'Source Sans Pro';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Source Sans Pro Bold'),
+       local('SourceSansPro-Bold'),
+       url(http://themes.googleusercontent.com/static/fonts/sourcesanspro/v7/toadOcfmlt9b38dHJxOBGFkQc6VGVFSmCnC_l7QZG60.woff) format('woff');
+}
+
+@text-color: #666;
+@control-bg-color: #EEE;
+@active-control-text-color: #C4A;
+
+.control() {
+  color: @text-color;
+  background: @control-bg-color;
+  outline: none;
+
+  &:hover {
+    color: @active-control-text-color;
+  }
+}
 
 body {
+  font-family: 'Source Sans Pro', sans-serif;
   color: @text-color;
+}
+
+button {
+  .control();
+
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 1rem;
+
+  padding: 0.3rem 1rem;
+  border-radius: 0.3rem;
+  border: none;
+
+  cursor: pointer;
+}
+
+.manuscript {
+
+  display: inline-block;
+  width: 10rem;
+  height: 10rem;
+  border: 2px solid @text-color;
+  border-radius: 0.3rem;
+  margin: .3rem;
+  text-align: center;
+
+  span {
+    display: inline-block;
+    font-size: 1.2rem;
+    margin-top: 0.3rem;
+  }
 }

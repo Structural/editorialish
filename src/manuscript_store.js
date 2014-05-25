@@ -1,11 +1,20 @@
-var Firebase = require('client-firebase');
+var Firebase = require('client-firebase'),
+    Dispatcher = require('./dispatcher');
 
 var ManuscriptStore = function() {
-  this.firebase = new Firebase('https://editorialish.firebaseio.com/testing');
+  this.firebase = new Firebase('https://editorialish.firebaseio.com/manuscripts');
   this.firebase.on('value', function(snapshot) {
-    this.data = snapshot.val();
+    this.manuscripts = snapshot.val();
     this.trigger('change');
   }, this)
+
+  Dispatcher.on('manuscript:create', function() {
+    this.firebase.push({
+      title: 'New Document',
+      text: '',
+      comments: []
+    })
+  }.bind(this))
 
   var callbacks = {
     'change': []

@@ -1,21 +1,26 @@
 /** @jsx React.DOM */
 
-var React = require('react');
+var React = require('react'),
+    Button = require('./button'),
+    ManuscriptList = require('./manuscript_list');
 
 var App = React.createClass({
   getInitialState: function() {
     return {
-      data: this.props.store.data
+      manuscripts: this.props.store.manuscripts
     };
   },
   componentWillMount: function() {
     this.props.store.on('change', function() {
-      this.setState({data: this.props.store.data});
+      this.setState({manuscripts: this.props.store.manuscripts});
     }.bind(this))
   },
   render: function() {
     return (
-      <div>{this.state.data}</div>
+      <div>
+        <Button text="new manuscript" action="manuscript:create" />
+        <ManuscriptList manuscripts={this.state.manuscripts} />
+      </div>
     );
   }
 });
