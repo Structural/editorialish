@@ -1,7 +1,7 @@
 var Marionette = require('backbone.marionette'),
     Manuscripts = require('./manuscripts/manuscripts_collection'),
     LayoutView = require('./layout/layout_view'),
-    HeaderModule = require('./header/header_module'),
+    HeaderModule = require('./app_header/app_header_module'),
     ManuscriptListModule = require('./manuscript_list/manuscript_list_module'),
     EditorModule = require('./editor/editor_module'),
     ToastModule = require('./toast/toast_module'),

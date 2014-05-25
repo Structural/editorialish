@@ -1,9 +1,10 @@
+
 var Marionette = require('backbone.marionette'),
     ToolbarView = require('../list_toolbar/list_toolbar_view'),
     ManuscriptsView = require('../manuscripts/manuscripts_view');
 
 module.exports = Marionette.ItemView.extend({
-  className: 'list',
+  className: 'manuscript-list ui-scrollable',
   initialize: function(options) {
     this.views = {};
     this.views.toolbar = new ToolbarView();
@@ -18,8 +19,9 @@ module.exports = Marionette.ItemView.extend({
     this.$el.empty();
     this.views.toolbar.render();
     this.views.manuscripts.render();
-    this.$el.append(this.views.toolbar.$el);
-    this.$el.append(this.views.manuscripts.$el);
+    this.$el.append( "<div class='manuscript-list-container ui-scroll-container'></div>");
+    this.$('.manuscript-list-container').append(this.views.toolbar.$el);
+    this.$('.manuscript-list-container').append(this.views.manuscripts.$el);
   },
   onBeforeClose: function() {
     this.views.toolbar.close();
