@@ -13,8 +13,10 @@ var ManuscriptEditView = React.createClass({
     return (
       <div>
         <Button content="home" action="manuscript:list" />
-        <TitleEdit title={manuscript.title} />
-        <TextEdit text={manuscript.text} />
+        <TitleEdit title={manuscript.title}
+                   manuscriptId={this.props.manuscriptId} />
+        <TextEdit text={manuscript.text}
+                  manuscriptId={this.props.manuscriptId} />
       </div>
     );
   }

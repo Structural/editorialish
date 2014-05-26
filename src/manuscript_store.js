@@ -1,4 +1,5 @@
-var Firebase = require('client-firebase'),
+var _ = require('underscore'),
+    Firebase = require('client-firebase'),
     Dispatcher = require('./dispatcher');
 
 var ManuscriptStore = function() {
@@ -14,6 +15,12 @@ var ManuscriptStore = function() {
       text: '',
       comments: []
     })
+  }.bind(this))
+
+  Dispatcher.on('manuscript:localUpdate', function(id, changes) {
+    var manuscript = this.manuscripts[id];
+    _.extend(manuscript, changes);
+    this.trigger('change');
   }.bind(this))
 
   var callbacks = {
