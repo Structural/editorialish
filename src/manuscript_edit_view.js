@@ -17,6 +17,8 @@ var ManuscriptEditView = React.createClass({
                    manuscriptId={this.props.manuscriptId} />
         <TextEdit text={manuscript.text}
                   manuscriptId={this.props.manuscriptId} />
+        <Button content="save" action="manuscript:save"
+                args={[this.props.manuscriptId]} />
       </div>
     );
   }

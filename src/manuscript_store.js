@@ -23,6 +23,14 @@ var ManuscriptStore = function() {
     this.trigger('change');
   }.bind(this))
 
+  Dispatcher.on('manuscript:save', function(id) {
+    var manuscript = this.manuscripts[id];
+    update = {};
+    update[id] = manuscript;
+    this.firebase.update(update);
+    // Let Firebase's "value" event trigger the change (above).
+  }.bind(this))
+
   var callbacks = {
     'change': []
   }
