@@ -32,4 +32,4 @@ var ManuscriptStore = function() {
   }
 };
 
-module.exports = ManuscriptStore;
+module.exports = new ManuscriptStore();

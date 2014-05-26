@@ -1,10 +1,10 @@
 var callbacks = {};
 
 var Dispatcher = {
-  send: function(action) {
+  send: function(action, args) {
     var cbs = callbacks[action];
     for (var i = 0; i < cbs.length; i++) {
-      cbs[i]();
+      cbs[i].apply(null, args);
     }
   },
 

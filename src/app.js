@@ -1,26 +1,26 @@
 /** @jsx React.DOM */
 
-var React = require('react'),
-    Button = require('./button'),
-    ManuscriptList = require('./manuscript_list');
+var React = require('react')
+    ViewStateStore = require('./view_state_store'),
+    ManuscriptListView = require('./manuscript_list_view'),
+    ManuscriptEditView = require('./manuscript_edit_view');
 
 var App = React.createClass({
   getInitialState: function() {
-    return {
-      manuscripts: this.props.store.manuscripts
-    };
+    return {view: ViewStateStore.view}
   },
-  componentWillMount: function() {
-    this.props.store.on('change', function() {
-      this.setState({manuscripts: this.props.store.manuscripts});
+  componentDidMount: function() {
+    ViewStateStore.on('change', function() {
+      this.setState({view: ViewStateStore.view});
     }.bind(this))
   },
   render: function() {
+    var contents = this.state.view === 'manuscript:list' ? <ManuscriptListView />
+                 : this.state.view === 'manuscript:edit' ? <ManuscriptEditView manuscriptId={ViewStateStore.manuscriptId} />
+                 : undefined;
+
     return (
-      <div>
-        <Button content="new manuscript" action="manuscript:create" />
-        <ManuscriptList manuscripts={this.state.manuscripts} />
-      </div>
+      <div>{contents}</div>
     );
   }
 });

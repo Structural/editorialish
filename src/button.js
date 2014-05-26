@@ -6,7 +6,7 @@ var React = require('react'),
 var Button = React.createClass({
   render: function() {
     var activate = function() {
-      Dispatcher.send(this.props.action);
+      Dispatcher.send(this.props.action, this.props.args);
     };
 
     return (

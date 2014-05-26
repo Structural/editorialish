@@ -11,7 +11,8 @@ var Manuscript = React.createClass({
     return (
       <div className="manuscript">
         <span>{this.props.manuscript.title}</span>
-        <Button content={openIcon} />
+        <Button content={openIcon}
+                action="manuscript:edit" args={[this.props.id]} />
       </div>
     );
   }
@@ -19,8 +20,8 @@ var Manuscript = React.createClass({
 
 var ManuscriptList = React.createClass({
   render: function() {
-    var manuscripts = _.map(this.props.manuscripts, function(manuscript) {
-      return <Manuscript manuscript={manuscript} />;
+    var manuscripts = _.map(this.props.manuscripts, function(manuscript, id) {
+      return <Manuscript manuscript={manuscript} id={id} />;
     });
 
     return (
