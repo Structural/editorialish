@@ -59,7 +59,7 @@ gulp.task('fonts', function(){
   .pipe(gulp.dest('dist/fonts'));
 });
 
-var imgExts = ['png', 'jpg', 'jpeg', 'gif'];
+var imgExts = ['png', 'jpg', 'jpeg', 'gif', 'ico'];
 gulp.task('images', function() {
   return gulp.src(imgExts.map(function(ext) { return 'src/**/*' + ext }))
     .pipe(cache(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true })))
