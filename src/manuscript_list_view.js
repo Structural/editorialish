@@ -12,9 +12,10 @@ var ManuscriptListView = React.createClass({
     };
   },
   componentDidMount: function() {
-    ManuscriptStore.on('change', function() {
-      this.setState({manuscripts: ManuscriptStore.manuscripts});
-    }.bind(this))
+    ManuscriptStore.listen(this._onManuscriptChange);
+  },
+  componentWillUnmount: function() {
+    ManuscriptStore.ignore(this._onManuscriptChange);
   },
   render: function() {
     return (
@@ -23,6 +24,10 @@ var ManuscriptListView = React.createClass({
         <ManuscriptList manuscripts={this.state.manuscripts} />
       </div>
     );
+  },
+
+  _onManuscriptChange: function() {
+    this.setState({manuscripts: ManuscriptStore.manuscripts});
   }
 });
 

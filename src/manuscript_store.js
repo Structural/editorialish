@@ -1,50 +1,38 @@
 var _ = require('underscore'),
     Firebase = require('client-firebase'),
+    Store = require('./store'),
     Dispatcher = require('./dispatcher');
 
-var ManuscriptStore = function() {
-  this.firebase = new Firebase('https://editorialish.firebaseio.com/manuscripts');
-  this.firebase.on('value', function(snapshot) {
-    this.manuscripts = snapshot.val();
-    this.trigger('change');
-  }, this)
+var ManuscriptStore = new Store({
+  initialize: function() {
+    this.firebase = new Firebase('https://editorialish.firebaseio.com/manuscripts');
+    this.firebase.on('value', function(snapshot) {
+      this.manuscripts = snapshot.val();
+      this.trigger();
+    }, this)
+  },
 
-  Dispatcher.on('manuscript:create', function() {
-    this.firebase.push({
-      title: 'New Document',
-      text: '',
-      comments: []
-    })
-  }.bind(this))
-
-  Dispatcher.on('manuscript:localUpdate', function(id, changes) {
-    var manuscript = this.manuscripts[id];
-    _.extend(manuscript, changes);
-    this.trigger('change');
-  }.bind(this))
-
-  Dispatcher.on('manuscript:save', function(id) {
-    var manuscript = this.manuscripts[id];
-    update = {};
-    update[id] = manuscript;
-    this.firebase.update(update);
-    // Let Firebase's "value" event trigger the change (above).
-  }.bind(this))
-
-  var callbacks = {
-    'change': []
-  }
-
-  this.on = function(event, callback) {
-    callbacks[event].push(callback);
-  }
-
-  this.trigger = function(event) {
-    var cbs = callbacks[event];
-    for (var i = 0; i < cbs.length; i++) {
-      cbs[i]();
+  dispatches: {
+    'manuscript:create': function() {
+      this.firebase.push({
+        title: 'New Document',
+        text: '',
+        comments: []
+      });
+    },
+    'manuscript:localUpdate': function(id, changes) {
+      var manuscript = this.manuscripts[id];
+      _.extend(manuscript, changes);
+      this.trigger();
+    },
+    'manuscript:save': function(id) {
+      var manuscript = this.manuscripts[id];
+      update = {};
+      update[id] = manuscript;
+      this.firebase.update(update);
+      // Let Firebase's "value" event run trigger (above);
     }
   }
-};
+});
 
-module.exports = new ManuscriptStore();
+module.exports = ManuscriptStore;

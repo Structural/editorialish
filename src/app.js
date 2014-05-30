@@ -10,9 +10,10 @@ var App = React.createClass({
     return {view: ViewStateStore.view}
   },
   componentDidMount: function() {
-    ViewStateStore.on('change', function() {
-      this.setState({view: ViewStateStore.view});
-    }.bind(this))
+    ViewStateStore.listen(this._onViewStateChange);
+  },
+  componentWillUnmount: function() {
+    ViewStateStore.ignore(this._onViewStateChange);
   },
   render: function() {
     var contents = this.state.view === 'manuscript:list' ? <ManuscriptListView />
@@ -22,6 +23,10 @@ var App = React.createClass({
     return (
       <div>{contents}</div>
     );
+  },
+
+  _onViewStateChange: function() {
+    this.setState({view: ViewStateStore.view});
   }
 });
 
