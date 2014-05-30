@@ -3,7 +3,8 @@
 var React = require('react'),
     ManuscriptStore = require('./manuscript_store'),
     Button = require('./button'),
-    ManuscriptList = require('./manuscript_list');
+    ManuscriptList = require('./manuscript_list'),
+    Credits = require('./credits');
 
 var ManuscriptListView = React.createClass({
   getInitialState: function() {
@@ -22,6 +23,7 @@ var ManuscriptListView = React.createClass({
       <div>
         <Button content="new manuscript" action="manuscript:create" />
         <ManuscriptList manuscripts={this.state.manuscripts} />
+        <Credits />
       </div>
     );
   },
