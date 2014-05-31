@@ -4,8 +4,8 @@ var React = require('react'),
 Button = require('../shared/button'),
 ManuscriptStore = require('../store/manuscript-store');
 
-var TitleEdit = require('./Title'),
-TextEdit = require('./Text');
+var TitleEdit = require('./title'),
+TextEdit = require('./text');
 
 var ManuscriptEditView = React.createClass({
   render: function() {
