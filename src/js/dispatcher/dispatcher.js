@@ -3,8 +3,10 @@ var callbacks = {};
 var Dispatcher = {
   send: function(action, args) {
     var cbs = callbacks[action];
-    for (var i = 0; i < cbs.length; i++) {
-      cbs[i].callback.apply(cbs[i].context, args);
+    if (cbs) {
+      for (var i = 0; i < cbs.length; i++) {
+        cbs[i].callback.apply(cbs[i].context, args);
+      }
     }
   },
 
