@@ -1,6 +1,7 @@
 /** @jsx React.DOM */
 
 var React = require('react'),
+    CodeMirror = require('code-mirror/mode/markdown'),
     Dispatcher = require('../dispatcher/dispatcher');
 
 var TextEdit = React.createClass({
@@ -12,7 +13,7 @@ var TextEdit = React.createClass({
 
   render: function() {
     return (
-      <textarea onChange={this._onChange} value={this.state.text} />
+      <textarea ref='cmText' onChange={this._onChange} value={this.state.text} />
     );
   },
 
@@ -20,7 +21,19 @@ var TextEdit = React.createClass({
     Dispatcher.send('manuscript:localUpdate',
                     [this.props.manuscriptId, {text: event.target.value}]);
     this.setState({text: event.target.value});
+  },
+
+  componentDidMount: function() {
+    var text = this.refs.cmText.getDOMNode();
+    var editor = CodeMirror.fromTextArea(text,{
+      mode: 'markdown',
+      lineNumbers: false,
+      lineWrapping: true,
+      dragDrop:false,
+      autoFocus:true
+    });
   }
+
 });
 
 module.exports = TextEdit;

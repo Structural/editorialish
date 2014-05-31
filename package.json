@@ -34,7 +34,9 @@
     "tiny-lr": "0.0.5",
     "underscore": "~1.6.0",
     "vinyl-source-stream": "^0.1.1",
-    "watchify": "^0.10.2"
+    "watchify": "^0.10.2",
+    "codemirror": "~4.2.0",
+    "code-mirror": "~3.22.0"
   },
   "engines": {
     "node": "0.10.25"
