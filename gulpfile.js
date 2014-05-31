@@ -18,15 +18,18 @@ var gulp = require('gulp'),
     reactify = require('reactify'),
     source = require('vinyl-source-stream');
 
-gulp.task('styles', function() {
-  var logAndEnd = function(error){
-    gutil.beep();
+var logAndEnd = function(taskName) {
+  return function(error) {
     gutil.log(error);
+    notify.onError(taskName + ' failed, see logs')(error);
     this.end();
   }
+};
+
+gulp.task('styles', function() {
   return gulp.src('src/less/editorialish.less')
     .pipe(less({paths: [ path.join(__dirname, 'src') ]}))
-    .on('error', logAndEnd)
+    .on('error', logAndEnd('LESS'))
     .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
     .pipe(gulp.dest('dist'));
 });
@@ -43,6 +46,8 @@ var buildScripts = function(watch) {
 
   var rebundle = function() {
     var stream = bundler.bundle({debug: false});
+    stream.on('error', logAndEnd('Browserify'));
+
     stream = stream.pipe(source('editorialish.js'));
     return stream.pipe(gulp.dest('dist'));
   }
