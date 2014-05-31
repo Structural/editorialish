@@ -1,7 +1,3 @@
-@text-color: #666;
-@control-bg-color: #EEE;
-@active-control-text-color: #C4A;
-
 .control() {
   color: @text-color;
   background: @control-bg-color;
@@ -13,10 +9,6 @@
   }
 }
 
-body {
-  font-family: 'Source Sans Pro', sans-serif;
-  color: @text-color;
-}
 
 button {
   .control();
@@ -35,13 +27,17 @@ button {
     font-weight: normal;
   }
 }
-
+.manuscripts{
+  background-color: #F8F8F8;
+}
 .manuscript {
   display: inline-block;
   width: 15rem;
   height: 10rem;
-  border: 2px solid blue;
-  border-radius: 0.3rem;
+  background-color: white;
+  border: 1px solid #CCC;
+  box-shadow: 0 2px 4px #DDD;
+  border-radius: 3px;
   margin: 1.0rem;
   text-align: center;
   position: relative;
