@@ -9,7 +9,7 @@
   "license": "ISC",
   "dependencies": {
     "underscore": "~1.6.0",
-    "gulp": "~3.5.2",
+    "gulp": "^3.5.2",
     "gulp-less": "~1.2.1",
     "gulp-buster": "~0.2.1",
     "gulp-rename": "~1.1.0",
@@ -44,6 +44,7 @@
     "url": "https://github.com/Structural/editorialish/issues"
   },
   "devDependencies": {
-    "gulp-util": "~2.2.14"
+    "gulp-util": "~2.2.14",
+    "gulp": "~3.5.6"
   }
 }

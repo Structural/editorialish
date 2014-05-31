@@ -2,6 +2,7 @@
 
 
 var gulp = require('gulp'),
+    gutil = require('gulp-util'),
     less = require('gulp-less'),
     path = require('path'),
     autoprefixer = require('gulp-autoprefixer'),
@@ -15,22 +16,20 @@ var gulp = require('gulp'),
     notify = require('gulp-notify'),
     cache = require('gulp-cache'),
     livereload = require('gulp-livereload'),
-    browserify = require('gulp-browserify'),
-    lr = require('tiny-lr'),
-    fs = require('fs'),
-    server = lr(),
-    spawn = require('child_process').spawn;
+    browserify = require('gulp-browserify');
 
 /* Various Gulp Tasks */
 
 gulp.task('styles', function() {
-  return gulp.src('src/editorialish.less')
+  var logAndEnd = function(error){
+    gutil.beep();
+    gutil.log(error);
+    this.end();
+  }
+  return gulp.src('src/less/editorialish.less')
     .pipe(less({paths: [ path.join(__dirname, 'src') ]}))
+    .on('error', logAndEnd)
     .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
-    .pipe(gulp.dest('dist'))
-    .pipe(rename({ suffix: '.min' }))
-    .pipe(minifycss())
-    .pipe(livereload(server))
     .pipe(gulp.dest('dist'));
 });
 
@@ -72,22 +71,12 @@ gulp.task('clean', function() {
     .pipe(clean());
 });
 
-gulp.task('default', ['clean'], function() {
-    gulp.start('styles', 'scripts', 'images', 'htmls', 'fonts');
+gulp.task('build', ['styles', 'scripts', 'htmls', 'fonts', 'images']);
+
+gulp.task('watch', ['build'], function() {
+  gulp.watch('src/**/*.less', ['styles']);
+  gulp.watch('src/**/*.js', ['scripts']);
+  gulp.watch('src/**/*.html', ['htmls']);
 });
 
-gulp.task('watch', ['clean', 'styles', 'scripts', 'htmls', 'fonts', 'images'], function() {
-  server.listen(35729, function (err) {
-    if (err) {
-      return console.log(err)
-    };
-
-    gulp.watch('src/*.less', ['styles']);
-    gulp.watch('src/**/*.less', ['styles']);
-    gulp.watch('src/*.js', ['scripts']);
-    gulp.watch('src/**/*.js', ['scripts']);
-    gulp.watch('src/*.html', ['htmls']);
-    gulp.watch('src/**/*.html', ['htmls']);
-    gulp.watch('src/**/*', ['images']);
-  });
-});
+gulp.task('default', ['clean']);
