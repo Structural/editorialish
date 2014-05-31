@@ -1,7 +1,7 @@
 /** @jsx React.DOM */
 
 var React = require('react'),
-    Dispatcher = require('./dispatcher');
+    Dispatcher = require('../dispatcher/dispatcher');
 
 var TextEdit = React.createClass({
   getInitialState: function() {

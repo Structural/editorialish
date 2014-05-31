@@ -1,7 +1,7 @@
 var _ = require('underscore'),
     Firebase = require('client-firebase'),
     Store = require('./store'),
-    Dispatcher = require('./dispatcher');
+    Dispatcher = require('../dispatcher/dispatcher');
 
 var ManuscriptStore = new Store({
   initialize: function() {

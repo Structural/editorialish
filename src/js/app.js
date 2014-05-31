@@ -1,9 +1,9 @@
 /** @jsx React.DOM */
 
 var React = require('react')
-    ViewStateStore = require('./view_state_store'),
-    ManuscriptListView = require('./manuscript_list_view'),
-    ManuscriptEditView = require('./manuscript_edit_view');
+    ViewStateStore = require('./store/view_state_store'),
+    HomePage = require('./HomePage/HomePage'),
+    ManuscriptEditView = require('./EditorPage/manuscript_edit_view');
 
 var App = React.createClass({
   getInitialState: function() {
@@ -16,7 +16,7 @@ var App = React.createClass({
     ViewStateStore.ignore(this._onViewStateChange);
   },
   render: function() {
-    var contents = this.state.view === 'manuscript:list' ? <ManuscriptListView />
+    var contents = this.state.view === 'manuscript:list' ? <HomePage />
                  : this.state.view === 'manuscript:edit' ? <ManuscriptEditView manuscriptId={ViewStateStore.manuscriptId} />
                  : undefined;
 

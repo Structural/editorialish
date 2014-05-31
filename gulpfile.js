@@ -35,7 +35,7 @@ gulp.task('styles', function() {
 });
 
 var buildScripts = function(watch) {
-  var bundler, rootFile = './src/editorialish.js';
+  var bundler, rootFile = './src/js/editorialish.js';
   if (watch) {
     bundler = watchify(rootFile);
   } else {

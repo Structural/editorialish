@@ -1,12 +1,14 @@
 /** @jsx React.DOM */
 
 var React = require('react'),
-    ManuscriptStore = require('./manuscript_store'),
-    Button = require('./button'),
-    ManuscriptList = require('./manuscript_list'),
-    Credits = require('./credits');
+    ManuscriptStore = require('../store/manuscript_store'),
+    Button = require('../shared/button'),
+    Credits = require('../shared/credits');
 
-var ManuscriptListView = React.createClass({
+var ManuscriptList = require('./manuscript_list');
+
+
+var HomePage = React.createClass({
   getInitialState: function() {
     return {
       manuscripts: ManuscriptStore.manuscripts
@@ -23,7 +25,9 @@ var ManuscriptListView = React.createClass({
       <div className="home-page">
         <div className="nav-column">
           <div className="toolbar">Editorialish</div>
-          <div className='nav-contents'></div>
+          <div className='nav-contents'>
+            <Credits />
+          </div>
           <div className='bottom-toolbar'></div>
         </div>
         <div className="manuscripts-column">
@@ -31,7 +35,7 @@ var ManuscriptListView = React.createClass({
             <Button content="new manuscript" action="manuscript:create" />
           </div>
           <ManuscriptList manuscripts={this.state.manuscripts} />
-          <Credits />
+
         </div>
       </div>
     );
@@ -42,4 +46,4 @@ var ManuscriptListView = React.createClass({
   }
 });
 
-module.exports = ManuscriptListView;
+module.exports = HomePage;

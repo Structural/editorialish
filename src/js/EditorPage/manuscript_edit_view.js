@@ -1,9 +1,10 @@
 /** @jsx React.DOM */
 
 var React = require('react'),
-Button = require('./button'),
-ManuscriptStore = require('./manuscript_store'),
-TitleEdit = require('./title_edit'),
+Button = require('../shared/button'),
+ManuscriptStore = require('../store/manuscript_store');
+
+var TitleEdit = require('./title_edit'),
 TextEdit = require('./text_edit');
 
 var ManuscriptEditView = React.createClass({

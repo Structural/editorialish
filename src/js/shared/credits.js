@@ -8,9 +8,8 @@ var Credits = React.createClass({
       <div className="credits">
         <div>Editorially is dead, long live Editorially</div>
         <div>A Lubelski and Kermes joint</div>
-        <div>
-          Pen favicon by Simple Icons, from
-          <a href="http://thenounproject.com/term/pen/31089/">
+        <div className='icon'>
+          Pen favicon by Simple Icons, from <a href="http://thenounproject.com/term/pen/31089/">
             The Noun Project
           </a>
         </div>
