@@ -3,9 +3,14 @@ var _ = require('underscore'),
     Store = require('./store'),
     Dispatcher = require('../dispatcher/dispatcher');
 
+var manuscriptsRootUrl = 'https://editorialish.firebaseio.com/manuscripts';
+var manuscriptUrl = function(id) {
+  return manuscriptsRootUrl + '/' + id;
+};
+
 var ManuscriptStore = new Store({
   initialize: function() {
-    this.firebase = new Firebase('https://editorialish.firebaseio.com/manuscripts');
+    this.firebase = new Firebase(manuscriptsRootUrl);
     this.firebase.on('value', function(snapshot) {
       this.manuscripts = snapshot.val();
       this.trigger();
