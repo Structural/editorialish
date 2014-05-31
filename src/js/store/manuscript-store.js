@@ -35,7 +35,12 @@ var ManuscriptStore = new Store({
       update = {};
       update[id] = manuscript;
       this.firebase.update(update);
-      // Let Firebase's "value" event run trigger (above);
+      // Let Firebase's "value" event run trigger (above).
+    },
+    'manuscript:delete': function(id) {
+      var manuscriptFirebase = new Firebase(manuscriptUrl(id));
+      manuscriptFirebase.remove();
+      // Let Firebase's "value" event run trigger (above).
     }
   }
 });
