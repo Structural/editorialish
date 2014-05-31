@@ -32,6 +32,7 @@
     "streamqueue": "0.0.4",
     "tiny-lr": "0.0.5",
     "underscore": "~1.6.0",
+    "vinyl-source-stream": "^0.1.1",
     "watchify": "^0.10.2"
   },
   "engines": {
