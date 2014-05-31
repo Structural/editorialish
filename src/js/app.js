@@ -3,7 +3,7 @@
 var React = require('react')
     ViewStateStore = require('./store/view_state_store'),
     HomePage = require('./HomePage/HomePage'),
-    ManuscriptEditView = require('./EditorPage/EditorPage');
+    EditorPage = require('./EditorPage/EditorPage');
 
 var App = React.createClass({
   getInitialState: function() {
@@ -17,7 +17,7 @@ var App = React.createClass({
   },
   render: function() {
     var contents = this.state.view === 'manuscript:list' ? <HomePage />
-                 : this.state.view === 'manuscript:edit' ? <ManuscriptEditView manuscriptId={ViewStateStore.manuscriptId} />
+                 : this.state.view === 'manuscript:edit' ? <EditorPage manuscriptId={ViewStateStore.manuscriptId} />
                  : undefined;
 
     return (
