@@ -1,0 +1,32 @@
+
+.home-page .nav-column{
+  @toolbar-height:3.0rem;
+  @bottom-toolbar-height:3.0rem;
+
+  background-color: white;
+  .toolbar{
+    .abs-pos-fill();
+    bottom:auto;
+    height:@toolbar-height;
+    color:white;
+    background-color: @black;
+    padding-top:0.5rem;
+    font-size:1.5rem;
+    font-weight: bold;
+    text-align: center;
+  }
+  .nav-contents{
+    .abs-pos-fill();
+    top:@toolbar-height;
+    bottom:@bottom-toolbar-height;
+    border-right:1px solid #CCC;
+  }
+  .bottom-toolbar{
+    .abs-pos-fill();
+    top:auto;
+    height:@bottom-toolbar-height;
+    border-top:1px solid #CCC;
+    border-right:1px solid #CCC;
+    background-color: @light-gray;
+  }
+}

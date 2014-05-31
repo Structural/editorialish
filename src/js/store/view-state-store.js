@@ -1,5 +1,5 @@
 var Store = require('./store'),
-    Dispatcher = require('./dispatcher');
+    Dispatcher = require('../dispatcher/dispatcher');
 
 var ViewStateStore = new Store({
   initialize: function() {

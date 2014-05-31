@@ -1,5 +1,5 @@
 var _ = require('underscore'),
-    Dispatcher = require('./dispatcher');
+    Dispatcher = require('../dispatcher/dispatcher');
 
 var Store = function(options) {
   this._callbacks = [];

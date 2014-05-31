@@ -1,0 +1,93 @@
+.home-page{
+
+  .control() {
+    color: @text-color;
+    background: @control-bg-color;
+    outline: none;
+    transition: background-color 0.2s;
+
+    &:hover {
+      background-color: mix(black,@control-bg-color,10%);
+    }
+  }
+
+
+  button {
+    .control();
+
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 1rem;
+
+    padding: 0.3rem 1rem;
+    border-radius: 0.3rem;
+    border: none;
+
+    cursor: pointer;
+
+    i {
+      font-weight: normal;
+    }
+  }
+  .manuscripts{
+    background-color: #F8F8F8;
+  }
+  .manuscript {
+    display: block;
+    height: 10rem;
+    background-color: white;
+    border: 1px solid #CCC;
+    box-shadow: 0 2px 4px #DDD;
+    border-radius: 3px;
+    margin: 1.0rem;
+    text-align: center;
+    position: relative;
+    vertical-align: top;
+    @media(min-width:@bp-1){
+      display: inline-block;
+      width: 15rem;
+    }
+
+    span {
+      display: inline-block;
+      font-size: 1.2rem;
+      margin-top: 0.3rem;
+    }
+
+    button {
+      position: absolute;
+      bottom: 0.3rem;
+      right: 0.3rem;
+    }
+  }
+
+  input, textarea {
+    font-family: 'Inconsolata', monospace;
+    border: 1px solid @text-color;
+    color: @text-color;
+    font-size: 1.2rem;
+  }
+
+  .credits {
+    font-size:0.8rem;
+    color:#AAA;
+    position: absolute;
+    text-align: center;
+    bottom: 0;
+    right: 0;
+    left:0;
+    padding:0.25rem;
+    line-height: 1.5;
+    .icon{
+      font-size:0.7rem;
+    }
+    a{
+      color:#C82;
+      text-decoration: none;
+      &:hover{
+        text-decoration: underline;
+        color:#D93;
+      }
+    }
+  }
+}

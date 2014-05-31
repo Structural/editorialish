@@ -2,8 +2,8 @@
 
 var React = require('react'),
     _ = require('underscore'),
-    Button = require('./button'),
-    Icon = require('./icon');
+    Button = require('../shared/button'),
+    Icon = require('../shared/icon');
 
 var Manuscript = React.createClass({
   render: function() {
