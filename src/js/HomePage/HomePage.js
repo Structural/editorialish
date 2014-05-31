@@ -5,7 +5,7 @@ var React = require('react'),
     Button = require('../shared/button'),
     Credits = require('../shared/credits');
 
-var ManuscriptList = require('./manuscript_list');
+var ManuscriptList = require('./manuscriptList');
 
 
 var HomePage = React.createClass({

@@ -3,7 +3,7 @@
 var React = require('react')
     ViewStateStore = require('./store/view_state_store'),
     HomePage = require('./HomePage/HomePage'),
-    ManuscriptEditView = require('./EditorPage/manuscript_edit_view');
+    ManuscriptEditView = require('./EditorPage/EditorPage');
 
 var App = React.createClass({
   getInitialState: function() {
