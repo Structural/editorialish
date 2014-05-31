@@ -71,7 +71,7 @@ gulp.task('clean', function() {
     .pipe(clean());
 });
 
-gulp.task('build', ['styles', 'scripts', 'htmls', 'fonts']);
+gulp.task('build', ['styles', 'scripts', 'htmls', 'fonts', 'images']);
 
 gulp.task('watch', ['build'], function() {
   gulp.watch('src/**/*.less', ['styles']);
