@@ -1,7 +1,7 @@
 /** @jsx React.DOM */
 
 var React = require('react'),
-    App = require('./app.js');
+    App = require('./app');
 
 window.React = React;
 
