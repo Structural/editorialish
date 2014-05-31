@@ -21,8 +21,14 @@ var gulp = require('gulp'),
 /* Various Gulp Tasks */
 
 gulp.task('styles', function() {
+  var logAndEnd = function(error){
+    gutil.beep();
+    gutil.log(error);
+    this.end();
+  }
   return gulp.src('src/less/editorialish.less')
     .pipe(less({paths: [ path.join(__dirname, 'src') ]}))
+    .on('error', logAndEnd)
     .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
     .pipe(gulp.dest('dist'));
 });
