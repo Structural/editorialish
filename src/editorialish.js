@@ -1,7 +1,7 @@
 /** @jsx React.DOM */
 
 var React = require('react'),
-    App = require('./app.js');
+    App = require('./app');
 
 var Editorialish = function() {
   this.start = function() {
