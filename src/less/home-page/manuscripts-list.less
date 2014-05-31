@@ -33,8 +33,7 @@
     background-color: #F8F8F8;
   }
   .manuscript {
-    display: inline-block;
-    width: 15rem;
+    display: block;
     height: 10rem;
     background-color: white;
     border: 1px solid #CCC;
@@ -44,6 +43,10 @@
     text-align: center;
     position: relative;
     vertical-align: top;
+    @media(min-width:@bp-1){
+      display: inline-block;
+      width: 15rem;
+    }
 
     span {
       display: inline-block;

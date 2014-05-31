@@ -12,8 +12,12 @@
     right:auto;
     width:@nav-width;
   }
+
   .manuscripts-column{
     .abs-pos-fill();
-    left:@nav-width;
+    @media(min-width:@bp-1){
+      left:@nav-width;
+    }
   }
+
 }
