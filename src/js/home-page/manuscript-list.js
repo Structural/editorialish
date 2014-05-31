@@ -24,7 +24,7 @@ var Manuscript = React.createClass({
 var ManuscriptList = React.createClass({
   render: function() {
     var manuscripts = _.map(this.props.manuscripts, function(manuscript, id) {
-      return <Manuscript manuscript={manuscript} id={id} />;
+      return <Manuscript manuscript={manuscript} id={id} key={id} />;
     });
 
     return (
