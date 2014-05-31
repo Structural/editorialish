@@ -1,6 +1,3 @@
-/* Require a whole bunch of stuff */
-
-
 var gulp = require('gulp'),
     gutil = require('gulp-util'),
     less = require('gulp-less'),
@@ -17,8 +14,6 @@ var gulp = require('gulp'),
     cache = require('gulp-cache'),
     livereload = require('gulp-livereload'),
     browserify = require('gulp-browserify');
-
-/* Various Gulp Tasks */
 
 gulp.task('styles', function() {
   var logAndEnd = function(error){
