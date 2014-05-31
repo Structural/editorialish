@@ -11,7 +11,7 @@ var ManuscriptEditView = React.createClass({
     var manuscript = ManuscriptStore.manuscripts[this.props.manuscriptId];
 
     return (
-      <div>
+      <div className="manuscript-editor">
         <Button content="home" action="manuscript:list" />
         <TitleEdit title={manuscript.title}
                    manuscriptId={this.props.manuscriptId} />
