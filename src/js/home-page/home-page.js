@@ -1,11 +1,11 @@
 /** @jsx React.DOM */
 
 var React = require('react'),
-    ManuscriptStore = require('../store/manuscript_store'),
+    ManuscriptStore = require('../store/manuscript-store'),
     Button = require('../shared/button'),
     Credits = require('../shared/credits');
 
-var ManuscriptList = require('./manuscriptList');
+var ManuscriptList = require('./manuscript-list');
 
 
 var HomePage = React.createClass({

@@ -2,7 +2,7 @@
 
 var React = require('react'),
 Button = require('../shared/button'),
-ManuscriptStore = require('../store/manuscript_store');
+ManuscriptStore = require('../store/manuscript-store');
 
 var TitleEdit = require('./Title'),
 TextEdit = require('./Text');

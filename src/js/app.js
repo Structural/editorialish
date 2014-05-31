@@ -1,9 +1,9 @@
 /** @jsx React.DOM */
 
 var React = require('react')
-    ViewStateStore = require('./store/view_state_store'),
-    HomePage = require('./HomePage/HomePage'),
-    EditorPage = require('./EditorPage/EditorPage');
+    ViewStateStore = require('./store/view-state-store'),
+    HomePage = require('./home-page/home-page'),
+    EditorPage = require('./editor-page/editor-page');
 
 var App = React.createClass({
   getInitialState: function() {
