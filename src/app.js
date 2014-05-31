@@ -21,7 +21,7 @@ var App = React.createClass({
                  : undefined;
 
     return (
-      <div>{contents}</div>
+      <div className ='app editorialish'>{contents}</div>
     );
   },
 

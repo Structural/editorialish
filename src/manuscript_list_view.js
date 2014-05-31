@@ -20,10 +20,19 @@ var ManuscriptListView = React.createClass({
   },
   render: function() {
     return (
-      <div>
-        <Button content="new manuscript" action="manuscript:create" />
-        <ManuscriptList manuscripts={this.state.manuscripts} />
-        <Credits />
+      <div className="home-page">
+        <div className="nav-column">
+          <div className="toolbar">Editorialish</div>
+          <div className='nav-contents'></div>
+          <div className='bottom-toolbar'></div>
+        </div>
+        <div className="manuscripts-column">
+          <div className='toolbar'>
+            <Button content="new manuscript" action="manuscript:create" />
+          </div>
+          <ManuscriptList manuscripts={this.state.manuscripts} />
+          <Credits />
+        </div>
       </div>
     );
   },
