@@ -1,49 +1,40 @@
 .home-page{
 
-  .control(dangerous) {
+  .button() {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 1rem;
+    padding: 0.3rem 1rem;
+    border-radius: 0.3rem;
+    border: none;
+    cursor: pointer;
+    color: @text-color;
+    background: @control-bg-color;
+    outline: none;
+    transition: background-color 0.2s;
+    &:hover {
+      background-color: mix(black,@control-bg-color,10%);
+    }
+    i {
+      font-weight: normal;
+    }
+  }
+
+  .button-dangerous() {
     &:hover {
       background-color: @danger-color;
       color: @white;
     }
   }
 
-  .control(normal) {
-    &:hover {
-      background-color: mix(black,@control-bg-color,10%);
-    }
-  }
-
-  .control(@_) {
-    color: @text-color;
-    background: @control-bg-color;
-    outline: none;
-    transition: background-color 0.2s;
-  }
-
-  .button(@type: normal) {
-    .control(@type);
-
-    text-transform: uppercase;
-    font-weight: bold;
-    font-size: 1rem;
-
-    padding: 0.3rem 1rem;
-    border-radius: 0.3rem;
-    border: none;
-
-    cursor: pointer;
-
-    i {
-      font-weight: normal;
-    }
-  }
 
   button {
     .button();
   }
 
   .delete-button {
-    .button(dangerous);
+    .button();
+    .button-dangerous();
   }
 
   .manuscripts{
