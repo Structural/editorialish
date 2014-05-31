@@ -1,19 +1,27 @@
 .home-page{
 
-  .control() {
-    color: @text-color;
-    background: @control-bg-color;
-    outline: none;
-    transition: background-color 0.2s;
+  .control(dangerous) {
+    &:hover {
+      background-color: @danger-color;
+      color: @white;
+    }
+  }
 
+  .control(normal) {
     &:hover {
       background-color: mix(black,@control-bg-color,10%);
     }
   }
 
+  .control(@_) {
+    color: @text-color;
+    background: @control-bg-color;
+    outline: none;
+    transition: background-color 0.2s;
+  }
 
-  button {
-    .control();
+  .button(@type: normal) {
+    .control(@type);
 
     text-transform: uppercase;
     font-weight: bold;
@@ -29,6 +37,15 @@
       font-weight: normal;
     }
   }
+
+  button {
+    .button();
+  }
+
+  .delete-button {
+    .button(dangerous);
+  }
+
   .manuscripts{
     background-color: #F8F8F8;
   }
