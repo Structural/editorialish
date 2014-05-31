@@ -1,10 +1,10 @@
 /** @jsx React.DOM */
 
 var React = require('react'),
-    Button = require('./button'),
-    ManuscriptStore = require('./manuscript_store'),
-    TitleEdit = require('./title_edit'),
-    TextEdit = require('./text_edit');
+Button = require('./button'),
+ManuscriptStore = require('./manuscript_store'),
+TitleEdit = require('./title_edit'),
+TextEdit = require('./text_edit');
 
 var ManuscriptEditView = React.createClass({
   render: function() {
@@ -12,15 +12,16 @@ var ManuscriptEditView = React.createClass({
 
     return (
       <div className="manuscript-editor">
-        <Button content="home" action="manuscript:list" />
-        <TitleEdit title={manuscript.title}
-                   manuscriptId={this.props.manuscriptId} />
-        <TextEdit text={manuscript.text}
-                  manuscriptId={this.props.manuscriptId} />
-        <Button content="save" action="manuscript:save"
-                args={[this.props.manuscriptId]} />
+      <div className="toolbar">
+      <Button content="home" action="manuscript:list" />
+      <Button content="save" action="manuscript:save" args={[this.props.manuscriptId]} />
       </div>
-    );
+      <TitleEdit title={manuscript.title} manuscriptId={this.props.manuscriptId} />
+
+      <TextEdit text={manuscript.text}
+      manuscriptId={this.props.manuscriptId} />
+      </div>
+      );
   }
 });
 

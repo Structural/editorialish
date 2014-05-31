@@ -12,7 +12,7 @@ var TitleEdit = React.createClass({
 
   render: function() {
     return (
-      <input type="text" value={this.state.title} onChange={this._onChange} />
+      <input type="text" value={this.state.title} onChange={this._onChange} placeholder='Document Title'/>
     );
   },
 

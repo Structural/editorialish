@@ -6,9 +6,10 @@
   color: @text-color;
   background: @control-bg-color;
   outline: none;
+  transition: background-color 0.2s;
 
   &:hover {
-    color: @active-control-text-color;
+    background-color: mix(black,@control-bg-color,10%);
   }
 }
 
