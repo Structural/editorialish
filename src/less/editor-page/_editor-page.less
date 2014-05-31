@@ -1,24 +1,78 @@
 .manuscript-editor{
+
+  @toolbar-height:3.0rem;
+
   .abs-pos-fill();
+  overflow-y: scroll;
+
+  background-color: red;
+
   .toolbar{
-    background-color: red;
-  }
-  input{
-    width:100%;
-    border:1px solid #CCC;
-    display: block;
-    padding:1.0rem;
-    outline:none;
-    text-align: center;
+    .abs-pos-fill();
+    bottom:auto;
+    height:@toolbar-height;
+    background-color: black;
+
+    button{
+      padding:0.5rem;
+      background-color: white;
+      text-transform: capitalize;
+      font-size:1.0rem;
+      border:none;
+      border-radius: 2px;
+      outline:none;
+      margin:0.35rem;
+      cursor: pointer;
+      &:hover{
+        background-color: #FED;
+      }
+    }
   }
 
-  textarea{
-    width:100%;
-    display: block;
-    min-height: 25rem;
-    outline:none;
-    border:1px solid #CCC;
-    padding:1.0rem;
-    resize:none;
+  .editor-contents{
+    .abs-pos-fill();
+    top:@toolbar-height;
+    background-color: #EEE;
+    overflow-y: auto;
+
+    .manuscript{
+      max-width:50rem;
+      margin:2.0rem auto;
+      background-color: white;
+      padding: 0 4.0rem 5.0rem;
+      border:1px solid #DDD;
+      box-shadow: 0 2px 4px #CCC;
+      border-radius: 3px;
+    }
+
+    input{
+      .ellipsis();
+      width:100%;
+      color:#666;
+      border:none;
+      border-bottom:1px solid #CCC;
+      display: block;
+      padding:1.0rem;
+      outline:none;
+      text-align: center;
+      font-size: 2.0rem;
+      font-family: 'Source Sans Pro';
+      &:focus{
+        color:#222;
+      }
+    }
+
+    textarea{
+      width:100%;
+      display: block;
+      min-height: 100rem;
+      border:none;
+      outline:none;
+      padding:1.0rem 2.0rem;
+      resize:none;
+      font-size:1.1rem;
+      line-height: 2.0;
+      font-family: 'Source Sans Pro';
+    }
   }
 }
