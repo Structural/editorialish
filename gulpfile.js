@@ -13,7 +13,10 @@ var gulp = require('gulp'),
     notify = require('gulp-notify'),
     cache = require('gulp-cache'),
     livereload = require('gulp-livereload'),
-    browserify = require('gulp-browserify');
+    browserify = require('browserify'),
+    watchify = require('watchify'),
+    reactify = require('reactify'),
+    source = require('vinyl-source-stream');
 
 gulp.task('styles', function() {
   var logAndEnd = function(error){
@@ -28,19 +31,31 @@ gulp.task('styles', function() {
     .pipe(gulp.dest('dist'));
 });
 
+var buildScripts = function(watch) {
+  var bundler, rootFile = './src/editorialish.js';
+  if (watch) {
+    bundler = watchify(rootFile);
+  } else {
+    bundler = browserify(rootFile);
+  }
+
+  bundler.transform(reactify);
+
+  var rebundle = function() {
+    var stream = bundler.bundle({debug: false});
+    stream = stream.pipe(source('editorialish.js'));
+    return stream.pipe(gulp.dest('dist'));
+  }
+  bundler.on('update', rebundle);
+  return rebundle();
+}
+
 gulp.task('scripts', function() {
-  return gulp.src('src/editorialish.js')
-    .pipe(browserify({
-      transform: ['reactify'],
-      extensions: ['.js', '.jsx'],
-      shim: {
-        underscore: {
-          path: 'node_modules/underscore/underscore.js',
-          exports: '_'
-        }
-      }
-    }))
-    .pipe(gulp.dest('dist'));
+  buildScripts(false);
+});
+
+gulp.task('scriptsWatch', function() {
+  buildScripts(true);
 });
 
 gulp.task('htmls', function() {
@@ -57,7 +72,6 @@ var imgExts = ['png', 'jpg', 'jpeg', 'gif', 'ico'];
 gulp.task('images', function() {
   return gulp.src(imgExts.map(function(ext) { return 'src/**/*' + ext }))
     .pipe(cache(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true })))
-    .pipe(livereload(server))
     .pipe(gulp.dest('dist'));
 });
 
@@ -68,9 +82,8 @@ gulp.task('clean', function() {
 
 gulp.task('build', ['styles', 'scripts', 'htmls', 'fonts', 'images']);
 
-gulp.task('watch', ['build'], function() {
+gulp.task('watch', ['styles', 'scriptsWatch', 'htmls', 'fonts', 'images'], function() {
   gulp.watch('src/**/*.less', ['styles']);
-  gulp.watch('src/**/*.js', ['scripts']);
   gulp.watch('src/**/*.html', ['htmls']);
 });
 
