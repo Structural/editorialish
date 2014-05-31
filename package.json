@@ -31,7 +31,8 @@
     "reactify": "^0.13.1",
     "envify": "^1.2.1",
     "react": "^0.10.0",
-    "client-firebase": "0.0.1"
+    "firebase-client": "tinj/firebase-client",
+    "firebase-simple-login": "tinj/firebase-simple-login"
   },
   "engines": {
     "node": "0.10.25"

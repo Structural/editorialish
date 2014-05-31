@@ -1,5 +1,5 @@
 var _ = require('underscore'),
-    Firebase = require('client-firebase'),
+    Firebase = require('firebase-client'),
     Store = require('./store'),
     Dispatcher = require('./dispatcher');
 
