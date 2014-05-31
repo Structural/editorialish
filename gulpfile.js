@@ -45,6 +45,8 @@ var buildScripts = function(watch) {
   bundler.transform(reactify);
 
   var rebundle = function() {
+    gutil.log('Building js with browserify');
+
     var stream = bundler.bundle({debug: false});
     stream.on('error', logAndEnd('Browserify'));
 
