@@ -12,24 +12,28 @@ var TextEdit = React.createClass({
   },
   componentDidMount: function() {
     var text = this.refs.cmText.getDOMNode();
-    var editor = CodeMirror.fromTextArea(text,{
+    this.editor = CodeMirror.fromTextArea(text,{
       mode: 'markdown',
       lineNumbers: false,
       lineWrapping: true,
       dragDrop:false,
       autoFocus:true
     });
+    this.editor.on('change', this._onChange);
   },
   render: function() {
     return (
-      <textarea ref='cmText' onChange={this._onChange} value={this.state.text} />
+      <textarea ref='cmText' defaultValue={this.state.text} />
     );
   },
 
-  _onChange: function(event) {
-    Dispatcher.send('manuscript:localUpdate',
-                    [this.props.manuscriptId, {text: event.target.value}]);
-    this.setState({text: event.target.value});
+  _onChange: function() {
+    if (this.editor) {
+      var text = this.editor.getValue();
+      Dispatcher.send('manuscript:localUpdate',
+                      [this.props.manuscriptId, {text: text}]);
+      this.setState({text: text});
+    }
   }
 });
 
