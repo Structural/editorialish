@@ -8,10 +8,13 @@ var React = require('react'),
 var Manuscript = React.createClass({
   render: function() {
     var openIcon = <Icon name="popup" />
+    var deleteIcon = <Icon name="cancel" />
     return (
       <div className="manuscript">
         <span>{this.props.manuscript.title}</span>
-        <Button content={openIcon}
+        <Button content={deleteIcon} className="delete-button"
+                action="manuscript:delete" args={[this.props.id]} />
+        <Button content={openIcon} className="open-button"
                 action="manuscript:edit" args={[this.props.id]} />
       </div>
     );
@@ -21,7 +24,7 @@ var Manuscript = React.createClass({
 var ManuscriptList = React.createClass({
   render: function() {
     var manuscripts = _.map(this.props.manuscripts, function(manuscript, id) {
-      return <Manuscript manuscript={manuscript} id={id} />;
+      return <Manuscript manuscript={manuscript} id={id} key={id} />;
     });
 
     return (
