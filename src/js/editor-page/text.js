@@ -13,7 +13,10 @@ var TextEdit = React.createClass({
   componentDidMount: function() {
     var text = this.refs.cmText.getDOMNode();
     this.editor = CodeMirror.fromTextArea(text,{
-      mode: 'markdown',
+      mode: {
+        name: 'markdown',
+        highlightFormatting: true
+      },
       lineNumbers: false,
       lineWrapping: true,
       dragDrop:false,
