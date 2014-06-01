@@ -1,34 +1,42 @@
 .home-page{
 
-  .control() {
+  .button() {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 1rem;
+    padding: 0.3rem 1rem;
+    border-radius: 0.3rem;
+    border: none;
+    cursor: pointer;
     color: @text-color;
     background: @control-bg-color;
     outline: none;
     transition: background-color 0.2s;
-
     &:hover {
       background-color: mix(black,@control-bg-color,10%);
+    }
+    i {
+      font-weight: normal;
+    }
+  }
+
+  .button-dangerous() {
+    &:hover {
+      background-color: @danger-color;
+      color: @white;
     }
   }
 
 
   button {
-    .control();
-
-    text-transform: uppercase;
-    font-weight: bold;
-    font-size: 1rem;
-
-    padding: 0.3rem 1rem;
-    border-radius: 0.3rem;
-    border: none;
-
-    cursor: pointer;
-
-    i {
-      font-weight: normal;
-    }
+    .button();
   }
+
+  .delete-button {
+    .button();
+    .button-dangerous();
+  }
+
   .manuscripts{
     background-color: #F8F8F8;
   }
@@ -57,7 +65,14 @@
     button {
       position: absolute;
       bottom: 0.3rem;
+    }
+
+    .open-button {
       right: 0.3rem;
+    }
+
+    .delete-button {
+      left: 0.3rem;
     }
   }
 
