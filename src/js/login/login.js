@@ -4,6 +4,7 @@ var React = require('react');
 
 var Icon = require('../shared/icon');
 var Button = require('../shared/button');
+var LoginTitle = require('./login-title');
 var LoginError = require('./login-error');
 var UserStore = require('../store/user-store');
 
@@ -28,10 +29,7 @@ var Login = React.createClass({
 
     return (
       <div className="login">
-        <h1>
-          <span className="formatting"># </span>
-          Editorially is dead, long live Editorially
-        </h1>
+        <LoginTitle />
         <div className="login-form">
           {error}
           <Icon name="github" />
