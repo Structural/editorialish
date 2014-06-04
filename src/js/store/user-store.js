@@ -6,17 +6,21 @@ var UserStore = new Store({
   initialize: function() {
     this.user = undefined;
 
-    var firebase = new Firebase('https://editorialish.firebaseio.com');
-    var auth = new FirebaseSimpleLogin(firebase, function(error, user) {
+    this.firebase = new Firebase('https://editorialish.firebaseio.com');
+    this.auth = new FirebaseSimpleLogin(this.firebase, function(error, user) {
       if (!error && user) {
         this.user = user;
         this.trigger();
       }
-    });
+    }.bind(this));
   },
 
   dispatches: {
-
+    'user:login': function() {
+      this.auth.login('github', {
+        rememberMe: true
+      });
+    }
   }
 });
 
