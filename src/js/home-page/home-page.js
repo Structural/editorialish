@@ -3,6 +3,7 @@
 var React = require('react'),
     ManuscriptStore = require('../store/manuscript-store'),
     Button = require('../shared/button'),
+    LogoutButton = require('../shared/logout-button'),
     Credits = require('../shared/credits');
 
 var ManuscriptList = require('./manuscript-list');
@@ -33,6 +34,7 @@ var HomePage = React.createClass({
         <div className="manuscripts-column">
           <div className='toolbar'>
             <Button content="new manuscript" action="manuscript:create" />
+            <LogoutButton />
           </div>
           <ManuscriptList manuscripts={this.state.manuscripts} />
 

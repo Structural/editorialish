@@ -8,10 +8,14 @@ var UserStore = new Store({
 
     this.firebase = new Firebase('https://editorialish.firebaseio.com');
     this.auth = new FirebaseSimpleLogin(this.firebase, function(error, user) {
-      if (!error && user) {
+      if (error) {
+
+      } else if (user) {
         this.user = user;
-        this.trigger();
+      } else {
+        this.user = undefined;
       }
+      this.trigger();
     }.bind(this));
   },
 
@@ -20,6 +24,9 @@ var UserStore = new Store({
       this.auth.login('github', {
         rememberMe: true
       });
+    },
+    'user:logout': function() {
+      this.auth.logout();
     }
   }
 });
