@@ -9,8 +9,14 @@ var Login = React.createClass({
   render: function() {
     return (
       <div className="login">
-        <Icon name="github" />
-        <Button content="Login with Github" action="user:login" />
+        <h1>
+          <span className="formatting"># </span>
+          Editorially is dead, long live Editorially
+        </h1>
+        <div className="login-form">
+          <Icon name="github" />
+          <Button content="Login with Github" action="user:login" />
+        </div>
       </div>
     );
   }
