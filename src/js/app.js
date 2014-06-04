@@ -4,7 +4,8 @@ var React = require('react')
     ViewStateStore = require('./store/view-state-store'),
     UserStore = require('./store/user-store'),
     HomePage = require('./home-page/home-page'),
-    EditorPage = require('./editor-page/editor-page');
+    EditorPage = require('./editor-page/editor-page'),
+    Login = require('./login/login');
 
 var App = React.createClass({
   getInitialState: function() {
@@ -24,7 +25,7 @@ var App = React.createClass({
   render: function() {
     var contents = undefined;
     if (!this.state.user) {
-      contents = 'Log your bad self in.';
+      contents = <Login />;
     } else if (this.state.view === 'manuscript:list') {
       contents = <HomePage />;
     } else if (this.state.view === 'manuscript:edit') {
