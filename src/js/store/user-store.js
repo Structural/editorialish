@@ -5,16 +5,13 @@ var FirebaseSimpleLogin = require('firebase-simple-login');
 var UserStore = new Store({
   initialize: function() {
     this.user = undefined;
+    this.error = undefined;
 
     this.firebase = new Firebase('https://editorialish.firebaseio.com');
     this.auth = new FirebaseSimpleLogin(this.firebase, function(error, user) {
-      if (error) {
-
-      } else if (user) {
-        this.user = user;
-      } else {
-        this.user = undefined;
-      }
+      this.error = error;
+      this.user = user;
+      console.log(error, user);
       this.trigger();
     }.bind(this));
   },
