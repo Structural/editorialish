@@ -1,0 +1,23 @@
+@import 'manuscripts-list';
+@import 'nav-column';
+@import 'manuscripts-column';
+
+
+
+@nav-width:18rem;
+
+.home-page{
+  .nav-column{
+    .abs-pos-fill();
+    right:auto;
+    width:@nav-width;
+  }
+
+  .manuscripts-column{
+    .abs-pos-fill();
+    @media(min-width:@bp-1){
+      left:@nav-width;
+    }
+  }
+
+}
