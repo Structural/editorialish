@@ -35,7 +35,7 @@ var HomePage = React.createClass({
         </div>
         <div className="manuscripts-column">
           <div className='toolbar'>
-            <div className="groud left">
+            <div className="group left">
               <Button content="new manuscript" action="manuscript:create" />
             </div>
             <div className="group right">
