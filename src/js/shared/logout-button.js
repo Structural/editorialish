@@ -6,9 +6,9 @@ var Icon = require('./icon');
 
 var LogoutButton = React.createClass({
   render: function() {
-    var logoutIcon = <Icon name="export" />
+    var logoutIcon = <Icon name="right" />
     return (
-      <Button action="user:logout" content={logoutIcon} />
+      <Button action="user:logout" content='Log Out' />
     );
   }
 });

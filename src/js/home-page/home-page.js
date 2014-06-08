@@ -29,12 +29,18 @@ var HomePage = React.createClass({
           <div className='nav-contents'>
             <Credits />
           </div>
-          <div className='bottom-toolbar'></div>
+          <div className='bottom-toolbar'>
+            <LogoutButton />
+          </div>
         </div>
         <div className="manuscripts-column">
           <div className='toolbar'>
-            <Button content="new manuscript" action="manuscript:create" />
-            <LogoutButton />
+            <div className="group left">
+              <Button content="new manuscript" action="manuscript:create" />
+            </div>
+            <div className="group right">
+
+            </div>
           </div>
           <ManuscriptList manuscripts={this.state.manuscripts} />
 
