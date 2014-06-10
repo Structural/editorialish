@@ -26,12 +26,17 @@
   .editor-contents{
     .abs-pos-fill();
     top:@toolbar-height;
+    @media(min-width:@bp-1){
+      padding:0 1.0rem;
+    }
+
     .scrollable();
     background-color: #EEE;
 
     .manuscript{
       background-color: white;
       padding:0 1.0rem;
+
       font-size:1.0rem;
       @media(min-width:@bp-1){
         max-width:50rem;
