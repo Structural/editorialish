@@ -10,7 +10,18 @@
       padding:0;
       border-bottom:1px solid #BBB;
       background-color: #DDD;
-      text-align: right;
+      .group{
+        position: absolute;
+        &.left{
+          top:0;
+          left:0;
+        }
+        &.right{
+          top:0;
+          right:0;
+        }
+      }
+
       button{
         .toolbar-button();
       }
