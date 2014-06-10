@@ -11,7 +11,6 @@ var UserStore = new Store({
     this.auth = new FirebaseSimpleLogin(this.firebase, function(error, user) {
       this.error = error;
       this.user = user;
-      console.log(error, user);
       this.trigger();
     }.bind(this));
   },
