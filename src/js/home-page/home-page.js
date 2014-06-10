@@ -11,7 +11,6 @@ var ManuscriptList = require('./manuscript-list');
 
 var HomePage = React.createClass({
   toggleNav:function(){
-    console.log('trying to toggle nav');
     this.setState({showNav: !this.state.showNav})
   },
   getInitialState: function() {
