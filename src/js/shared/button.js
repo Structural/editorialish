@@ -18,7 +18,7 @@ var Button = React.createClass({
     }
 
     if (this.props.action) {
-      Dispatcher.send(this.props.action);
+      Dispatcher.send(this.props.action, this.props.args);
     }
   }
 });
