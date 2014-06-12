@@ -5,15 +5,21 @@ var React = require('react'),
 
 var Button = React.createClass({
   render: function() {
-    var activate = function() {
-      Dispatcher.send(this.props.action, this.props.args);
-    };
-
     return (
-      <button onClick={activate.bind(this)} className={this.props.className}>
+      <button onClick={this._activate} className={this.props.className}>
         {this.props.children}
       </button>
     );
+  },
+
+  _activate: function(event) {
+    if (this.props.onClick) {
+      this.props.onClick(event);
+    }
+
+    if (this.props.action) {
+      Dispatcher.send(this.props.action);
+    }
   }
 });
 
