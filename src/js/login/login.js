@@ -33,7 +33,9 @@ var Login = React.createClass({
         <div className="login-form">
           {error}
           <Icon name="github" />
-          <Button content="Login with Github" action="user:login" />
+          <Button action="user:login">
+            Login with Github
+          </Button>
         </div>
       </div>
     );

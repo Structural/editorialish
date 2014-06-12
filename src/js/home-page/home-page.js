@@ -47,7 +47,9 @@ var HomePage = React.createClass({
               <button onClick={this.toggleNav}>Menu</button>
             </div>
             <div className="group right">
-              <Button content="new manuscript" action="manuscript:create"/>
+              <Button action="manuscript:create">
+                new manuscript
+              </Button>
             </div>
           </div>
           <ManuscriptList manuscripts={this.state.manuscripts} />

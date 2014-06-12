@@ -7,15 +7,17 @@ var React = require('react'),
 
 var Manuscript = React.createClass({
   render: function() {
-    var openIcon = <Icon name="popup" />
-    var deleteIcon = <Icon name="cancel" />
     return (
       <div className="manuscript">
         <span>{this.props.manuscript.title}</span>
-        <Button content={deleteIcon} className="delete-button"
-                action="manuscript:delete" args={[this.props.id]} />
-        <Button content={openIcon} className="open-button"
-                action="manuscript:edit" args={[this.props.id]} />
+        <Button className="delete-button" action="manuscript:delete"
+                args={[this.props.id]}>
+          <Icon name="cancel" />
+        </Button>
+        <Button className="open-button" action="manuscript:edit"
+                args={[this.props.id]}>
+          <Icon name="popup" />
+        </Button>
       </div>
     );
   }

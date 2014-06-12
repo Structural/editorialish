@@ -11,7 +11,7 @@ var Button = React.createClass({
 
     return (
       <button onClick={activate.bind(this)} className={this.props.className}>
-        {this.props.content}
+        {this.props.children}
       </button>
     );
   }

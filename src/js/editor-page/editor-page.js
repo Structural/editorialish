@@ -16,8 +16,12 @@ var ManuscriptEditView = React.createClass({
       <div className="manuscript-editor">
         <div className="toolbar">
           <div className="group left">
-            <Button content="home" action="manuscript:list" />
-            <Button content="save" action="manuscript:save" args={[this.props.manuscriptId]} />
+            <Button action="manuscript:list">
+              home
+            </Button>
+            <Button action="manuscript:save" args={[this.props.manuscriptId]}>
+              save
+            </Button>
           </div>
         </div>
         <div className="editor-contents">
