@@ -1,23 +1,19 @@
 /** @jsx React.DOM */
 
 var React = require('react'),
-    _ = require('underscore'),
-    Button = require('../shared/button'),
-    Icon = require('../shared/icon');
+    _ = require('underscore');
+
+var Menu = require('./menu'),
+    DeleteButton = require('./delete-button');
 
 var Manuscript = React.createClass({
   render: function() {
     return (
       <div className="manuscript">
         <span>{this.props.manuscript.title}</span>
-        <Button className="delete-button" action="manuscript:delete"
-                args={[this.props.id]}>
-          <Icon name="cancel" />
-        </Button>
-        <Button className="open-button" action="manuscript:edit"
-                args={[this.props.id]}>
-          <Icon name="popup" />
-        </Button>
+        <Menu>
+          <DeleteButton id={this.props.id} />
+        </Menu>
       </div>
     );
   }
