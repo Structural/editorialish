@@ -3,7 +3,7 @@
 var React = require('react'),
     _ = require('underscore');
 
-var Menu = require('./menu'),
+var Menu = require('../shared/menu'),
     DeleteButton = require('./delete-button'),
     Dispatcher = require('../dispatcher/dispatcher');
 
