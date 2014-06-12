@@ -14,7 +14,7 @@ var Manuscript = React.createClass({
         <span className="manuscript-title" onClick={this._open}>
           {this.props.manuscript.title}
         </span>
-        <Menu>
+        <Menu iconName="cog">
           <DeleteButton id={this.props.id} />
         </Menu>
       </div>

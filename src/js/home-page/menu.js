@@ -29,7 +29,7 @@ var Menu = React.createClass({
       <div className="menu">
         {mask}
         <Button className="menu-toggle" onClick={this._toggle}>
-          <Icon name="cog" />
+          <Icon name={this.props.iconName} />
         </Button>
         {menuItems}
       </div>
