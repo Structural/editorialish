@@ -13,17 +13,21 @@ var Menu = React.createClass({
   },
 
   render: function() {
-    var menuItems = undefined;
+    var menuItems = undefined,
+        mask = undefined;
     if (this.state.open) {
       menuItems = (
         <div className="menu-items">
           {this.props.children}
         </div>
       );
+
+      mask = <div className="close-anywhere-mask" onClick={this._close} />
     }
 
     return (
       <div className="menu">
+        {mask}
         <Button className="menu-toggle" onClick={this._toggle}>
           <Icon name="cog" />
         </Button>
@@ -35,6 +39,11 @@ var Menu = React.createClass({
   _toggle: function() {
     this.setState({
       open: !this.state.open
+    });
+  },
+  _close: function() {
+    this.setState({
+      open: false
     });
   }
 });
