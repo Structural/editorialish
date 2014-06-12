@@ -23,28 +23,22 @@
     text-align: center;
     position: relative;
     vertical-align: top;
+
     @media(min-width:@bp-1){
       display: inline-block;
       width: 15rem;
     }
 
-    span {
+    .manuscript-title {
       display: inline-block;
       font-size: 1.2rem;
       margin-top: 0.3rem;
-    }
+      cursor: pointer;
 
-    button {
-      position: absolute;
-      bottom: 0.3rem;
-    }
-
-    .open-button {
-      right: 0.3rem;
-    }
-
-    .delete-button {
-      left: 0.3rem;
+      &:hover {
+        text-decoration: underline;
+        color: #2A8FBD;
+      }
     }
   }
 

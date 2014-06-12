@@ -4,18 +4,25 @@ var React = require('react'),
     _ = require('underscore');
 
 var Menu = require('./menu'),
-    DeleteButton = require('./delete-button');
+    DeleteButton = require('./delete-button'),
+    Dispatcher = require('../dispatcher/dispatcher');
 
 var Manuscript = React.createClass({
   render: function() {
     return (
       <div className="manuscript">
-        <span>{this.props.manuscript.title}</span>
+        <span className="manuscript-title" onClick={this._open}>
+          {this.props.manuscript.title}
+        </span>
         <Menu>
           <DeleteButton id={this.props.id} />
         </Menu>
       </div>
     );
+  },
+
+  _open: function() {
+    Dispatcher.send('manuscript:edit', [this.props.id]);
   }
 });
 
