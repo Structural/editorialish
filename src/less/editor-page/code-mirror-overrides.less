@@ -3,6 +3,9 @@
 
     height: auto;
     font-size:1.0rem;
+    @media(min-width){
+      font-size:1.3rem;
+    }
     line-height: 2.0;
     font-family: @font;
     min-height: 40rem;
@@ -17,13 +20,18 @@
 
 .manuscript-editor {
 
-  @font-size:1.3rem;
+  @font-size: 1.0rem;
+  @mobile-font-size: 1.3rem;
   @font-weight: 400;
 
   pre {
     color: @editor-text-color;
     font-size: @font-size;
     font-weight: @font-weight;
+
+    @media(min-width:@bp-1) {
+      font-size: @mobile-font-size;
+    }
   }
 
   // Specific overrides here because cm is super-liberal with the classes it
@@ -39,8 +47,13 @@
     font-weight: @font-weight;
     font-style: normal;
   }
+
   .cm-formatting-header, .cm-header:before {
-    font-size: @font-size;
+    font-size: @font-size + 0.2rem;
+
+    @media(min-width:@bp-1){
+      font-size: @mobile-font-size + 0.2rem;
+    }
   }
 
   .cm-formatting-header{
