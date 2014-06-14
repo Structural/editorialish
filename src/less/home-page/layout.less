@@ -1,4 +1,5 @@
 @nav-width:18rem;
+@responsive-width:80%;
 
 .home-page{
   .nav-column{
@@ -9,9 +10,26 @@
 
   .manuscripts-column{
     .abs-pos-fill();
-    @media(min-width:@bp-1){
-      left:@nav-width;
+    border-left:1px solid #CCC;
+    transition: left 0.15s, right 0.15s, box-shadow 0.15s;
+    box-shadow: none;
+  }
+  &.nav-is-shown{
+    .nav-column{
+      right:auto;
+      width:@responsive-width;
+      @media(min-width:@bp-1){
+        width: @nav-width;
+      }
+    }
+    .manuscripts-column{
+      box-shadow: 0 0 4px rgba(0,0,0,0.3);
+      left:@responsive-width;
+      right:-@responsive-width;
+      @media(min-width:@bp-1){
+        left:@nav-width;
+        right:0;
+      }
     }
   }
-
 }
