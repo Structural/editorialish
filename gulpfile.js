@@ -66,6 +66,9 @@ gulp.task('scriptsWatch', function() {
 });
 
 gulp.task('htmls', function() {
+  gulp.src('src/index.html')
+      .pipe(rename('404.html'))
+      .pipe(gulp.dest('dist'));
   return gulp.src('src/*.html')
     .pipe(gulp.dest('dist'));
 });
