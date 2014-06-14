@@ -1,8 +1,10 @@
 /** @jsx React.DOM */
 
 var React = require('react'),
-    CodeMirror = require('code-mirror/mode/markdown'),
+    CodeMirror = require('code-mirror'),
     Dispatcher = require('../dispatcher/dispatcher');
+
+require('../code-mirror/editorialish-markdown');
 
 var TextEdit = React.createClass({
   getInitialState: function() {
@@ -14,7 +16,7 @@ var TextEdit = React.createClass({
     var text = this.refs.cmText.getDOMNode();
     this.editor = CodeMirror.fromTextArea(text,{
       mode: {
-        name: 'markdown',
+        name: 'editorialish-markdown',
         highlightFormatting: true
       },
       lineNumbers: false,

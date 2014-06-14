@@ -9,22 +9,28 @@
     line-height: 2.0;
     font-family: @font;
     min-height: 40rem;
-
+    overflow: visible;
   }
   .CodeMirror-scroll {
-    overflow-y: hidden;
-    overflow-x: auto;
+    overflow: visible;
   }
 }
 
 // From that codepen from that guy
 
 .manuscript-editor {
+
+  @font-size: 1.0rem;
+  @mobile-font-size: 1.3rem;
+  @font-weight: 400;
+
   pre {
     color: @editor-text-color;
-    font-size:1.0rem;
-    @media(min-width:@bp-1){
-      font-size: 1.3rem;
+    font-size: @font-size;
+    font-weight: @font-weight;
+
+    @media(min-width:@bp-1) {
+      font-size: @mobile-font-size;
     }
   }
 
@@ -38,16 +44,37 @@
   .cm-formatting.cm-link,
   .cm-formatting.cm-comment {
     color: @editor-formatting-color;
-    font-weight: 400;
+    font-weight: @font-weight;
     font-style: normal;
   }
-  .cm-formatting-header, .cm-header {
-    font-size: 1.2rem;
+
+  .cm-formatting-header, .cm-header:before {
+    font-size: @font-size + 0.2rem;
+
     @media(min-width:@bp-1){
-      font-size:1.5rem;
+      font-size: @mobile-font-size + 0.2rem;
     }
   }
 
+  .cm-formatting-header{
+    position: relative;
+    font-size:0;
+    &:before{
+      content: "";
+      position: absolute;
+      right:0;
+      bottom:-3px;
+      line-height: 1.0;
+      padding-right:0.5rem;
+      font-weight:normal;
+    }
+    &.cm-formatting-header-1:before{content: "#"}
+    &.cm-formatting-header-2:before{content: "##"}
+    &.cm-formatting-header-3:before{content: "###"}
+    &.cm-formatting-header-4:before{content: "####"}
+    &.cm-formatting-header-5:before{content: "#####"}
+    &.cm-formatting-header-6:before{content: "######"}
+  }
   .cm-header,
   .cm-variable-1,
   .cm-variable-2,
