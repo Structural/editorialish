@@ -18,10 +18,12 @@
 .manuscript-editor {
 
   @font-size:1.3rem;
+  @font-weight: 500;
 
   pre {
     color: @editor-text-color;
     font-size: @font-size;
+    font-weight: @font-weight;
   }
 
   // Specific overrides here because cm is super-liberal with the classes it
@@ -34,7 +36,7 @@
   .cm-formatting.cm-link,
   .cm-formatting.cm-comment {
     color: @editor-formatting-color;
-    font-weight: 400;
+    font-weight: @font-weight;
     font-style: normal;
   }
   .cm-formatting-header, .cm-header:before {
