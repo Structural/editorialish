@@ -87,7 +87,6 @@ CodeMirror.defineMode("editorialish-markdown", function(cmCfg, modeCfg) {
   ,   olRE = /^[0-9]+\.\s+/
   ,   taskListRE = /^\[(x| )\](?=\s)/ // Must follow ulRE or olRE
   ,   atxHeaderRE = /^#+/
-  ,   setextHeaderRE = /^(?:\={1,}|-{1,})$/
   ,   textRE = /^[^#!\[\]*_\\<>` "'(]+/;
 
   function switchInline(stream, state, f) {
@@ -151,11 +150,6 @@ CodeMirror.defineMode("editorialish-markdown", function(cmCfg, modeCfg) {
       return null;
     } else if (match = stream.match(atxHeaderRE)) {
       state.header = match[0].length <= 6 ? match[0].length : 6;
-      if (modeCfg.highlightFormatting) state.formatting = "header";
-      state.f = state.inline;
-      return getType(state);
-    } else if (state.prevLineHasContent && (match = stream.match(setextHeaderRE))) {
-      state.header = match[0].charAt(0) == '=' ? 1 : 2;
       if (modeCfg.highlightFormatting) state.formatting = "header";
       state.f = state.inline;
       return getType(state);
