@@ -3,6 +3,7 @@ var _ = require('underscore'),
 
 var Store = function(options) {
   this._callbacks = [];
+  _.extend(this, _.omit(options, 'initialize', 'dispatches'));
 
   if (options.initialize) {
     options.initialize.call(this);;

@@ -10,8 +10,28 @@ var TitleEdit = require('./title'),
 TextEdit = require('./text');
 
 var ManuscriptEditView = React.createClass({
+  getInitialState: function() {
+    return {
+      manuscript: ManuscriptStore.manuscripts[this.props.manuscriptId]
+    };
+  },
+  componentDidMount: function() {
+    ManuscriptStore.listen(this._onManuscriptChange);
+  },
+  componentWillUnmount: function() {
+    ManuscriptStore.ignore(this._onManuscriptChange);
+  },
+
   render: function() {
-    var manuscript = ManuscriptStore.manuscripts[this.props.manuscriptId];
+    var manuscript = this.state.manuscript;
+    var titleEditor = undefined;
+    var textEditor = undefined;
+    if (manuscript) {
+      titleEditor = <TitleEdit title={manuscript.title}
+                               manuscriptId={this.props.manuscriptId} />;
+      textEditor = <TextEdit text={manuscript.text}
+                             manuscriptId={this.props.manuscriptId} />;
+    }
 
     return (
       <div className="manuscript-editor">
@@ -29,12 +49,18 @@ var ManuscriptEditView = React.createClass({
         </div>
         <div className="editor-contents">
           <div className='manuscript'>
-            <TitleEdit title={manuscript.title} manuscriptId={this.props.manuscriptId} />
-            <TextEdit text={manuscript.text} manuscriptId={this.props.manuscriptId} />
+            {titleEditor}
+            {textEditor}
           </div>
         </div>
       </div>
       );
+  },
+
+  _onManuscriptChange: function() {
+    this.setState({
+      manuscript: ManuscriptStore.manuscripts[this.props.manuscriptId]
+    });
   }
 });
 
