@@ -86,7 +86,7 @@ CodeMirror.defineMode("editorialish-markdown", function(cmCfg, modeCfg) {
   ,   ulRE = /^[*\-+]\s+/
   ,   olRE = /^[0-9]+\.\s+/
   ,   taskListRE = /^\[(x| )\](?=\s)/ // Must follow ulRE or olRE
-  ,   atxHeaderRE = /^#+/
+  ,   atxHeaderRE = /^(#+)(?=\s+\S+)/
   ,   textRE = /^[^#!\[\]*_\\<>` "'(]+/;
 
   function switchInline(stream, state, f) {
@@ -149,7 +149,7 @@ CodeMirror.defineMode("editorialish-markdown", function(cmCfg, modeCfg) {
     } else if (stream.eatSpace()) {
       return null;
     } else if (match = stream.match(atxHeaderRE)) {
-      state.header = match[0].length <= 6 ? match[0].length : 6;
+      state.header = match[1].length <= 6 ? match[1].length : 6;
       if (modeCfg.highlightFormatting) state.formatting = "header";
       state.f = state.inline;
       return getType(state);
