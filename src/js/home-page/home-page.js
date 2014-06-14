@@ -3,6 +3,7 @@
 var React = require('react'),
     ManuscriptStore = require('../store/manuscript-store'),
     Button = require('../shared/button'),
+    Icon = require('../shared/icon'),
     LogoutButton = require('../shared/logout-button'),
     Credits = require('../shared/credits');
 
@@ -38,22 +39,25 @@ var HomePage = React.createClass({
             <Credits />
           </div>
           <div className='bottom-toolbar'>
-            <LogoutButton />
+            <LogoutButton className='logout-button' align='right'/>
+            <div className='two-line-info middle'>
+              <div className="title">Bob User</div>
+              <div className="sub-title">bob.user@gmail.com</div>
+            </div>
           </div>
         </div>
         <div className="manuscripts-column">
           <div className='toolbar'>
-            <div className="group left">
-              <button onClick={this.toggleNav}>Menu</button>
+            <Button align="left" onClick={this.toggleNav} label="Menu" className='hamburger-button'><Icon name="bars"/></Button>
+            <Button align="right" action="manuscript:create" label="New Manuscript"><Icon name="plus"/></Button>
+
+            <div className='two-line-info middle'>
+              <div className="title">All Documents</div>
+              <div className="sub-title">last updated at 10:02am</div>
             </div>
-            <div className="group right">
-              <Button action="manuscript:create">
-                new manuscript
-              </Button>
-            </div>
+
           </div>
           <ManuscriptList manuscripts={this.state.manuscripts} />
-
         </div>
       </div>
     );

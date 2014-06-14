@@ -1,31 +1,46 @@
 
+
+
+.toolbar-button(){
+  position:relative;
+  min-width: 3.0rem;
+  cursor: pointer;
+  padding:1.0rem 0.25rem;
+  background-color:transparent;
+  font-size:1.0rem;
+  margin:0;
+  line-height:1.0;
+  border:none;
+  outline:none;
+  color:#888;
+  transition:background-color 0.2s, color 0.2s;
+  vertical-align:top;
+  text-align:center;
+  &:hover{
+    background-color: rgba(0,0,0,0.05);
+  }
+  &:active{
+    top:1px;
+  }
+}
+
+
+
+
 .home-page{
   .manuscripts-column{
-    @toolbar-height: 2.5rem;
+    @toolbar-height: 3.0rem;
+    @border-gray: #AAA;
 
     .toolbar{
+      .editorialish-toolbar();
       .abs-pos-fill();
       bottom:auto;
       height:@toolbar-height;
-      padding:0;
-      border-bottom:1px solid #BBB;
-      background-color: #DDD;
-      .group{
-        position: absolute;
-        &.left{
-          top:0;
-          left:0;
-        }
-        &.right{
-          top:0;
-          right:0;
-        }
-      }
-
-      button{
-        .toolbar-button();
-      }
+      border-bottom:1px solid @border-gray;
+      background-color: #EEE;
     }
+
     .manuscripts{
       .abs-pos-fill();
       top:@toolbar-height;

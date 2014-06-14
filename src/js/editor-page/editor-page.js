@@ -1,9 +1,10 @@
 /** @jsx React.DOM */
 
-var React = require('react'),
-    Button = require('../shared/button'),
-    LogoutButton = require('../shared/logout-button'),
-    ManuscriptStore = require('../store/manuscript-store');
+var React = require('react');
+var Button = require('../shared/button');
+var Icon = require('../shared/icon');
+var LogoutButton = require('../shared/logout-button');
+var ManuscriptStore = require('../store/manuscript-store');
 
 var TitleEdit = require('./title'),
 TextEdit = require('./text');
@@ -15,13 +16,15 @@ var ManuscriptEditView = React.createClass({
     return (
       <div className="manuscript-editor">
         <div className="toolbar">
-          <div className="group left">
-            <Button action="manuscript:list">
-              home
-            </Button>
-            <Button action="manuscript:save" args={[this.props.manuscriptId]}>
-              save
-            </Button>
+          <Button action="manuscript:list" label="Home" align='left'>
+            <Icon name="chevron-left"/>
+          </Button>
+          <Button action="manuscript:save" args={[this.props.manuscriptId]} align="right" label='Save'>
+            <Icon name="save"/>
+          </Button>
+          <div className='two-line-info middle'>
+            <div className="title">Document Editor</div>
+            <div className="sub-title">last updated at 10:02am</div>
           </div>
         </div>
         <div className="editor-contents">

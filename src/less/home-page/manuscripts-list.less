@@ -1,14 +1,5 @@
 .home-page{
 
-  .open-button {
-    .button();
-  }
-
-  .delete-button {
-    .button();
-    .button-dangerous();
-  }
-
   .manuscripts{
     background-color: #F8F8F8;
   }
@@ -34,6 +25,7 @@
       font-size: 1.2rem;
       margin-top: 0.3rem;
       cursor: pointer;
+      margin-top:2.0rem;
 
       &:hover {
         text-decoration: underline;
@@ -42,13 +34,22 @@
     }
 
     .menu-toggle {
-      .button();
+      position:absolute;
+      top:0;
+      right:0;
+      background-color: transparent;
+      padding:0.5rem;
+      border:none;
+      font-size:1.0rem;
+      line-height: 1.0;
+      outline:none;
+      cursor: pointer;
     }
   }
 
   input, textarea {
     font-family: 'Inconsolata', monospace;
-    border: 1px solid @text-color;
+    menu-order: 1px solid @text-color;
     color: @text-color;
     font-size: 1.2rem;
   }
