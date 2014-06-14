@@ -10,6 +10,7 @@ var manuscriptUrl = function(id) {
 
 var ManuscriptStore = new Store({
   initialize: function() {
+    this.manuscripts = {};
     this.firebase = new Firebase(manuscriptsRootUrl);
     this.firebase.on('value', function(snapshot) {
       this.manuscripts = snapshot.val();
