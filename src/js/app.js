@@ -5,6 +5,7 @@ var React = require('react')
     UserStore = require('./store/user-store'),
     HomePage = require('./home-page/home-page'),
     EditorPage = require('./editor-page/editor-page'),
+    FourOhFourPage = require('./four-oh-four-page/four-oh-four-page'),
     Login = require('./login/login');
 
 var App = React.createClass({
@@ -23,7 +24,7 @@ var App = React.createClass({
     UserStore.ignore(this._onUserChange);
   },
   render: function() {
-    var contents = undefined;
+    var contents = <FourOhFourPage />;
     if (!this.state.user) {
       contents = <Login />;
     } else if (this.state.segments[0] === '') {
