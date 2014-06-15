@@ -23,12 +23,12 @@
     .manuscript-title {
       display: inline-block;
       font-size: 1.2rem;
-      margin-top: 0.3rem;
       cursor: pointer;
       margin-top:2.0rem;
+      padding:0.5rem;
 
       &:hover {
-        text-decoration: underline;
+        //text-decoration: underline;
         color: #2A8FBD;
       }
     }
@@ -44,6 +44,11 @@
       line-height: 1.0;
       outline:none;
       cursor: pointer;
+      color: #CCC;
+      transition:color 0.2s;
+      &:hover{
+        color:#888;
+      }
       &:active{
         top:1px;
       }

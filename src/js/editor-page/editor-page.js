@@ -26,11 +26,13 @@ var ManuscriptEditView = React.createClass({
     var manuscript = this.state.manuscript;
     var titleEditor = undefined;
     var textEditor = undefined;
+    var title = "Unknown Manuscript"
     if (manuscript) {
       titleEditor = <TitleEdit title={manuscript.title}
                                manuscriptId={this.props.manuscriptId} />;
       textEditor = <TextEdit text={manuscript.text}
                              manuscriptId={this.props.manuscriptId} />;
+      title = manuscript.title;
     }
 
     return (
@@ -43,7 +45,7 @@ var ManuscriptEditView = React.createClass({
             <Icon name="save"/>
           </Button>
           <div className='two-line-info middle'>
-            <div className="title">Document Editor</div>
+            <div className="title">{title}</div>
             <div className="sub-title">last updated at 10:02am</div>
           </div>
         </div>
