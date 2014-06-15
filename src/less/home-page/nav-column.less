@@ -4,16 +4,27 @@
   @bottom-toolbar-height:3.0rem;
 
   background-color: white;
-  .toolbar{
+  .nav-title-bar{
     .abs-pos-fill();
     bottom:auto;
+    left:0.5rem;
+    top:0.5rem;
+    right:0.5rem;
     height:@toolbar-height;
     color:white;
-    background-color: @black;
     padding-top:0.5rem;
     font-size:1.5rem;
     font-weight: bold;
-    text-align: center;
+    padding-left:0.75rem;
+    background-color: #444;
+    border:1px solid #222;
+    border-right:none;
+    border-radius: 0.25rem;
+    letter-spacing: 2px;
+    .leaf{
+      float:right;
+      margin:0.25rem 0.75rem;
+    }
   }
   .nav-contents{
     .abs-pos-fill();

@@ -29,7 +29,7 @@ var App = React.createClass({
     if (!this.state.user) {
       contents = <Login />;
     } else if (this.state.segments[0] === '') {
-      contents = <HomePage />;
+      contents = <HomePage user={this.state.user}/>;
     } else if (this.state.segments[0] === 'manuscript') {
       contents = <EditorPage manuscriptId={this.state.segments[1]} />
     }

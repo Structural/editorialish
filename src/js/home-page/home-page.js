@@ -27,6 +27,8 @@ var HomePage = React.createClass({
     ManuscriptStore.ignore(this._onManuscriptChange);
   },
   render: function() {
+    var user = this.props.user;
+    console.log(user);
     var classes = 'home-page';
     if (this.state.showNav === true) {
       classes = classes + " nav-is-shown";
@@ -34,15 +36,15 @@ var HomePage = React.createClass({
     return (
       <div className={classes}>
         <div className="nav-column">
-          <div className="toolbar">Editorialish</div>
+          <div className="nav-title-bar"><Icon className='leaf' name='leaf'/> Editorialish</div>
           <div className='nav-contents'>
             <Credits />
           </div>
           <div className='bottom-toolbar'>
             <LogoutButton className='logout-button' align='right'/>
             <div className='two-line-info middle'>
-              <div className="title">Bob User</div>
-              <div className="sub-title">bob.user@gmail.com</div>
+              <div className="title">{user.displayName}</div>
+              <div className="sub-title">{user.username}</div>
             </div>
           </div>
         </div>

@@ -4,9 +4,18 @@ var React = require('react');
 
 var Icon = React.createClass({
   render: function() {
-    return (
-      <i className={"fa fa-" + this.props.name} />
-    );
+    var classes = "fa fa-";
+
+    if(this.props.name){
+      classes += this.props.name;
+    } else {
+      classes += "question";
+    }
+
+    if (this.props.className){
+      classes = classes + " " + this.props.className;
+    }
+    return (<i className={classes}></i>);
   }
 });
 
