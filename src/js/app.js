@@ -37,7 +37,7 @@ var App = React.createClass({
     return (
       <div className ='app editorialish'>
         {contents}
-        <MenuLayer /
+        <MenuLayer />
       </div>
     );
   },
