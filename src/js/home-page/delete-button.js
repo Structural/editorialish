@@ -9,7 +9,7 @@ var DeleteButton = React.createClass({
     return (
       <Button className="delete-button" action="manuscript:delete"
               args={[this.props.id]}>
-        delete
+        Delete
       </Button>
     );
   }

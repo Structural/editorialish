@@ -28,13 +28,39 @@ var MenuLayer = React.createClass({
     var menuItems = undefined;
     if (this.state.items) {
       var anchorRect = this.state.anchor.getBoundingClientRect();
-      var style = {
-        left: anchorRect.left,
-        top: anchorRect.top
+      var windowRect = {
+        height:window.innerHeight,
+        width:window.innerWidth
+      };
+      var containerClasses = "menu-container";
+      var style = {top:"auto",left:"auto",right:"auto", bottom:"auto"};
+      console.log(anchorRect);
+      console.log(windowRect);
+
+      if(anchorRect.left < 250){
+        style.left = (anchorRect.left + anchorRect.width*0.5) + "px";
+        containerClasses += " opens-right"
+      } else {
+        style.right = (windowRect.width - anchorRect.right + anchorRect.width*0.5) + "px";
+        containerClasses += " opens-left"
       }
+
+      if(anchorRect.top < windowRect.height*2/3){
+        style.top = (anchorRect.top + anchorRect.height*1.0) + "px";
+        containerClasses += " opens-down"
+      } else {
+        style.bottom = (windowRect.height - anchorRect.bottom + anchorRect.height*1.0) + "px";
+        containerClasses += " opens-up"
+      }
+
+      var menuTitle = <div className="menu-title">Menu</div>;
+
       menuItems = (
-        <div className="menu-container" style={style}>
-          {this.state.items}
+        <div className={containerClasses} style={style}>
+          {menuTitle}
+          <div className='menu-items'>
+            {this.state.items}
+            </div>
         </div>
       );
     }
