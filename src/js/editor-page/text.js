@@ -22,7 +22,8 @@ var TextEdit = React.createClass({
       lineNumbers: false,
       lineWrapping: true,
       dragDrop:false,
-      autoFocus:true
+      autofocus:true,
+      cursorHeight: 0.8
     });
     this.editor.on('change', this._onChange);
   },
