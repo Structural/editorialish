@@ -4,6 +4,7 @@ var React = require('react');
 
 var Icon = require('../shared/icon');
 var Button = require('../shared/button');
+var Credits = require('../shared/credits');
 var LoginTitle = require('./login-title');
 var LoginError = require('./login-error');
 var UserStore = require('../store/user-store');
@@ -37,6 +38,7 @@ var Login = React.createClass({
             Login with Github
           </Button>
         </div>
+        <Credits/>
       </div>
     );
   },

@@ -1,12 +1,36 @@
 .login {
   text-align: center;
-  margin-top: 6rem;
+  margin-top:6.0rem;
 
-  h1 {
+  .leader{
     color: @editor-text-color;
     .formatting {
       color: @editor-formatting-color;
+      font-weight: normal;
     }
+    h1{
+      font-size:2.5rem;
+      @media(min-width:@bp-1){
+        font-size:3.5rem;
+      }
+      @media(min-width:@bp-2){
+        font-size:5.0rem;
+      }
+    }
+    .subtitle{
+      font-size:1.0rem;
+      @media(min-width:@bp-1){
+        font-size:1.25rem;
+      }
+      @media(min-width:@bp-2){
+        font-size:1.5rem;
+      }
+    }
+  }
+  .credits{
+    .credits-style();
+    margin-top:2.0rem;
+    line-height: 2.0;
   }
 }
 
@@ -14,6 +38,7 @@
   width: 22rem;
   margin: auto;
   margin-top: 4rem;
+  text-align: center;
 
   .error {
     color: @danger-color;
@@ -21,20 +46,23 @@
 
   i {
     font-size: 5rem;
-    width: 4rem;
   }
 
   button {
     font-family: @font;
-    font-size: 2rem;
+    font-size: 1.5rem;
     background-color: @control-bg-color;
+    &:hover{
+      background-color: darken(@control-bg-color,5%);
+    }
     cursor: pointer;
     border-radius: 0.3rem;
     border: none;
     color: @text-color;
     padding: 0.3rem 1rem;
-    float: right;
-    margin-top: 1rem;
+    //float: right;
+    margin: 1rem;
     outline: none;
+    vertical-align: top;
   }
 }
