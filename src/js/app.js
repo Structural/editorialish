@@ -6,7 +6,8 @@ var React = require('react')
     HomePage = require('./home-page/home-page'),
     EditorPage = require('./editor-page/editor-page'),
     FourOhFourPage = require('./four-oh-four-page/four-oh-four-page'),
-    Login = require('./login/login');
+    Login = require('./login/login'),
+    MenuLayer = require('./menu-layer/menu-layer');
 
 var App = React.createClass({
   getInitialState: function() {
@@ -34,7 +35,10 @@ var App = React.createClass({
     }
 
     return (
-      <div className ='app editorialish'>{contents}</div>
+      <div className ='app editorialish'>
+        {contents}
+        <MenuLayer /
+      </div>
     );
   },
 

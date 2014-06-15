@@ -3,48 +3,20 @@
 var React = require('react');
 
 var Button = require('../shared/button'),
-    Icon = require('../shared/icon');
+    Icon = require('../shared/icon'),
+    Dispatcher = require('../dispatcher/dispatcher');
 
 var Menu = React.createClass({
-  getInitialState: function() {
-    return {
-      open: false
-    };
-  },
-
   render: function() {
-    var menuItems = undefined,
-        mask = undefined;
-    if (this.state.open) {
-      menuItems = (
-        <div className="menu-items">
-          {this.props.children}
-        </div>
-      );
-
-      mask = <div className="close-anywhere-mask" onClick={this._close} />
-    }
-
     return (
-      <div className="menu">
-        {mask}
-        <Button className="menu-toggle" onClick={this._toggle}>
-          <Icon name={this.props.iconName} />
-        </Button>
-        {menuItems}
-      </div>
+      <Button className="menu-toggle" onClick={this._open}>
+        <Icon name={this.props.iconName} />
+      </Button>
     );
   },
 
-  _toggle: function() {
-    this.setState({
-      open: !this.state.open
-    });
-  },
-  _close: function() {
-    this.setState({
-      open: false
-    });
+  _open: function() {
+    Dispatcher.send('menu:open', [this.props.children, this.getDOMNode()])
   }
 });
 
