@@ -21,10 +21,6 @@
     border-right:none;
     border-radius: 0.25rem;
     letter-spacing: 2px;
-    .leaf{
-      float:right;
-      margin:0.25rem 0.75rem;
-    }
   }
   .nav-contents{
     .abs-pos-fill();
@@ -41,4 +37,26 @@
 
     }
   }
+  .ed-icon{
+    position: relative;
+    float:right;
+    margin:0rem 0.5rem;
+    width:2.0rem;
+    height:2.0rem;
+    background-color: white;
+    border-radius:3px;
+    overflow:hidden;
+    background-color:mix(orange,white,75%);
+    &:after{
+      content: " ";
+      position:absolute;
+      top:3px;
+      left:3px;
+      right:3px;
+      bottom:3px;
+      background: url('images/pen-icon.svg') no-repeat top left;
+      background-size: contain;
+    }
+  }
+
 }

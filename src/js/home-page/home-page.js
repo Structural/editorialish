@@ -28,7 +28,6 @@ var HomePage = React.createClass({
   },
   render: function() {
     var user = this.props.user;
-    console.log(user);
     var classes = 'home-page';
     if (this.state.showNav === true) {
       classes = classes + " nav-is-shown";
@@ -36,7 +35,7 @@ var HomePage = React.createClass({
     return (
       <div className={classes}>
         <div className="nav-column">
-          <div className="nav-title-bar"><Icon className='leaf' name='leaf'/> Editorialish</div>
+          <div className="nav-title-bar"><div className='ed-icon'></div> Editorialish</div>
           <div className='nav-contents'>
             <Credits />
           </div>

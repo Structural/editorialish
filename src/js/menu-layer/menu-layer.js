@@ -9,7 +9,8 @@ var MenuLayer = React.createClass({
   getInitialState: function() {
     return {
       items: MenuStore.items,
-      anchor: MenuStore.anchor
+      anchor: MenuStore.anchor,
+      menuName: MenuStore.menuName
     };
   },
   componentDidMount: function() {
@@ -20,7 +21,10 @@ var MenuLayer = React.createClass({
   },
 
   render: function() {
+    var menuName = this.state.menuName ? this.state.menuName : 'Menu';
+
     var layerClasses = ['menu-layer'];
+
     if (this.state.items) {
       layerClasses.push('is-showing-menu');
     }
@@ -34,8 +38,6 @@ var MenuLayer = React.createClass({
       };
       var containerClasses = "menu-container";
       var style = {top:"auto",left:"auto",right:"auto", bottom:"auto"};
-      console.log(anchorRect);
-      console.log(windowRect);
 
       if(anchorRect.left < 250){
         style.left = (anchorRect.left + anchorRect.width*0.5) + "px";
@@ -53,7 +55,7 @@ var MenuLayer = React.createClass({
         containerClasses += " opens-up"
       }
 
-      var menuTitle = <div className="menu-title">Menu</div>;
+      var menuTitle = <div className="menu-title">{menuName}</div>;
 
       menuItems = (
         <div className={containerClasses} style={style}>
@@ -75,7 +77,8 @@ var MenuLayer = React.createClass({
   _onMenuChange: function() {
     this.setState({
       items: MenuStore.items,
-      anchor: MenuStore.anchor
+      anchor: MenuStore.anchor,
+      menuName: MenuStore.menuName
     })
   },
   _close: function() {

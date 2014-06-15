@@ -16,7 +16,8 @@ var Menu = React.createClass({
   },
 
   _open: function() {
-    Dispatcher.send('menu:open', [this.props.children, this.getDOMNode()])
+    Dispatcher.send('menu:open', [this.props.children, this.getDOMNode(), this.props.menuName]);
+
   }
 });
 
