@@ -7,7 +7,6 @@ var MenuStore = require('../store/menu-store'),
 
 var MenuLayer = React.createClass({
   getInitialState: function() {
-    console.log(MenuStore.menuName);
     return {
       items: MenuStore.items,
       anchor: MenuStore.anchor,
@@ -22,8 +21,6 @@ var MenuLayer = React.createClass({
   },
 
   render: function() {
-    console.log("MenuLayer.state.menuName: " + this.state.menuName);
-
     var menuName = this.state.menuName ? this.state.menuName : 'Menu';
 
     var layerClasses = ['menu-layer'];
