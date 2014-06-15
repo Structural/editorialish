@@ -10,7 +10,7 @@
       padding:1px;
     }
     h1{
-      font-size:3.0rem;
+      font-size:2.5rem;
       @media(min-width:@bp-1){
         font-size:4.0rem;
       }
@@ -46,12 +46,14 @@
   }
 
   i {
-    font-size: 5rem;
+    font-size: 3.5rem;
+    @media(min-width:@bp-1){
+      font-size:5.0rem;
+    }
   }
 
   button {
     font-family: @font;
-    font-size: 1.5rem;
     background-color: @control-bg-color;
     &:hover{
       background-color: darken(@control-bg-color,5%);
@@ -61,8 +63,13 @@
     border: none;
     color: @text-color;
     padding: 0.5rem 1rem 0.3rem;
-    margin: 1rem;
     outline: none;
     vertical-align: top;
+    font-size: 1.0rem;
+    margin: 0.5rem;
+    @media(min-width:@bp-1){
+      font-size:1.5rem;
+      margin: 1.0rem;
+    }
   }
 }
