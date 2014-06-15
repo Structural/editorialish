@@ -11,7 +11,7 @@ var Manuscript = React.createClass({
   render: function() {
     return (
       <div className="manuscript">
-        <Menu iconName="chevron-down">
+        <Menu iconName="angle-double-down" menuName={this.props.manuscript.title}>
           <DeleteButton id={this.props.id} />
         </Menu>
         <span className="manuscript-title" onClick={this._open}>
