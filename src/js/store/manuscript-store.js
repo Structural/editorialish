@@ -1,9 +1,11 @@
 var _ = require('underscore'),
-    Firebase = require('firebase-client'),
-    Store = require('./store'),
-    Dispatcher = require('../dispatcher/dispatcher');
+    Firebase = require('firebase-client');
 
-var manuscriptsRootUrl = 'https://editorialish.firebaseio.com/manuscripts';
+var Store = require('./store'),
+    Dispatcher = require('../dispatcher/dispatcher'),
+    Environment = require('../environment');
+
+var manuscriptsRootUrl = Environment.FirebaseRootUrl + '/manuscripts';
 
 var ManuscriptStore = new Store({
   initialize: function() {
