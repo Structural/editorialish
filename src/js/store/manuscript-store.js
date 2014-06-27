@@ -4,9 +4,6 @@ var _ = require('underscore'),
     Dispatcher = require('../dispatcher/dispatcher');
 
 var manuscriptsRootUrl = 'https://editorialish.firebaseio.com/manuscripts';
-var manuscriptUrl = function(id) {
-  return manuscriptsRootUrl + '/' + id;
-};
 
 var ManuscriptStore = new Store({
   initialize: function() {
@@ -39,7 +36,7 @@ var ManuscriptStore = new Store({
       // Let Firebase's "value" event run trigger (above).
     },
     'manuscript:delete': function(id) {
-      var manuscriptFirebase = new Firebase(manuscriptUrl(id));
+      var manuscriptFirebase = this.firebase.child(id);
       manuscriptFirebase.remove();
       // Let Firebase's "value" event run trigger (above).
     }
