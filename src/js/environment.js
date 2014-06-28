@@ -2,7 +2,7 @@
    running the app (dev vs prod environments, etc). */
 
 var Environment = {
-  FirebaseRootUrl: 'https://editorialish.firebaseio.com'
+  FirebaseRootUrl: 'https://$FIREBASE_APP.firebaseio.com'
 }
 
 module.exports = Environment;

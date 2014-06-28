@@ -12,6 +12,8 @@ var gulp = require('gulp'),
     concat = require('gulp-concat'),
     notify = require('gulp-notify'),
     cache = require('gulp-cache'),
+    replace = require('gulp-replace'),
+    streamify = require('gulp-streamify'),
     livereload = require('gulp-livereload'),
     browserify = require('browserify'),
     watchify = require('watchify'),
@@ -34,6 +36,18 @@ gulp.task('styles', function() {
     .pipe(gulp.dest('dist'));
 });
 
+var environments = {
+  undefined: {
+    firebaseApp: 'editorialish'
+  },
+  'sean': {
+    firebaseApp: 'sean-editorialish'
+  },
+  'will': {
+    firebaseApp: 'will-editorialish'
+  }
+};
+
 var buildScripts = function(watch) {
   var bundler, rootFile = './src/js/editorialish.js';
   if (watch) {
@@ -51,6 +65,9 @@ var buildScripts = function(watch) {
     stream.on('error', logAndEnd('Browserify'));
 
     stream = stream.pipe(source('editorialish.js'));
+    var environment = environments[gutil.env.environment];
+    stream = stream.pipe(streamify(replace('$FIREBASE_APP', environment.firebaseApp)));
+
     return stream.pipe(gulp.dest('dist'));
   }
   bundler.on('update', rebundle);
