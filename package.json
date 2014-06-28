@@ -53,6 +53,7 @@
   "devDependencies": {
     "gulp": "~3.5.6",
     "gulp-replace": "^0.3.0",
+    "gulp-streamify": "0.0.5",
     "gulp-util": "~2.2.14"
   }
 }
