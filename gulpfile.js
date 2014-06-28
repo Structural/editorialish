@@ -38,13 +38,16 @@ gulp.task('styles', function() {
 
 var environments = {
   undefined: {
-    firebaseApp: 'editorialish'
+    firebaseApp: 'editorialish',
+    sourceMaps: false
   },
   'sean': {
-    firebaseApp: 'sean-editorialish'
+    firebaseApp: 'sean-editorialish',
+    sourceMaps: true
   },
   'will': {
-    firebaseApp: 'will-editorialish'
+    firebaseApp: 'will-editorialish',
+    sourceMaps: true
   }
 };
 
@@ -60,12 +63,12 @@ var buildScripts = function(watch) {
 
   var rebundle = function() {
     gutil.log('Building js with browserify');
+    var environment = environments[gutil.env.environment];
 
-    var stream = bundler.bundle({debug: false});
+    var stream = bundler.bundle({debug: environment.sourceMaps});
     stream.on('error', logAndEnd('Browserify'));
 
     stream = stream.pipe(source('editorialish.js'));
-    var environment = environments[gutil.env.environment];
     stream = stream.pipe(streamify(replace('$FIREBASE_APP', environment.firebaseApp)));
 
     return stream.pipe(gulp.dest('dist'));
