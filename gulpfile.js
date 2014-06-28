@@ -63,7 +63,7 @@ var buildScripts = function(watch) {
 
   var rebundle = function() {
     gutil.log('Building js with browserify');
-    var environment = environments[gutil.env.environment];
+    var environment = environments[gutil.env.e || gutil.env.environment];
 
     var stream = bundler.bundle({debug: environment.sourceMaps});
     stream.on('error', logAndEnd('Browserify'));
