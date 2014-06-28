@@ -51,7 +51,8 @@
     "url": "https://github.com/Structural/editorialish/issues"
   },
   "devDependencies": {
-    "gulp-util": "~2.2.14",
-    "gulp": "~3.5.6"
+    "gulp": "~3.5.6",
+    "gulp-replace": "^0.3.0",
+    "gulp-util": "~2.2.14"
   }
 }
