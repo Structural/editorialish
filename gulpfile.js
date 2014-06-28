@@ -35,6 +35,10 @@ var environments = {
   }
 };
 
+var getEnvironment = function() {
+  return environments[gutil.env.e || gutil.env.environment]
+};
+
 var logAndEnd = function(taskName) {
   return function(error) {
     gutil.log(error);
@@ -63,7 +67,7 @@ var buildScripts = function(watch) {
 
   var rebundle = function() {
     gutil.log('Building js with browserify');
-    var environment = environments[gutil.env.e || gutil.env.environment];
+    var environment = getEnvironment();
 
     var stream = bundler.bundle({debug: environment.sourceMaps});
     stream.on('error', logAndEnd('Browserify'));
@@ -119,3 +123,11 @@ gulp.task('watch', ['scriptsWatch', 'styles', 'htmls', 'fonts', 'images'], funct
 });
 
 gulp.task('default', ['clean']);
+
+gulp.task('firebase-json', function() {
+  var environment = getEnvironment();
+  return gulp.src('firebase.json.template')
+             .pipe(replace('$FIREBASE_APP', environment.firebaseApp))
+             .pipe(rename('firebase.json'))
+             .pipe(gulp.dest('.'));
+});
