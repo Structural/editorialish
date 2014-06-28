@@ -20,6 +20,21 @@ var gulp = require('gulp'),
     reactify = require('reactify'),
     source = require('vinyl-source-stream');
 
+var environments = {
+  undefined: {
+    firebaseApp: 'editorialish',
+    sourceMaps: false
+  },
+  'sean': {
+    firebaseApp: 'sean-editorialish',
+    sourceMaps: true
+  },
+  'will': {
+    firebaseApp: 'will-editorialish',
+    sourceMaps: true
+  }
+};
+
 var logAndEnd = function(taskName) {
   return function(error) {
     gutil.log(error);
@@ -35,21 +50,6 @@ gulp.task('styles', function() {
     .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
     .pipe(gulp.dest('dist'));
 });
-
-var environments = {
-  undefined: {
-    firebaseApp: 'editorialish',
-    sourceMaps: false
-  },
-  'sean': {
-    firebaseApp: 'sean-editorialish',
-    sourceMaps: true
-  },
-  'will': {
-    firebaseApp: 'will-editorialish',
-    sourceMaps: true
-  }
-};
 
 var buildScripts = function(watch) {
   var bundler, rootFile = './src/js/editorialish.js';
