@@ -12,11 +12,33 @@ var gulp = require('gulp'),
     concat = require('gulp-concat'),
     notify = require('gulp-notify'),
     cache = require('gulp-cache'),
+    replace = require('gulp-replace'),
+    streamify = require('gulp-streamify'),
+    shell = require('gulp-shell'),
     livereload = require('gulp-livereload'),
     browserify = require('browserify'),
     watchify = require('watchify'),
     reactify = require('reactify'),
     source = require('vinyl-source-stream');
+
+var environments = {
+  undefined: {
+    firebaseApp: 'editorialish',
+    sourceMaps: false
+  },
+  'sean': {
+    firebaseApp: 'sean-editorialish',
+    sourceMaps: true
+  },
+  'will': {
+    firebaseApp: 'will-editorialish',
+    sourceMaps: true
+  }
+};
+
+var getEnvironment = function() {
+  return environments[gutil.env.e || gutil.env.environment]
+};
 
 var logAndEnd = function(taskName) {
   return function(error) {
@@ -26,7 +48,7 @@ var logAndEnd = function(taskName) {
   }
 };
 
-gulp.task('styles', function() {
+gulp.task('styles', ['clean'], function() {
   return gulp.src('src/less/editorialish.less')
     .pipe(less({paths: [ path.join(__dirname, 'src') ]}))
     .on('error', logAndEnd('LESS'))
@@ -46,26 +68,29 @@ var buildScripts = function(watch) {
 
   var rebundle = function() {
     gutil.log('Building js with browserify');
+    var environment = getEnvironment();
 
-    var stream = bundler.bundle({debug: false});
+    var stream = bundler.bundle({debug: environment.sourceMaps});
     stream.on('error', logAndEnd('Browserify'));
 
     stream = stream.pipe(source('editorialish.js'));
+    stream = stream.pipe(streamify(replace('$FIREBASE_APP', environment.firebaseApp)));
+
     return stream.pipe(gulp.dest('dist'));
   }
   bundler.on('update', rebundle);
   return rebundle();
 }
 
-gulp.task('scripts', function() {
-  buildScripts(false);
+gulp.task('scripts', ['clean'], function() {
+  return buildScripts(false);
 });
 
-gulp.task('scriptsWatch', function() {
-  buildScripts(true);
+gulp.task('scriptsWatch', ['clean'], function() {
+  return buildScripts(true);
 });
 
-gulp.task('htmls', function() {
+gulp.task('htmls', ['clean'], function() {
   gulp.src('src/index.html')
       .pipe(rename('404.html'))
       .pipe(gulp.dest('dist'));
@@ -73,14 +98,14 @@ gulp.task('htmls', function() {
     .pipe(gulp.dest('dist'));
 });
 
-gulp.task('fonts', function(){
+gulp.task('fonts', ['clean'], function(){
   return gulp.src('src/web_fonts/*')
   .pipe(gulp.dest('dist/fonts'));
 });
 
 var imgExts = ['png', 'jpg', 'jpeg', 'gif', 'ico', 'svg'];
 
-gulp.task('images', function() {
+gulp.task('images', ['clean'], function() {
   return gulp.src(imgExts.map(function(ext) { return 'src/**/*' + ext }))
     .pipe(cache(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true })))
     .pipe(gulp.dest('dist'));
@@ -98,4 +123,13 @@ gulp.task('watch', ['scriptsWatch', 'styles', 'htmls', 'fonts', 'images'], funct
   gulp.watch('src/**/*.html', ['htmls']);
 });
 
-gulp.task('default', ['clean']);
+gulp.task('firebase-json', function() {
+  var environment = getEnvironment();
+  return gulp.src('firebase.json.template')
+             .pipe(replace('$FIREBASE_APP', environment.firebaseApp))
+             .pipe(rename('firebase.json'))
+             .pipe(gulp.dest('.'));
+});
+
+gulp.task('deploy', ['build', 'firebase-json'],
+          shell.task('firebase deploy'));
