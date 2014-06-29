@@ -48,7 +48,7 @@ var logAndEnd = function(taskName) {
   }
 };
 
-gulp.task('styles', function() {
+gulp.task('styles', ['clean'], function() {
   return gulp.src('src/less/editorialish.less')
     .pipe(less({paths: [ path.join(__dirname, 'src') ]}))
     .on('error', logAndEnd('LESS'))
@@ -82,15 +82,15 @@ var buildScripts = function(watch) {
   return rebundle();
 }
 
-gulp.task('scripts', function() {
+gulp.task('scripts', ['clean'], function() {
   return buildScripts(false);
 });
 
-gulp.task('scriptsWatch', function() {
+gulp.task('scriptsWatch', ['clean'], function() {
   return buildScripts(true);
 });
 
-gulp.task('htmls', function() {
+gulp.task('htmls', ['clean'], function() {
   gulp.src('src/index.html')
       .pipe(rename('404.html'))
       .pipe(gulp.dest('dist'));
@@ -98,14 +98,14 @@ gulp.task('htmls', function() {
     .pipe(gulp.dest('dist'));
 });
 
-gulp.task('fonts', function(){
+gulp.task('fonts', ['clean'], function(){
   return gulp.src('src/web_fonts/*')
   .pipe(gulp.dest('dist/fonts'));
 });
 
 var imgExts = ['png', 'jpg', 'jpeg', 'gif', 'ico', 'svg'];
 
-gulp.task('images', function() {
+gulp.task('images', ['clean'], function() {
   return gulp.src(imgExts.map(function(ext) { return 'src/**/*' + ext }))
     .pipe(cache(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true })))
     .pipe(gulp.dest('dist'));
@@ -123,8 +123,6 @@ gulp.task('watch', ['scriptsWatch', 'styles', 'htmls', 'fonts', 'images'], funct
   gulp.watch('src/**/*.html', ['htmls']);
 });
 
-gulp.task('default', ['clean']);
-
 gulp.task('firebase-json', function() {
   var environment = getEnvironment();
   return gulp.src('firebase.json.template')
@@ -133,8 +131,5 @@ gulp.task('firebase-json', function() {
              .pipe(gulp.dest('.'));
 });
 
-gulp.task('deploy', ['clean', 'build', 'firebase-json'], function() {
-  gutil.log('deploying...');
-  // return gulp.src('')
-  //            .pipe(shell('firebase deploy'));
-});
+gulp.task('deploy', ['build', 'firebase-json'],
+          shell.task('firebase deploy'));
