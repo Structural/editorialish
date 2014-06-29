@@ -14,6 +14,7 @@ var gulp = require('gulp'),
     cache = require('gulp-cache'),
     replace = require('gulp-replace'),
     streamify = require('gulp-streamify'),
+    shell = require('gulp-shell'),
     livereload = require('gulp-livereload'),
     browserify = require('browserify'),
     watchify = require('watchify'),
@@ -82,11 +83,11 @@ var buildScripts = function(watch) {
 }
 
 gulp.task('scripts', function() {
-  buildScripts(false);
+  return buildScripts(false);
 });
 
 gulp.task('scriptsWatch', function() {
-  buildScripts(true);
+  return buildScripts(true);
 });
 
 gulp.task('htmls', function() {
@@ -130,4 +131,10 @@ gulp.task('firebase-json', function() {
              .pipe(replace('$FIREBASE_APP', environment.firebaseApp))
              .pipe(rename('firebase.json'))
              .pipe(gulp.dest('.'));
+});
+
+gulp.task('deploy', ['clean', 'build', 'firebase-json'], function() {
+  gutil.log('deploying...');
+  // return gulp.src('')
+  //            .pipe(shell('firebase deploy'));
 });
