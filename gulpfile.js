@@ -48,12 +48,17 @@ var logAndEnd = function(taskName) {
   }
 };
 
-gulp.task('styles', ['clean'], function() {
+gulp.task('styles', ['clean-styles'], function() {
   return gulp.src('src/less/editorialish.less')
     .pipe(less({paths: [ path.join(__dirname, 'src') ]}))
     .on('error', logAndEnd('LESS'))
     .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
     .pipe(gulp.dest('dist'));
+});
+
+gulp.task('clean-styles', function() {
+  return gulp.src('dist/editorialish.css')
+             .pipe(clean());
 });
 
 var buildScripts = function(watch) {
@@ -82,15 +87,20 @@ var buildScripts = function(watch) {
   return rebundle();
 }
 
-gulp.task('scripts', ['clean'], function() {
+gulp.task('scripts', ['clean-styles'], function() {
   return buildScripts(false);
 });
 
-gulp.task('scriptsWatch', ['clean'], function() {
+gulp.task('scriptsWatch', ['clean-styles'], function() {
   return buildScripts(true);
 });
 
-gulp.task('htmls', ['clean'], function() {
+gulp.task('clean-scripts', function() {
+  return gulp.src('dist/editorialish.js')
+             .pipe(clean());
+});
+
+gulp.task('htmls', ['clean-htmls'], function() {
   gulp.src('src/index.html')
       .pipe(rename('404.html'))
       .pipe(gulp.dest('dist'));
@@ -98,22 +108,38 @@ gulp.task('htmls', ['clean'], function() {
     .pipe(gulp.dest('dist'));
 });
 
-gulp.task('fonts', ['clean'], function(){
+gulp.task('clean-htmls', function() {
+  return gulp.src('dist/*.html')
+             .pipe(clean());
+});
+
+gulp.task('fonts', ['clean-fonts'], function(){
   return gulp.src('src/web_fonts/*')
   .pipe(gulp.dest('dist/fonts'));
 });
 
+gulp.task('clean-fonts', function() {
+  return gulp.src('dist/fonts/*')
+             .pipe(clean());
+});
+
 var imgExts = ['png', 'jpg', 'jpeg', 'gif', 'ico', 'svg'];
 
-gulp.task('images', ['clean'], function() {
+gulp.task('images', ['clean-images'], function() {
   return gulp.src(imgExts.map(function(ext) { return 'src/**/*' + ext }))
     .pipe(cache(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true })))
     .pipe(gulp.dest('dist'));
 });
 
-gulp.task('clean', function() {
-  return gulp.src(['dist'], {read: false})
-    .pipe(clean());
+gulp.task('clean-images', function() {
+  return gulp.src(imgExts.map(function(ext) { return 'dist/**/*' + ext }))
+             .pipe(clean());
+});
+
+gulp.task('clean', ['clean-styles', 'clean-scripts', 'clean-htmls',
+                    'clean-fonts', 'clean-images'], function() {
+  return gulp.src('dist/*')
+             .pipe(clean());
 });
 
 gulp.task('build', ['styles', 'scripts', 'htmls', 'fonts', 'images']);
