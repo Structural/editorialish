@@ -1,14 +1,15 @@
 /** @jsx React.DOM */
 
-var React = require('react'),
-    ManuscriptStore = require('../store/manuscript-store'),
+var React = require('react');
+
+var ManuscriptStore = require('../store/manuscript-store'),
+    FolderStore = require('../store/folder-store'),
     Button = require('../shared/button'),
     Icon = require('../shared/icon'),
     LogoutButton = require('../shared/logout-button'),
-    Credits = require('../shared/credits');
-
-var ManuscriptList = require('./manuscript-list');
-
+    Credits = require('../shared/credits'),
+    ManuscriptList = require('./manuscript-list'),
+    FolderList = require('./folder-list');
 
 var HomePage = React.createClass({
   toggleNav:function(){
@@ -17,13 +18,16 @@ var HomePage = React.createClass({
   getInitialState: function() {
     return {
       manuscripts: ManuscriptStore.manuscripts,
+      folders: FolderStore.folders,
       showNav: false
     };
   },
   componentDidMount: function() {
     ManuscriptStore.listen(this._onManuscriptChange);
+    FolderStore.listen(this._onFolderChange);
   },
   componentWillUnmount: function() {
+    FolderStore.listen(this._onFolderChange);
     ManuscriptStore.ignore(this._onManuscriptChange);
   },
   render: function() {
@@ -37,6 +41,7 @@ var HomePage = React.createClass({
         <div className="nav-column">
           <div className="nav-title-bar"><div className='ed-icon'></div> Editorialish</div>
           <div className='nav-contents'>
+            <FolderList folders={this.state.folders} />
             <Credits />
           </div>
           <div className='bottom-toolbar'>
@@ -66,6 +71,9 @@ var HomePage = React.createClass({
 
   _onManuscriptChange: function() {
     this.setState({manuscripts: ManuscriptStore.manuscripts});
+  },
+  _onFolderChange: function() {
+    this.setState({folders: FolderStore.folders});
   }
 });
 
