@@ -4,10 +4,9 @@ var React = require('react');
 
 var ManuscriptStore = require('../store/manuscript-store'),
     FolderStore = require('../store/folder-store'),
+    NavColumn = require('./nav-column'),
     Button = require('../shared/button'),
     Icon = require('../shared/icon'),
-    LogoutButton = require('../shared/logout-button'),
-    Credits = require('../shared/credits'),
     ManuscriptList = require('./manuscript-list'),
     FolderList = require('./folder-list');
 
@@ -31,27 +30,16 @@ var HomePage = React.createClass({
     ManuscriptStore.ignore(this._onManuscriptChange);
   },
   render: function() {
-    var user = this.props.user;
     var classes = 'home-page';
     if (this.state.showNav === true) {
       classes = classes + " nav-is-shown";
     }
+
     return (
       <div className={classes}>
-        <div className="nav-column">
-          <div className="nav-title-bar"><div className='ed-icon'></div> Editorialish</div>
-          <div className='nav-contents'>
-            <FolderList folders={this.state.folders} />
-            <Credits />
-          </div>
-          <div className='bottom-toolbar'>
-            <LogoutButton className='logout-button' align='right'/>
-            <div className='two-line-info middle'>
-              <div className="title">{user.displayName}</div>
-              <div className="sub-title">{user.username}</div>
-            </div>
-          </div>
-        </div>
+        <NavColumn user={this.props.user}>
+          <FolderList folders={this.state.folders} />
+        </NavColumn>
         <div className="manuscripts-column">
           <div className='toolbar'>
             <Button align="left" onClick={this.toggleNav} label="Menu" className='hamburger-button'><Icon name="bars"/></Button>

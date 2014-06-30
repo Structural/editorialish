@@ -5,8 +5,13 @@ var Button = require('./button');
 
 var LogoutButton = React.createClass({
   render: function() {
-    var button =<Button action="user:logout">Log Out</Button>;
-    return (this.transferPropsTo(button));
+    var button = (
+        <Button action="user:logout" className="logout-button">
+          Log Out
+        </Button>
+    );
+
+    return this.transferPropsTo(button);
   }
 });
 
