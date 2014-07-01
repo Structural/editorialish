@@ -18,6 +18,7 @@ var HomePage = React.createClass({
     return {
       manuscripts: ManuscriptStore.manuscripts,
       folders: FolderStore.folders,
+      activeFolder: FolderStore.activeFolder,
       showNav: false
     };
   },
@@ -38,7 +39,8 @@ var HomePage = React.createClass({
     return (
       <div className={classes}>
         <NavColumn user={this.props.user}>
-          <FolderList folders={this.state.folders} />
+          <FolderList folders={this.state.folders}
+                      activeFolder={this.state.activeFolder} />
         </NavColumn>
         <div className="manuscripts-column">
           <div className='toolbar'>
@@ -61,7 +63,10 @@ var HomePage = React.createClass({
     this.setState({manuscripts: ManuscriptStore.manuscripts});
   },
   _onFolderChange: function() {
-    this.setState({folders: FolderStore.folders});
+    this.setState({
+      folders: FolderStore.folders,
+      activeFolder: FolderStore.activeFolder
+    });
   }
 });
 

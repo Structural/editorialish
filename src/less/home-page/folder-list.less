@@ -12,7 +12,13 @@
     }
 
     &:hover {
+      background-color: fadeout(@orange, 80%);
+    }
+
+    &.active {
       background-color: @orange;
+      // color: @white;
+      font-weight: bold;
     }
   }
 }
