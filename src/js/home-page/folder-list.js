@@ -20,7 +20,7 @@ var Folder = React.createClass({
   },
 
   _onClick: function() {
-    Dispatcher.send('folder:open', [this.props.id]);
+    Dispatcher.send('folder:select', [this.props.id]);
   }
 });
 

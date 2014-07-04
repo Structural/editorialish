@@ -17,15 +17,19 @@ var UserStore = new Store({
     }.bind(this));
   },
 
+  login: function(){
+    this.auth.login('github', {
+       rememberMe: true
+    });
+  },
+
+  logout: function(){
+    this.auth.logout();
+  },
+
   dispatches: {
-    'user:login': function() {
-      this.auth.login('github', {
-        rememberMe: true
-      });
-    },
-    'user:logout': function() {
-      this.auth.logout();
-    }
+    'user:login': function() {this.login();},
+    'user:logout': function() {this.logout();}
   }
 });
 

@@ -3,12 +3,13 @@
 var React = require('react');
 
 var ManuscriptStore = require('../store/manuscript-store'),
-    FolderStore = require('../store/folder-store'),
+    FoldersStore = require('../store/folder-store'),
     NavColumn = require('./nav-column'),
     Button = require('../shared/button'),
     Icon = require('../shared/icon'),
     ManuscriptList = require('./manuscript-list'),
-    FolderList = require('./folder-list');
+    FolderList = require('./folder-list'),
+    Dispatcher = require('../dispatcher/dispatcher');
 
 var HomePage = React.createClass({
   toggleNav:function(){
@@ -17,17 +18,17 @@ var HomePage = React.createClass({
   getInitialState: function() {
     return {
       manuscripts: ManuscriptStore.manuscripts,
-      folders: FolderStore.folders,
-      activeFolder: FolderStore.activeFolder,
+      folders: FoldersStore.folders,
+      activeFolder: FoldersStore.activeFolder,
       showNav: false
     };
   },
   componentDidMount: function() {
     ManuscriptStore.listen(this._onManuscriptChange);
-    FolderStore.listen(this._onFolderChange);
+    FoldersStore.listen(this._onFolderChange);
   },
   componentWillUnmount: function() {
-    FolderStore.listen(this._onFolderChange);
+    FoldersStore.listen(this._onFolderChange);
     ManuscriptStore.ignore(this._onManuscriptChange);
   },
   render: function() {
@@ -64,8 +65,8 @@ var HomePage = React.createClass({
   },
   _onFolderChange: function() {
     this.setState({
-      folders: FolderStore.folders,
-      activeFolder: FolderStore.activeFolder
+      folders: FoldersStore.folders,
+      activeFolder: FoldersStore.activeFolder
     });
   }
 });

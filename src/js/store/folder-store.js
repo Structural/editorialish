@@ -4,12 +4,22 @@ var Firebase = require('firebase-client'),
 var Store = require('./store'),
     Environment = require('../environment');
 
-var FolderStore = new Store({
+var FoldersStore = new Store({
   initialize: function() {
     this.folders = {};
     this.activeFolder = undefined;
-    this.firebase = new Firebase(Environment.FirebaseRootUrl).child('folders');
-    this.firebase.on('value', function(snapshot) {
+    this.userId = undefined;
+    this.userDisplayName = undefined;
+  },
+
+  refresh: function(){
+    this.userId = UserStore.user.uid;
+    this.userDisplayName = UserStore.user.displayName;
+    this.userFoldersRef = new Firebase(Environment.FirebaseRootUrl)
+      .child('users')
+      .child(this.userId)
+      .child('folders');
+    this.userFoldersRef.on('value', function(snapshot) {
       this.folders = snapshot.val();
       if (!this.activeFolder) {
         this.activeFolder = _.keys(this.folders)[0];
@@ -18,12 +28,36 @@ var FolderStore = new Store({
     }, this);
   },
 
+  create: function(){
+    userId = this.userId;
+    userDisplayName = this.userDisplayName;
+    newFolder = {
+      "name": "New Folder",
+      "participants": {}
+    };
+    newFolder.participants[userId] = userDisplayName;
+
+    globalFoldersRef = new Firebase(Environment.FirebaseRootUrl)
+      .child('folders');
+    globalFolderRef = globalFoldersRef.push(newFolder);
+    name = globalFolderRef.name();
+    console.log(name);
+    var newUserFolder = {};
+    newUserFolder[name] = newFolder;
+    this.userFoldersRef.update(newUserFolder)
+
+  },
+
+  selectFolder: function(id){
+    this.activeFolder = id;
+    this.trigger();
+  },
+
   dispatches: {
-    'folder:open': function(id) {
-      this.activeFolder = id;
-      this.trigger();
-    }
+    "folders:select": function(id){ this.selectFolder();},
+    "folders:create": function(){ this.create();},
+    "folders:refresh": function(){ this.refresh();}
   }
 });
 
-module.exports = FolderStore;
+module.exports = FoldersStore;
