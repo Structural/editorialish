@@ -54,7 +54,7 @@ var FoldersStore = new Store({
   },
 
   dispatches: {
-    "folders:select": function(id){ this.selectFolder();},
+    "folders:select": function(id){ this.selectFolder(id);},
     "folders:create": function(){ this.create();},
     "folders:refresh": function(){ this.refresh();}
   }

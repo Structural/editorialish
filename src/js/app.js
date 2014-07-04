@@ -15,7 +15,7 @@ var App = React.createClass({
     return {
       user: UserStore.user,
       segments: RouterStore.segments,
-      showDevPanel:true
+      showDevPanel:false
     }
   },
   componentDidMount: function() {
