@@ -1,8 +1,8 @@
-var callbacks = {};
-
 var Dispatcher = {
+  callbacks: {},
+
   send: function(action, args) {
-    var cbs = callbacks[action];
+    var cbs = this.callbacks[action];
     if (cbs) {
       for (var i = 0; i < cbs.length; i++) {
         cbs[i].callback.apply(cbs[i].context, args);
@@ -11,11 +11,11 @@ var Dispatcher = {
   },
 
   on: function(action, callback, context) {
-    if (!callbacks[action]) {
-      callbacks[action] = [];
+    if (!this.callbacks[action]) {
+      this.callbacks[action] = [];
     }
 
-    callbacks[action].push({callback: callback, context: context});
+    this.callbacks[action].push({callback: callback, context: context});
   }
 };
 
