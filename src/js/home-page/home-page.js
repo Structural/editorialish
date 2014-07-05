@@ -7,6 +7,7 @@ var ManuscriptStore = require('../store/manuscript-store'),
     NavColumn = require('./nav-column'),
     Button = require('../shared/button'),
     Icon = require('../shared/icon'),
+    Toolbar = require('../shared/toolbar'),
     ManuscriptList = require('./manuscript-list'),
     FolderList = require('./folder-list'),
     Dispatcher = require('../dispatcher/dispatcher');
@@ -44,7 +45,7 @@ var HomePage = React.createClass({
                       activeFolder={this.state.activeFolder} />
         </NavColumn>
         <div className="manuscripts-column">
-          <div className='toolbar'>
+          <Toolbar>
             <Button align="left" onClick={this.toggleNav} label="Menu" className='hamburger-button'><Icon name="bars"/></Button>
             <Button align="right" action="manuscript:create" label="New Manuscript"><Icon name="plus"/></Button>
 
@@ -52,8 +53,7 @@ var HomePage = React.createClass({
               <div className="title">All Documents</div>
               <div className="sub-title">last updated at 10:02am</div>
             </div>
-
-          </div>
+          </Toolbar>
           <ManuscriptList manuscripts={this.state.manuscripts} />
         </div>
       </div>

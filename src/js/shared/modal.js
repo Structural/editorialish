@@ -8,7 +8,8 @@ var Button = require('./button'),
 var Modal = React.createClass({
   render: function() {
     return (
-      <Button className="modal-open" onClick={this._open}>
+      <Button className="modal-open" onClick={this._open}
+              align={this.props.align}>
         {this.props.name}
       </Button>
     );

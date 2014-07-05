@@ -8,15 +8,13 @@ var React = require('react')
     FourOhFourPage = require('./four-oh-four-page/four-oh-four-page'),
     Login = require('./login/login'),
     MenuLayer = require('./menu-layer/menu-layer'),
-    ModalLayer = require('./modal-layer/modal-layer'),
-    DevPanel = require('./dev-panel/dev-panel');
+    ModalLayer = require('./modal-layer/modal-layer');
 
 var App = React.createClass({
   getInitialState: function() {
     return {
       user: UserStore.user,
-      segments: RouterStore.segments,
-      showDevPanel:false
+      segments: RouterStore.segments
     }
   },
   componentDidMount: function() {
@@ -29,7 +27,6 @@ var App = React.createClass({
   },
   render: function() {
     var contents = <FourOhFourPage />;
-    var devPanel = undefined
     if (!this.state.user) {
       contents = <Login />;
     } else if (this.state.segments[0] === '') {
@@ -38,15 +35,11 @@ var App = React.createClass({
       contents = <EditorPage manuscriptId={this.state.segments[1]} />
     }
 
-    if (this.state.showDevPanel) {
-      devPanel = <DevPanel />;
-    }
     return (
       <div className ='app editorialish'>
         {contents}
         <ModalLayer />
         <MenuLayer />
-        {devPanel}
       </div>
     );
   },
