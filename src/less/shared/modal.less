@@ -1,4 +1,6 @@
 .modal-layer {
+  @gutter: 6rem;
+
   display: none;
   &.is-showing-modal {
     display: block;
@@ -10,22 +12,22 @@
   left: 0rem;
   right: 0rem;
   bottom: 0rem;
+  padding: @gutter;
   background-color: fadeout(@black, 60%);
 
   .modal-layer-content {
     background-color: @white;
     border-color: @light-gray;
 
-    min-height: 10rem;
-    max-height: 35rem;
-    max-width: 80%;
-    margin: auto;
-    margin-top: 6rem;
+    height: 100%;
+    width: 100%;
     padding: 1rem;
     overflow: auto;
 
     .modal-close {
-      float: right;
+      position: absolute;
+      top: @gutter;
+      right: @gutter;
     }
   }
 }

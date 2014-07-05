@@ -1,0 +1,41 @@
+.dev-panel-section() {
+  .title {
+    font-size: 1.2rem;
+    display: inline-block;
+    width: 100%;
+    border-bottom: 1px solid @dark-gray;
+    margin-bottom: 0.5rem;
+    margin-top: 1.5rem;
+    line-height: 0.8rem;
+  }
+
+  &:first-child {
+    .title {
+      margin-top: 0;
+    }
+  }
+
+  .action-name, .action-arguments {
+    font-family: @mono-font;
+  }
+}
+
+.breathing-room() {
+  margin: 0 0.5rem;
+}
+
+.action-list {
+  .dev-panel-section();
+
+  .action-name {
+    .breathing-room();
+  }
+}
+
+.action-history {
+  .dev-panel-section();
+
+  .action-arguments-prompt {
+    .breathing-room();
+  }
+}

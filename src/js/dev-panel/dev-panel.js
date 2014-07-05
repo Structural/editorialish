@@ -12,8 +12,15 @@ var DevPanel = React.createClass({
       function(callbacksArray, action){
         return(
           <div className="action">
-            <Button action={action}>Trigger</Button>
-            <span> {action} [{callbacksArray.length}]</span>
+            <span className="action-trigger">
+              <Button action={action}>Trigger</Button>
+            </span>
+            <span className="action-name">
+              {action}
+            </span>
+            <span className="action-listener-count">
+              [{callbacksArray.length}]
+            </span>
           </div>
         );
       }
@@ -21,17 +28,26 @@ var DevPanel = React.createClass({
 
     var history = _.map(Dispatcher.actionHistory, function(action) {
       var argString = '';
+      var argPrompt = '';
       if (action.arguments) {
         argString = _.map(action.arguments, function(arg) {
           return arg.toString()
         }).join(', ');
-        argString = 'with arguments [' + argString + ']';
+        argString = '[' + argString + ']';
+        argPrompt = 'with arguments';
       }
 
       return (
         <div className="historical-action">
-          {action.action}
-          {argString}
+          <span className="action-name">
+            {action.action}
+          </span>
+          <span className="action-arguments-prompt">
+            {argPrompt}
+          </span>
+          <span className="action-arguments">
+            {argString}
+          </span>
         </div>
       );
     });
@@ -39,9 +55,11 @@ var DevPanel = React.createClass({
     return (
       <div className="dev-panel">
         <div className="action-list">
+          <span className="title">Trigger Actions</span>
           {list}
         </div>
         <div className="action-history">
+          <span className="title">Action History</span>
           {history}
         </div>
       </div>
