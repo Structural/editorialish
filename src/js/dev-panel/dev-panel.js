@@ -22,16 +22,16 @@ var DevPanel = React.createClass({
     var history = _.map(Dispatcher.actionHistory, function(action) {
       var argString = '';
       if (action.arguments) {
-        var argString = _.map(action.arguments, function(arg) {
+        argString = _.map(action.arguments, function(arg) {
           return arg.toString()
         }).join(', ');
+        argString = 'with arguments [' + argString + ']';
       }
 
       return (
         <div className="historical-action">
           {action.action}
-          with arguments
-          [{argString}]
+          {argString}
         </div>
       );
     });
