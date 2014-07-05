@@ -167,7 +167,8 @@ gulp.task('watch', ['scriptsWatch', 'styles', 'htmls', 'fonts', 'images'], funct
 gulp.task('firebase-json', function() {
   var environment = getEnvironment();
   return gulp.src('firebase.json.template')
-             .pipe(replace('$FIREBASE_APP', environment.firebaseApp))
+             .pipe(replace('$FIREBASE_APP',
+                           environment.vars['$FIREBASE_APP']))
              .pipe(rename('firebase.json'))
              .pipe(gulp.dest('.'));
 });
