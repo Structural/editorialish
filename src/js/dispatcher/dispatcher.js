@@ -1,5 +1,8 @@
+var Environment = require('../environment');
+
 var Dispatcher = {
   callbacks: {},
+  actionHistory: [],
 
   send: function(action, args) {
     var cbs = this.callbacks[action];
@@ -7,6 +10,13 @@ var Dispatcher = {
       for (var i = 0; i < cbs.length; i++) {
         cbs[i].callback.apply(cbs[i].context, args);
       }
+    }
+
+    if (Environment.DevMode) {
+      this.actionHistory.push({
+        action: action,
+        arguments: args
+      })
     }
   },
 

@@ -8,7 +8,6 @@ var Dispatcher = require('../dispatcher/dispatcher');
 var DevPanel = React.createClass({
 
   render: function() {
-    console.log(Dispatcher.callbacks);
     var list = _.map(Dispatcher.callbacks,
       function(callbacksArray, action){
         return(
@@ -19,8 +18,33 @@ var DevPanel = React.createClass({
         );
       }
     );
+
+    var history = _.map(Dispatcher.actionHistory, function(action) {
+      var argString = '';
+      if (action.arguments) {
+        var argString = _.map(action.arguments, function(arg) {
+          return arg.toString()
+        }).join(', ');
+      }
+
+      return (
+        <div className="historical-action">
+          {action.action}
+          with arguments
+          [{argString}]
+        </div>
+      );
+    });
+
     return (
-      <div className="dev-panel">{list}</div>
+      <div className="dev-panel">
+        <div className="action-list">
+          {list}
+        </div>
+        <div className="action-history">
+          {history}
+        </div>
+      </div>
     );
   }
 });
