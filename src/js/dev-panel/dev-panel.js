@@ -5,6 +5,38 @@ var Button = require('../shared/button');
 var _ = require('underscore');
 var Dispatcher = require('../dispatcher/dispatcher');
 
+var parent = function(obj) {
+  return Object.getPrototypeOf(obj);
+}
+
+var grandparent = function(obj) {
+  return parent(parent(obj));
+}
+
+var pprint = function(obj) {
+  if (typeof obj === 'string') {
+    return "\"" + obj + "\"";
+  } else if (obj instanceof Array) {
+    return "[" + _.map(obj, pprint).join(', ') + "]";
+  } else if (typeof obj === 'object') {
+    if (grandparent(obj) === null) {
+      return JSON.stringify(obj);
+    } else {
+      // Note - displayName is not standard, but seems to work in
+      // FF and Chrome.  Sometimes.  Depending on what objects you're
+      // looking at.  Other times it's name.  Which is only standard
+      // in ES6.
+      var ctor = parent(obj).constructor;
+      var name = (ctor.name === undefined || ctor.name === "") ?
+                 ctor.displayName :
+                 ctor.name;
+      return "[object " + name + "]";
+    }
+  } else {
+    return obj.toString();
+  }
+};
+
 var DevPanel = React.createClass({
 
   render: function() {
@@ -12,9 +44,7 @@ var DevPanel = React.createClass({
       function(callbacksArray, action){
         return(
           <div className="action">
-            <span className="action-trigger">
-              <Button action={action}>Trigger</Button>
-            </span>
+            <Button action={action}>Trigger</Button>
             <span className="action-name">
               {action}
             </span>
@@ -30,10 +60,7 @@ var DevPanel = React.createClass({
       var argString = '';
       var argPrompt = '';
       if (action.arguments) {
-        argString = _.map(action.arguments, function(arg) {
-          return arg.toString()
-        }).join(', ');
-        argString = '[' + argString + ']';
+        argString = pprint(action.arguments);
         argPrompt = 'with arguments';
       }
 
