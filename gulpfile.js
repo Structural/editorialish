@@ -23,16 +23,25 @@ var gulp = require('gulp'),
 
 var environments = {
   undefined: {
-    firebaseApp: 'editorialish',
-    sourceMaps: false
+    sourceMaps: false,
+    vars: {
+      '$FIREBASE_APP': 'editorialish',
+      '$DEV_MODE': 'false'
+    }
   },
   'sean': {
-    firebaseApp: 'sean-editorialish',
-    sourceMaps: true
+    sourceMaps: true,
+    vars: {
+      '$FIREBASE_APP': 'sean-editorialish',
+      '$DEV_MODE': 'true'
+    }
   },
   'will': {
-    firebaseApp: 'will-editorialish',
-    sourceMaps: true
+    sourceMaps: true,
+    vars: {
+      '$FIREBASE_APP': 'will-editorialish',
+      '$DEV_MODE': 'true'
+    }
   }
 };
 
@@ -79,6 +88,12 @@ var buildScripts = function(watch) {
     stream.on('error', logAndEnd('Browserify'));
 
     stream = stream.pipe(source('editorialish.js'));
+
+    for (var variable in environment.vars) {
+      stream = stream.pipe(replace(variable,
+                           environment.vars[variable]));
+    }
+
     stream = stream.pipe(streamify(replace('$FIREBASE_APP', environment.firebaseApp)));
 
     return stream.pipe(gulp.dest('dist'));
