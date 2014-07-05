@@ -4,7 +4,6 @@ var Store = require('./store'),
 var RouterStore = new Store({
   initialize: function() {
     window.onpopstate = function() {
-      this._pathChanged();
       this._updateAndTrigger();
     }.bind(this);
   },
@@ -14,10 +13,11 @@ var RouterStore = new Store({
   },
   _updateAndTrigger: function() {
     this.segments = this._pathSegments();
+    this._routeChanged();
     this.trigger();
   },
-  _pathChanged: function() {
-    Dispatcher.send('pathChanged', [this._pathSegments()]);
+  _routeChanged: function() {
+    Dispatcher.send('route:changed', [this._pathSegments()]);
   },
   _goToPath: function(path) {
     window.history.pushState({}, '', path);
@@ -28,7 +28,6 @@ var RouterStore = new Store({
     // Some browsers fire a popstate on page load, some don't.  Store functions
     // should be idempotent, so sending this twice shouldn't be a problem.
     'app:start': function() {
-      this._pathChanged();
       this._updateAndTrigger();
     },
     'manuscript:edit': function(manuscriptId) {
