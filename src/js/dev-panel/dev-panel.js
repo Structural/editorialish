@@ -1,9 +1,10 @@
 /** @jsx React.DOM */
 
-var React = require('react');
-var Button = require('../shared/button');
-var _ = require('underscore');
-var Dispatcher = require('../dispatcher/dispatcher');
+var React = require('react'),
+    _ = require('underscore');
+
+var TriggerList = require('./trigger-list'),
+    Dispatcher = require('../dispatcher/dispatcher');
 
 var parent = function(obj) {
   return Object.getPrototypeOf(obj);
@@ -40,22 +41,6 @@ var pprint = function(obj) {
 var DevPanel = React.createClass({
 
   render: function() {
-    var list = _.map(Dispatcher.callbacks,
-      function(callbacksArray, action){
-        return(
-          <div className="action">
-            <Button action={action}>Trigger</Button>
-            <span className="action-name">
-              {action}
-            </span>
-            <span className="action-listener-count">
-              [{callbacksArray.length}]
-            </span>
-          </div>
-        );
-      }
-    );
-
     var history = _.map(Dispatcher.actionHistory, function(action) {
       var argString = '';
       var argPrompt = '';
@@ -81,10 +66,7 @@ var DevPanel = React.createClass({
 
     return (
       <div className="dev-panel">
-        <div className="action-list">
-          <span className="title">Trigger Actions</span>
-          {list}
-        </div>
+        <TriggerList />
         <div className="action-history">
           <span className="title">Action History</span>
           {history}
