@@ -1,0 +1,30 @@
+.modal-layer {
+  display: none;
+  &.is-showing-modal {
+    display: block;
+  }
+
+  position: fixed;
+  z-index: 5;
+  top: 0rem;
+  left: 0rem;
+  right: 0rem;
+  bottom: 0rem;
+  background-color: fadeout(@black, 60%);
+
+  .modal-layer-content {
+    background-color: @white;
+    border-color: @light-gray;
+
+    min-height: 10rem;
+    max-width: 80%;
+    margin: auto;
+    margin-top: 6rem;
+    margin-bottom: 6rem;
+    padding: 1rem;
+
+    .modal-close {
+      float: right;
+    }
+  }
+}

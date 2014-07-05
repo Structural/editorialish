@@ -8,6 +8,7 @@ var React = require('react')
     FourOhFourPage = require('./four-oh-four-page/four-oh-four-page'),
     Login = require('./login/login'),
     MenuLayer = require('./menu-layer/menu-layer'),
+    ModalLayer = require('./modal-layer/modal-layer'),
     DevPanel = require('./dev-panel/dev-panel');
 
 var App = React.createClass({
@@ -43,6 +44,7 @@ var App = React.createClass({
     return (
       <div className ='app editorialish'>
         {contents}
+        <ModalLayer />
         <MenuLayer />
         {devPanel}
       </div>
