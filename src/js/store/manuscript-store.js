@@ -8,6 +8,7 @@ var Store = require('./store'),
 var manuscriptsRootUrl = Environment.FirebaseRootUrl + '/manuscripts';
 
 var ManuscriptStore = new Store({
+  name: 'Manuscript',
   initialize: function() {
     this.manuscripts = {};
     this.firebase = new Firebase(manuscriptsRootUrl);

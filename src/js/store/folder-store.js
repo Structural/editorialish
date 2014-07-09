@@ -5,6 +5,7 @@ var Store = require('./store'),
     Environment = require('../environment');
 
 var FoldersStore = new Store({
+  name: 'Folder',
   initialize: function() {
     this.folders = {};
     this.activeFolder = undefined;

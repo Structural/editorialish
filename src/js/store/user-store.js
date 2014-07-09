@@ -5,6 +5,7 @@ var Store = require('./store'),
     Environment = require('../environment');
 
 var UserStore = new Store({
+  name: 'User',
   initialize: function() {
     this.user = undefined;
     this.error = undefined;

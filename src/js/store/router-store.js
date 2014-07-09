@@ -2,6 +2,7 @@ var Store = require('./store'),
     Dispatcher = require('../dispatcher/dispatcher');
 
 var RouterStore = new Store({
+  name: 'Router',
   initialize: function() {
     window.onpopstate = function() {
       this._updateAndTrigger();

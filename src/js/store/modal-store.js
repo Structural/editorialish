@@ -1,6 +1,7 @@
 var Store = require('./store');
 
 var ModalStore = new Store({
+  name: 'Modal',
   initialize: function() {
     this.items = undefined;
     this.modalName = undefined;

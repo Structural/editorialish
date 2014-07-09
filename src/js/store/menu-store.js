@@ -1,6 +1,7 @@
 var Store = require('./store');
 
 var MenuStore = new Store({
+  name: 'Menu',
   initialize: function() {
     this.items = undefined;
     this.anchor = undefined;
