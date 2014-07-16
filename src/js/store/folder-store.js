@@ -39,6 +39,15 @@ var FoldersStore = new Store({
   dispatches: {
     'folders:select': 'selectFolder',
     'folders:create': 'create',
+    'folders:delete': function(id) {
+      this.globalFolderListRef.child(id).remove();
+      this.userFolderListRef.child(id).remove();
+
+      if (id === this.activeFolder) {
+        this.activeFolder = _.keys(this.folders)[0];
+        this.trigger();
+      }
+    },
     'user:available': function(user) {
       this.userId = user.uid;
       this.userDisplayName = user.displayName;
