@@ -5,6 +5,7 @@ var React = require('react'),
 
 var TriggerList = require('./trigger-list'),
     ActionHistory = require('./action-history');
+    StoreList = require('./store-list');
 
 var DevPanel = React.createClass({
   render: function() {
@@ -12,6 +13,7 @@ var DevPanel = React.createClass({
       <div className="dev-panel">
         <TriggerList />
         <ActionHistory />
+        <StoreList />
       </div>
     );
   }
