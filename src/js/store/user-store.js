@@ -29,8 +29,8 @@ var UserStore = new Store({
   },
 
   dispatches: {
-    'user:login': function() {this.login();},
-    'user:logout': function() {this.logout();}
+    'user:login': 'login',
+    'user:logout': 'logout'
   }
 });
 

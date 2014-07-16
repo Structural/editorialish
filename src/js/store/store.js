@@ -18,7 +18,11 @@ var Store = (function(env) {
 
     if (options.dispatches) {
       _.each(options.dispatches, function(callback, action) {
-        Dispatcher.on(action, callback, this);
+        if (callback instanceof Function) {
+          Dispatcher.on(action, callback, this);
+        } else {
+          Dispatcher.on(action, this[callback], this);
+        }
       }, this);
     }
 
