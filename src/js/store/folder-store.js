@@ -55,9 +55,9 @@ var FoldersStore = new Store({
   },
 
   dispatches: {
-    "folders:select": 'selectFolder',
-    "folders:create": 'create',
-    "folders:refresh": 'refresh'
+    'folders:select': 'selectFolder',
+    'folders:create': 'create',
+    'folders:refresh': 'refresh'
   }
 });
 
