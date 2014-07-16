@@ -2,7 +2,6 @@ var _ = require('underscore'),
     Firebase = require('firebase-client');
 
 var Store = require('./store'),
-    Dispatcher = require('../dispatcher/dispatcher'),
     Environment = require('../environment');
 
 var manuscriptsRootUrl = Environment.FirebaseRootUrl + '/manuscripts';

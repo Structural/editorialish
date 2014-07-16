@@ -2,7 +2,8 @@ var Firebase = require('firebase-client'),
     FirebaseSimpleLogin = require('firebase-simple-login');
 
 var Store = require('./store'),
-    Environment = require('../environment');
+    Environment = require('../environment'),
+    Dispatcher = require('../dispatcher/dispatcher');
 
 var UserStore = new Store({
   name: 'User',
@@ -14,6 +15,10 @@ var UserStore = new Store({
     this.auth = new FirebaseSimpleLogin(this.firebase, function(error, user) {
       this.error = error;
       this.user = user;
+
+      if (this.user) {
+        Dispatcher.send('user:available', [this.user]);
+      }
       this.trigger();
     }.bind(this));
   },

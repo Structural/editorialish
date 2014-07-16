@@ -2,10 +2,9 @@
 
 var React = require('react');
 var _ = require('underscore');
+
 var Button = require('../shared/button');
 var Dispatcher = require('../dispatcher/dispatcher');
-
-
 
 var Folder = React.createClass({
   render: function() {
@@ -36,7 +35,6 @@ var FolderList = React.createClass({
     return (
       <div className="folders">
         <Button action="folders:create">New Folder</Button>
-        <Button action="folders:refresh">Refresh</Button>
         {folders}
       </div>
     );

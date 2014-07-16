@@ -11,42 +11,24 @@ var FoldersStore = new Store({
     this.activeFolder = undefined;
     this.userId = undefined;
     this.userDisplayName = undefined;
-  },
-
-  refresh: function(){
-    this.userId = UserStore.user.uid;
-    this.userDisplayName = UserStore.user.displayName;
-    this.userFoldersRef = new Firebase(Environment.FirebaseRootUrl)
-      .child('users')
-      .child(this.userId)
-      .child('folders');
-    this.userFoldersRef.on('value', function(snapshot) {
-      this.folders = snapshot.val();
-      if (!this.activeFolder) {
-        this.activeFolder = _.keys(this.folders)[0];
-      }
-      this.trigger();
-    }, this);
+    this.userFolderListRef = undefined;
+    this.globalFolderListRef = new Firebase(Environment.FirebaseRootUrl)
+                                   .child('folders');
   },
 
   create: function(){
-    userId = this.userId;
-    userDisplayName = this.userDisplayName;
-    newFolder = {
+    var newFolder = {
       "name": "New Folder",
       "participants": {}
     };
-    newFolder.participants[userId] = userDisplayName;
+    newFolder.participants[this.userId] = this.userDisplayName;
 
-    globalFoldersRef = new Firebase(Environment.FirebaseRootUrl)
-      .child('folders');
-    globalFolderRef = globalFoldersRef.push(newFolder);
-    name = globalFolderRef.name();
-    console.log(name);
+    var globalFolderRef = this.globalFolderListRef.push(newFolder);
+    var folderId = globalFolderRef.name();
+
     var newUserFolder = {};
-    newUserFolder[name] = newFolder;
-    this.userFoldersRef.update(newUserFolder)
-
+    newUserFolder[folderId] = newFolder;
+    this.userFolderListRef.update(newUserFolder)
   },
 
   selectFolder: function(id){
@@ -57,7 +39,21 @@ var FoldersStore = new Store({
   dispatches: {
     'folders:select': 'selectFolder',
     'folders:create': 'create',
-    'folders:refresh': 'refresh'
+    'user:available': function(user) {
+      this.userId = user.uid;
+      this.userDisplayName = user.displayName;
+      this.userFolderListRef = new Firebase(Environment.FirebaseRootUrl)
+                                   .child('users')
+                                   .child(this.userId)
+                                   .child('folders');
+      this.userFolderListRef.on('value', function(snapshot) {
+        this.folders = snapshot.val();
+        if (!this.activeFolder) {
+          this.activeFolder = _.keys(this.folders)[0];
+        }
+        this.trigger();
+      }, this)
+    }
   }
 });
 
