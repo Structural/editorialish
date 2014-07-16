@@ -3,6 +3,7 @@
 var React = require('react');
 
 var Button = require('../shared/button');
+var Dispatcher = require('../dispatcher/dispatcher');
 
 var NewFolder = React.createClass({
   getInitialState: function() {
@@ -15,7 +16,8 @@ var NewFolder = React.createClass({
     if (this.state.showInput) {
       return (
         <div className="new-folder">
-          <input type="text" onChange={this._changeFolderName} />
+          <input type="text" onChange={this._changeFolderName}
+                 onKeyDown={this._createOnEnter} />
           <Button action="folders:create" args={[this.state.folderName]}
                   onClick={this._createFolder}>
             Create
@@ -41,8 +43,15 @@ var NewFolder = React.createClass({
   },
   _createFolder: function() {
     this.setState({
-      showInput: false
+      showInput: false,
+      folderName: ''
     })
+  },
+  _createOnEnter: function(event) {
+    if (event.keyCode === 13) {
+      Dispatcher.send('folders:create', [this.state.folderName]);
+      this._createFolder();
+    }
   }
 });
 
