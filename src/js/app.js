@@ -1,6 +1,6 @@
 /** @jsx React.DOM */
 
-var React = require('react')
+var React = require('react'),
     RouterStore = require('./store/router-store'),
     UserStore = require('./store/user-store'),
     HomePage = require('./home-page/home-page'),
