@@ -16,9 +16,9 @@ var FoldersStore = new Store({
                                    .child('folders');
   },
 
-  create: function(){
+  create: function(name ) {
     var newFolder = {
-      "name": "New Folder",
+      "name": name,
       "participants": {}
     };
     newFolder.participants[this.userId] = this.userDisplayName;
@@ -31,7 +31,7 @@ var FoldersStore = new Store({
     this.userFolderListRef.update(newUserFolder)
   },
 
-  selectFolder: function(id){
+  selectFolder: function(id) {
     this.activeFolder = id;
     this.trigger();
   },
