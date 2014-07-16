@@ -17,7 +17,7 @@ var NewFolder = React.createClass({
       return (
         <div className="new-folder">
           <input type="text" onChange={this._changeFolderName}
-                 onKeyDown={this._createOnEnter} />
+                 onKeyDown={this._createOnEnter} ref="folderNameInput" />
           <Button action="folders:create" args={[this.state.folderName]}
                   onClick={this._createFolder}>
             Create
@@ -34,6 +34,8 @@ var NewFolder = React.createClass({
   _showInput: function() {
     this.setState({
       showInput: true
+    }, function() {
+      this.refs.folderNameInput.getDOMNode().focus();
     })
   },
   _changeFolderName: function(event) {
